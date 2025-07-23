@@ -1,0 +1,22 @@
+.login-failure-template{
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+}
+.failure-heading{
+    padding: 15px;
+}
+.failure-body{
+    padding: 15px;
+    display: flex;
+    gap: 10px;
+}
+.retry,.create-account{
+    padding: 10px;
+    border: none;
+    outline: none;
+    border-radius: 8px;
+    cursor: pointer;
+}

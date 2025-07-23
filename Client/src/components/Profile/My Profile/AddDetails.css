@@ -1,0 +1,33 @@
+.add-details-section{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.field-data{
+    padding: 15px;
+    border-radius: 15px;
+    outline: none;
+    border: .3px solid green;
+}
+.form-field-cont{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.send-field{
+    padding: 10px;
+    outline: none;
+    border: 0.3px solid green;
+    width: min-content;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.send-ic{
+    color: green;
+}
+.update-done-add{
+    color: green;
+    font-size: 12px;
+}

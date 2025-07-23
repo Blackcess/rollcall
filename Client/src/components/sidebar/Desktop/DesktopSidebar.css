@@ -1,0 +1,25 @@
+.desktop-sidebar-helper-template{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 0px 15px;
+    gap: 50vh;
+    /* justify-content: ; */
+    /* background-color: black; */
+}
+.sidebar-page-1{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding: 10px 10px;
+    gap: 10px;
+    list-style-type: none;
+    text-decoration: none;
+    color: black;
+
+}
+.sidebar-page-1:hover{
+    border: 1px solid gray;
+    border-radius: 8px;
+    cursor: pointer;
+}

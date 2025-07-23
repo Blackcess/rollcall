@@ -1,0 +1,28 @@
+
+.avar-selection-section{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+.default-avatars{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+.link-selct-user-profile{
+    padding: 15px;
+    border: 1px solid green;
+    background-color: #fff;
+    box-shadow: 1px 1px 1px green;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.add-personal-icon{
+    font-size: 18px;
+    /* background-color:green; */
+    display: flex;
+    align-items: center;
+}

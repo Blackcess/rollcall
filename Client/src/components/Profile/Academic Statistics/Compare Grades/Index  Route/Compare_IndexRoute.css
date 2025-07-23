@@ -1,0 +1,36 @@
+.compare-index-route-section{
+    display: flex;
+    flex-direction: column;
+}
+.my-bransd-nam{
+    color:green ;
+}
+.new-feature-intro{
+    display: flex;
+    font-size: 12px;
+    padding: 20px;
+    border: 1px solid red;
+    border-radius: 10px;
+}
+.verification-compare{
+    width: 100%;
+}
+.form-passcode{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+    justify-content: center;
+    gap: 25px;
+}
+.passcode-premium-form{
+
+    padding: 15px;
+    border: 0.2px solid green;
+    border-radius: 10px;
+}
+.verify-password{
+    padding:10px 15px;
+    border: 0.2px solid green;
+    border-radius: 10px;
+}

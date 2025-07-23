@@ -1,0 +1,27 @@
+.my-personal-pic-template{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+.pro-img-upload{
+
+}
+.upload-file-input{
+    border: .3px  solid  green;
+    padding: 20px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    width: 70%;
+}
+.send-btn{
+    padding:10px 20px ;
+    border-radius: 10px;
+    border: 0.1px solid green;
+    width: fit-content;
+}
+.my-upload-form{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}

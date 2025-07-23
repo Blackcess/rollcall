@@ -1,0 +1,25 @@
+.compare-analytics-template{
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+
+}
+.compatitors-line-up{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.avatar-display{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.compare-analytics-outlet{
+
+    
+}
+.my-competion-links{
+
+    display: flex;
+    gap: 20px;
+}
