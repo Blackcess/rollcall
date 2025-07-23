@@ -13,7 +13,7 @@
     display: flex;
     flex-direction: column;
     padding: 15px;
-    background: url("C:\\Users\\Thomas\\Documents\\full-stack-app-1\\Client\\assets\\minimal-monochromatic-purple-wallpaper.jpg");
+    background: url("..\\..\\..\\..\\..\\assets\\minimal-monochromatic-purple-wallpaper.jpg");
     background-size: cover;
     background-position: center;
     border-radius: 20px;
