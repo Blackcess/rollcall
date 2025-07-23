@@ -1,30 +1,30 @@
-import "../Chat Sockets/ChatSockets.js"
+// import "../Chat Sockets/ChatSockets.js"
 import express from 'express';
 import "express-async-errors";
 import fs from 'fs';
 import cors from 'cors';
 import "dotenv/config"
 // import { getFromUserName,getStudentResults,getStudentSemesterSubjects,getPassedFromSubject,getFailedFromSubject,createStudentAccount,addProfilePicture,retrieveProfile,enquireStudentPersonalInfo,addCredentials,getUserName,getAllStudents} from '../database connections/databaseConnect.js';
-import session from "express-session"
-import { Cookie } from 'express-session';
-import passport from "passport"
+// import session from "express-session"
+// import { Cookie } from 'express-session';
+// import passport from "passport"
 // import "../Passport Aunthentication Logic/passportStrategy.js"
 // import { sessionStore } from '../database connections/databaseConnect.js';
-import multer from 'multer';
-import path from 'path';
-import { Server } from 'socket.io';
+// import multer from 'multer';
+// import path from 'path';
+// import { Server } from 'socket.io';
 // import { mySocketLogic } from "../Chat Sockets/ChatSockets.js";
 
-import { createServer } from 'http';
+// import { createServer } from 'http';
 // import  bcrypt from "bycrpt"
 
 
 const app =express();
 
-app.use(cors({
-    origin:"http://localhost:3000",
-    credentials:true
-}));
+// app.use(cors({
+//     origin:"http://localhost:3000",
+//     credentials:true
+// }));
 app.use(express.json());
 app.use(express.urlencoded({extended:true}))
 // app.use(session({
@@ -36,8 +36,8 @@ app.use(express.urlencoded({extended:true}))
 //     maxAge: 60000 * 60 * 24  // session expires after 24 hours
 //   }
 // }))
-app.use(passport.initialize())
-app.use(passport.session())
+// app.use(passport.initialize())
+// app.use(passport.session())
 // app.use("/uploads",express.static("uploads"))
 // //setting up multer storage engine
 // const storage = multer.diskStorage({
@@ -301,4 +301,4 @@ const httpServer= app.listen(process.env.PORT,()=>{
 
 
 
-export {session,httpServer}
+// export {session,httpServer}
