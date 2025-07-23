@@ -3,7 +3,7 @@ import express from 'express';
 import "express-async-errors";
 import fs from 'fs';
 import cors from 'cors';
-import dotenv from 'dotenv';
+import "dotenv/config"
 import { getFromUserName,getStudentResults,getStudentSemesterSubjects,getPassedFromSubject,getFailedFromSubject,createStudentAccount,addProfilePicture,retrieveProfile,enquireStudentPersonalInfo,addCredentials,getUserName,getAllStudents} from '../database connections/databaseConnect.js';
 import session from "express-session"
 import { Cookie } from 'express-session';
@@ -18,10 +18,8 @@ import { mySocketLogic } from "../Chat Sockets/ChatSockets.js";
 import { createServer } from 'http';
 // import  bcrypt from "bycrpt"
 
-// console.clear()
-dotenv.config();
+
 const app =express();
-// const httpServer = createServer();
 
 app.use(cors({
     origin:"http://localhost:3000",
@@ -286,8 +284,8 @@ app.use('/login',(err,req,res,next)=>{
     res.status(500).json({status:false,msg:err.message})
 })
 
-const httpServer= app.listen(8000,()=>{
-    console.log("Server is up...");
+const httpServer= app.listen(process.env.PORT,()=>{
+    console.log("Server is up...",process.env.PORT);
 })
 
 const io= new Server (httpServer,{
