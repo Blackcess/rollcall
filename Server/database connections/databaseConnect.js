@@ -1,30 +1,35 @@
-// import express from "express";
-// import mysql from "mysql2/promise";
+import express from "express";
+import mysql from "mysql2/promise";
 // import session from "express-session";
-// import connectMySQL from "express-mysql-session";
+import connectMySQL from "express-mysql-session";
 // import thirdSemResults from "../ThirdSemester.js";
-// import "dotenv/config"
+import "dotenv/config"
 
 
 // const MySQLStore = connectMySQL(session);
-// let asyncConnect = async () => {
+let asyncConnect = async () => {
    
-// try {
-//      const connection = await new mysql.createPool({
-//     host: process.env.DB_HOST, 
-//     user:process.env.DB_USER,
-//     password:process.env.DB_PASSWORD,     
-//     database:process.env.DB_NAME,
-//     port: process.env.DB_PORT,
-// })
-// return connection;
-// } catch (error) {
-//     throw Error("Error connecting to the database:");
-// }
+try {
+     const connection = await new mysql.createPool(process.env.MYSQL_DATABASE);
+    // host: process.env.DB_HOST, 
+    // user:process.env.DB_USER,
+    // password:process.env.DB_PASSWORD,     
+    // database:process.env.DB_NAME,
+    // port: process.env.DB_PORT,
 
-// }
+return connection;
+} catch (error) {
+    throw Error("Error connecting to the database:");
+}
 
-// let connection = await asyncConnect();
+}
+
+let connection = await asyncConnect();
+
+await connection.query(`CREATE TABLE THOMAS (
+                        id INT PRIMARY KEY,
+                        name VARCHAR(255
+                        ))`)
 // export const sessionStore= new MySQLStore({},connection);
 
 

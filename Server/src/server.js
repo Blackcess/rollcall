@@ -17,6 +17,7 @@ import "dotenv/config"
 
 // import { createServer } from 'http';
 // import  bcrypt from "bycrpt"
+import "../database connections/databaseConnect.js"
 
 
 const app =express();
