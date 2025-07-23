@@ -16,7 +16,7 @@
 .desktop-logo{
     height: 50px;
     width: 130px;
-    background:url("..\\..\\..\\assets\\c.png");
+    background:url("../../../assets/c.png");
     background-position: center;
     background-size: cover;
 }
