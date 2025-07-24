@@ -30,16 +30,7 @@ const allowedOrigins = [
 
 // https://rollcall-77s5.vercel.app/login
 app.use(cors({
-    origin: (origin, callback) => {
-    // Allow requests with no origin (like mobile apps or curl)
-    if (!origin) return callback(null, true);
-
-    if (allowedOrigins.includes(origin)) {
-      return callback(null, true);
-    } else {
-      return callback(new Error('Not allowed by CORS'));
-    }
-  },
+    origin: true,
     credentials:true
 }));
 app.use(express.json());
@@ -142,6 +133,7 @@ app.get("/",(req,res)=>{
     res.json({msg: "Loser, you are not authorized to use my resources..."})
 })
 app.get("/home",(req,res)=>{ 
+    console.log("USER DETAILS ",req.session.passport);
     (req.session.passport) ?  res.status(200).json({status:true,msg:"working",userDetails:req.user}) :  res.status(401).json({status:false,msg:"not authorized"})
         
 })
