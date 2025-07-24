@@ -3,7 +3,7 @@ import Strategy from "passport-local"
 import { getFromUserName,getUserById } from "../database connections/databaseConnect.js"
 
 
- export default passport.use(new Strategy(async (username,password,done)=>{
+  passport.use(new Strategy(async (username,password,done)=>{
     console.log(`username: ${username}, password: ${password}`)
     try {
         let row = await getFromUserName(username,password);

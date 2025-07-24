@@ -141,6 +141,7 @@ app.get("/checkAuth",(req,res)=>{
     }
     else{
         console.log("You donyt have any set user logs...")
+         console.log("user session is ",req.user,"session->",req.session);
          res.status(200).json({status:false,msg:"UIts NOT working"})
     }
 })
