@@ -33,7 +33,7 @@ import axios from "axios"
             const studentTable = indexToSemesterStudentTable(parseInt(index));
             if(studentTable){
                 try {
-                    const response=  await axios.get(`http://localhost:8000/results?table=${studentTable}&roll_number=${rollNumber}`,{
+                    const response=  await axios.get(`https://rollcall-iakp.onrender.com/results?table=${studentTable}&roll_number=${rollNumber}`,{
                     withCredentials:true
                     })
                     // console.log(response)
@@ -57,7 +57,7 @@ import axios from "axios"
         async function getSubjects(index) {
             if(subjectTable){
             try {
-                const response= await axios.get(`http://localhost:8000/results/semester/subjects?table=${subjectTable}`,{
+                const response= await axios.get(`https://rollcall-iakp.onrender.com/results/semester/subjects?table=${subjectTable}`,{
                     withCredentials:true
                 })
                 setUserSubjects((prev)=>{
@@ -80,7 +80,7 @@ import axios from "axios"
         async function getFailed(mySub){
             const studentTable=indexToSemesterStudentTable(parseInt(index))
             try {
-             let my_result=   await axios.get(`http://localhost:8000/result/subject/failed?subject=${mySub}&view=${studentTable}`);
+             let my_result=   await axios.get(`https://rollcall-iakp.onrender.com/result/subject/failed?subject=${mySub}&view=${studentTable}`);
              setFailed(my_result.data.data[Object.keys(my_result.data.data)[0]])
             } catch (error) {
                 console.log(error)
@@ -89,7 +89,7 @@ import axios from "axios"
         async function getPassed(mySub){
             const studentTable=indexToSemesterStudentTable(parseInt(index))
             try {
-             let my_result=   await axios.get(`http://localhost:8000/result/subject/passed?subject=${mySub}&view=${studentTable}`);
+             let my_result=   await axios.get(`https://rollcall-iakp.onrender.com/result/subject/passed?subject=${mySub}&view=${studentTable}`);
              setPassed(my_result.data.data[Object.keys(my_result.data.data)[0]])
             } catch (error) {
                 console.log(error)

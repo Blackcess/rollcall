@@ -31,7 +31,7 @@ function ComparisonAnalytics(){
         else{
           if(row.profPicType==="user"){
             console.log("I rendered")
-            return `http://localhost:8000/${row.profPic.replace(/\\/g, "/")}`
+            return `https://rollcall-iakp.onrender.com/${row.profPic.replace(/\\/g, "/")}`
             
           }else{
             console.log("profPicType is empty")

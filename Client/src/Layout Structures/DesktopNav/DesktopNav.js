@@ -15,43 +15,7 @@ function DesktopNav(){
     let [profPicType,setProfPicType] =useState("");
     let sessionData = useAuth();
 
-    // useEffect(()=>{
-    //     async function getUser(){
-    //         try {
-    //             const response = await axios.get("http://localhost:8000/home",{
-    //                 withCredentials:true
-    //             })
-    //             console.log("User Data: ",response.data)
-    //             if(response.data.status){
-    //                 setUserData(()=>{
-    //                     return response.data.userDetails
-    //                 })
-    //             }
-    //         } catch (error) {
-    //             console.log("Error fetching user data: ",error)
-    //         }
-    //     }
-    //     async function retrivePic(){
-         
-    //         try {
-    //               const result = await axios.get("http://localhost:8000/uploads",{
-    //             withCredentials:true
-    //         })
-    //         if(result.data.status){
-    //             console.log("img ", result)
-    //             setRenderProf(true);
-    //             setProfPicType(result.data.type);
-    //             setProfPic(result.data.path)
-    //         }
-    //         } catch (error) {
-    //             console.log("Error in image path",error)
-    //         }
-    //     }
 
-
-    //     getUser();
-    //     retrivePic();
-    // },[])
 
     useEffect(()=>{
             if(innerUser.current && outerUser.current){
@@ -86,7 +50,7 @@ function DesktopNav(){
                 }
             else{
                 if(sessionData.userData.profPicType==="user"){
-                    return `http://localhost:8000/${sessionData.userData.profPic.replace(/\\/g, "/")}`
+                    return `https://rollcall-iakp.onrender.com/${sessionData.userData.profPic.replace(/\\/g, "/")}`
                 }else{
                     console.log("profPicType is empty")
                     }

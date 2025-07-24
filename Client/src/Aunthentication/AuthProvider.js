@@ -26,7 +26,7 @@ function AuthProvider({children}){
             console.log("Am I running...")
             setDrop(drop+1)
             try {
-                 let res = await axios.get("http://localhost:8000/home",{
+                 let res = await axios.get("https://rollcall-iakp.onrender.com/home",{
                  withCredentials:true,
             })
              setIsAuthenticated(true);
@@ -51,7 +51,7 @@ function AuthProvider({children}){
     })
     async function getUser(){
             try {
-                const response = await axios.get("http://localhost:8000/home",{
+                const response = await axios.get("https://rollcall-iakp.onrender.com/home",{
                     withCredentials:true
                 })
                 if(response.data.status){
@@ -68,7 +68,7 @@ function AuthProvider({children}){
         async function retrivePic(){
          
             try {
-                  const result = await axios.get("http://localhost:8000/uploads",{
+                  const result = await axios.get("https://rollcall-iakp.onrender.com/uploads",{
                 withCredentials:true
             })
             if(result.data.status){
@@ -88,7 +88,7 @@ function AuthProvider({children}){
 
         async function getCredentials(){
             try {
-                const result = await axios.get("http://localhost:8000/personal-details",{
+                const result = await axios.get("https://rollcall-iakp.onrender.com/personal-details",{
                     withCredentials:true
                 })
                 // console.log("My Credentials",result.data.data);
@@ -109,7 +109,7 @@ function AuthProvider({children}){
         let table = indexToSemesterStudentTable(sem);
         if(table &&  id){
             try {
-                const result =  await axios.get(`http://localhost:8000/results?table=${table}&roll_number=${id}`);
+                const result =  await axios.get(`https://rollcall-iakp.onrender.com/results?table=${table}&roll_number=${id}`);
                 return result.data[0];  //object
             } catch (error) {
                 console.error("Error",error)

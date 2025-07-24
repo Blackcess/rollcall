@@ -55,7 +55,7 @@ function ActualSemesterData_Desktop(){
             const studentTable = indexToSemesterStudentTable(parseInt(index));
             if(studentTable){
                 try {
-                    const response=  await axios.get(`http://localhost:8000/results?table=${studentTable}&roll_number=${roll_number}`,{
+                    const response=  await axios.get(`https://rollcall-iakp.onrender.com/results?table=${studentTable}&roll_number=${roll_number}`,{
                     withCredentials:true
                     })
                     // console.log(response)
@@ -79,7 +79,7 @@ function ActualSemesterData_Desktop(){
         async function getSubjects() {
             if(subjectTable){
             try {
-                const response= await axios.get(`http://localhost:8000/results/semester/subjects?table=${subjectTable}`,{
+                const response= await axios.get(`https://rollcall-iakp.onrender.com/results/semester/subjects?table=${subjectTable}`,{
                     withCredentials:true
                 })
                  console.log("Desktop data",response.data)

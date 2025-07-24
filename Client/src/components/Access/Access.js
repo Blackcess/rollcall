@@ -9,7 +9,7 @@ function Access(){
     useEffect(()=>{
        let checkBackend = async ()=>{
             try {
-            let res = await axios.get("http://localhost:8000/home",{
+            let res = await axios.get("https://rollcall-iakp.onrender.com/home",{
             withCredentials:true
                 })
             console.log(res.data);

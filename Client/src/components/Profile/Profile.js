@@ -24,42 +24,7 @@ function Profile() {
     
 
 
-    // useEffect(()=>{
-    //      async function retrivePic(){
-         
-    //         try {
-    //               const result = await axios.get("http://localhost:8000/uploads",{
-    //             withCredentials:true
-    //         })
-    //         if(result.data.status){
-    //             console.log("img ", result)
-    //             setProfPicType(result.data.type);
-    //             setRenderProf(true);
-    //             setProfPic(result.data.path)
-    //         }
-    //         } catch (error) {
-    //             console.log("Error in image path",error)
-    //         }
-    //     }
 
-    //     async function getUser_name(){
-          
-    //       try {
-    //           const result= await axios.get("http://localhost:8000/myUserName",{
-    //             withCredentials:true
-    //             });
-    //             if(result.data.status){
-    //               setUser_name(result.data.value)
-    //               // console.log("Dont fUCK iT uP",result)
-    //             }
-    //       } catch (error) {
-    //         console.log("Error",error)
-    //       }
-    //     }
-    //     retrivePic();
-    //     getUser_name();
-    // },[refresh])
-   
   
   useEffect(()=>{
     window.addEventListener("resize",()=>{
@@ -74,7 +39,7 @@ function Profile() {
         }
         else{
           if(sessionData.userData.profPicType==="user"){
-            return `http://localhost:8000/${sessionData.userData.profPic.replace(/\\/g, "/")}`
+            return `https://rollcall-iakp.onrender.com/${sessionData.userData.profPic.replace(/\\/g, "/")}`
           }else{
             console.log("profPicType is empty")
           }

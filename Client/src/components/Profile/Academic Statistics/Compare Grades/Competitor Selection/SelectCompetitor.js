@@ -15,7 +15,7 @@ function SelectCompetitor(){
     async function  getAllCompetitors(){
         
         try {
-            const result=await axios.get("http://localhost:8000/students/all",{
+            const result=await axios.get("https://rollcall-iakp.onrender.com/students/all",{
                         withCredentials:true
                 })
                 if(result.data.status){
@@ -36,7 +36,7 @@ function SelectCompetitor(){
         }
         else{
           if(row.profile_picture_type==="user"){
-            return `http://localhost:8000/${row.profile_picture.replace(/\\/g, "/")}`
+            return `https://rollcall-iakp.onrender.com/${row.profile_picture.replace(/\\/g, "/")}`
           }else{
             console.log("profPicType is empty")
           }

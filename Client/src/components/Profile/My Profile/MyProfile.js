@@ -18,7 +18,7 @@ function MyProfile(){
         async function student_credentials(){
             
             try {
-                const result = await axios.get("http://localhost:8000/personal-details",{
+                const result = await axios.get("https://rollcall-iakp.onrender.com/personal-details",{
                 withCredentials:true
             })
             if (result.data.data.value === null){

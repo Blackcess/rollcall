@@ -54,7 +54,7 @@ import { grade_value,reverseGrade_value } from "../../../../../utils_functions/g
         let table = indexToSemesterStudentTable(sem);
         if(table &&  id){
             try {
-                const result =  await axios.get(`http://localhost:8000/results?table=${table}&roll_number=${id}`);
+                const result =  await axios.get(`https://rollcall-iakp.onrender.com/results?table=${table}&roll_number=${id}`);
                 return result.data[0];  //object
             } catch (error) {
                 console.error("Error",error)
@@ -83,7 +83,7 @@ import { grade_value,reverseGrade_value } from "../../../../../utils_functions/g
             async function getSubjects() {
             if(subjectTable){
             try {
-                const response= await axios.get(`http://localhost:8000/results/semester/subjects?table=${subjectTable}`,{
+                const response= await axios.get(`https://rollcall-iakp.onrender.com/results/semester/subjects?table=${subjectTable}`,{
                     withCredentials:true
                 })
                 setUserSubjects((prev)=>{

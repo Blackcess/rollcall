@@ -23,7 +23,7 @@ function AddDetails(){
                 temp.field=field;
                 temp.value=inputValue;
                 try {
-                      const result= await axios.get(`http://localhost:8000/addCredentials?field=${field}&value=${inputValue}`,{
+                      const result= await axios.get(`https://rollcall-iakp.onrender.com/addCredentials?field=${field}&value=${inputValue}`,{
                         withCredentials:true
                             })
                             if(result.data.status){

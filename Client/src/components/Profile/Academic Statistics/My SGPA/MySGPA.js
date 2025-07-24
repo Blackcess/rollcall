@@ -35,9 +35,7 @@ function MySGPA(){
     useEffect(()=>{
         sessionData.myResults();
     },[])
-    useEffect(()=>{
-        console.log("My Session data",sessionData)
-    })
+  
   
     return <>
     <section className="my-sgpa-section">

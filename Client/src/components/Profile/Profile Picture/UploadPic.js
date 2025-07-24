@@ -20,7 +20,7 @@ function UploadPic(){
     
      async function uploadFile(formData) {
                         try {
-                            const result=  await axios.post("http://localhost:8000/uploads",formData,{
+                            const result=  await axios.post("https://rollcall-iakp.onrender.com/uploads",formData,{
                             withCredentials:true
                                 }
                             )

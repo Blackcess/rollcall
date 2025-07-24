@@ -52,7 +52,7 @@ function MobileNav(){
                 }
             else{
                 if(sessionData.userData.profPicType==="user"){
-                    return `http://localhost:8000/${sessionData.userData.profPic.replace(/\\/g, "/")}`
+                    return `https://rollcall-iakp.onrender.com/${sessionData.userData.profPic.replace(/\\/g, "/")}`
                 }else{
                     console.log("profPicType is empty")
                     }

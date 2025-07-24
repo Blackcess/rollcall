@@ -19,7 +19,7 @@ function CreateAccount(){
             console.log("Temp: ",temp)
             const resultFromBackend= async ()=>{
                 try{
-                    let res = await axios.post("http://localhost:8000/create-account",{
+                    let res = await axios.post("https://rollcall-iakp.onrender.com/create-account",{
                         roll_number:temp.rollNumber,
                         password:temp.password,
                         confirm_password:temp.confirmPassword

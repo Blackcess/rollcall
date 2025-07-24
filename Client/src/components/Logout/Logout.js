@@ -17,7 +17,7 @@ function Logout(){
             async function logoutUser(){
                 
                 try {
-                    const logoutResult=  await axios.get("http://localhost:8000/logout",{
+                    const logoutResult=  await axios.get("https://rollcall-iakp.onrender.com/logout",{
                             withCredentials:true
                         })
                         sessionData.refresh()
