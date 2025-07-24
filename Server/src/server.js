@@ -147,7 +147,7 @@ app.get("/checkAuth",(req,res)=>{
 })
 app.get("/home",(req,res)=>{ 
     console.log("USER DETAILS ",req.session.passport);
-    (req.session.passport) ?  res.status(200).json({status:true,msg:"working",userDetails:req.user}) :  res.status(401).json({status:false,msg:"not authorized"})
+    (req.isAuthenticated()) ?  res.status(200).json({status:true,msg:"working",userDetails:req.user}) :  res.status(401).json({status:false,msg:"not authorized"})
         
 })
 app.get("/results",async (req,res)=>{
