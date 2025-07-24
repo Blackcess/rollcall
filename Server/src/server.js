@@ -38,7 +38,7 @@ app.use(express.urlencoded({extended:true}))
 app.use(session({
     secret:"login-secret",
     store:sessionStore,
-    saveUninitialised:false,
+    saveUninitialized: false,
     resave:false,
     cookie: {
     secure: true,       // required for sameSite: 'None'
@@ -136,7 +136,7 @@ app.get("/",(req,res)=>{
 })
 app.get("/checkAuth",(req,res)=>{
     if(req.user){
-        console.log("user session is ",req.user);
+        console.log("user session is ",req.user,"session->",req.session);
         res.status(200).json({status:true,msg:res.user})
     }
     else{
