@@ -134,6 +134,16 @@ app.get("/logout",(req,res)=>{
 app.get("/",(req,res)=>{
     res.json({msg: "Loser, you are not authorized to use my resources..."})
 })
+app.get("/checkAuth",(req,res)=>{
+    if(req.user){
+        console.log("user session is ",req.user);
+        res.status(200).json({status:true,msg:res.user})
+    }
+    else{
+        console.log("You donyt have any set user logs...")
+         res.status(200).json({status:false,msg:"UIts NOT working"})
+    }
+})
 app.get("/home",(req,res)=>{ 
     console.log("USER DETAILS ",req.session.passport);
     (req.session.passport) ?  res.status(200).json({status:true,msg:"working",userDetails:req.user}) :  res.status(401).json({status:false,msg:"not authorized"})
