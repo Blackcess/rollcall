@@ -26,10 +26,7 @@ return connection;
 
 let connection = await asyncConnect();
 
-await connection.query(`CREATE TABLE THOMAS (
-                        id INT PRIMARY KEY,
-                        name VARCHAR(255
-                        ))`)
+
 // export const sessionStore= new MySQLStore({},connection);
 
 
