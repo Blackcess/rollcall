@@ -100,6 +100,9 @@ function AuthProvider({children}){
                         return data;
                     })
                 }
+                else{
+                    console.log("Passport did not leave you any cookies :(")
+                }
             } catch (error) {
                 console.log("Error",error)
             }

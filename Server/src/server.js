@@ -41,7 +41,9 @@ app.use(session({
     saveUninitialised:false,
     resave:false,
     cookie: {
-    maxAge: 60000 * 60 * 24 * 30  // session expires after 24 hours
+    secure: true,       // required for sameSite: 'None'
+    sameSite: 'None',   // allows cross-origin cookies
+    maxAge: 1000 * 60 * 60 * 24 * 30 // 30 days
   }
 }))
 app.use(passport.initialize())
@@ -223,9 +225,16 @@ app.get("/uploads",async (req,res)=>{
 })
 app.get("/personal-details",async (req,res)=>{
     try {
-        let data = await enquireStudentPersonalInfo(req.user.roll_number);
-        console.log("This is the data that is not rebdering",data,req.user.roll_number)
-        res.status(200).json({status:true,data:data});
+        if(req.user){
+             let data = await enquireStudentPersonalInfo(req.user.roll_number);
+            console.log("This is the data that is not rebdering",data,req.user.roll_number)
+            res.status(200).json({status:true,data:data});
+        }
+        else{
+            console.log("Sorry but passport did not leave you any cookies  :(");
+            res.status(200).json({status:false,data:[]});
+        }
+       
     } catch (error) {
        console.log("error",error)
        res.status.apply(500).json({status:false});

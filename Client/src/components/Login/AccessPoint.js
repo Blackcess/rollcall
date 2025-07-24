@@ -40,7 +40,7 @@ function Login() {
                 })
                 console.log(res.data)
                 if(res.data.status){
-                  refresh()
+                  // refresh()
                   navigate("/protected/layout/home",{
                   replace:true
                 })
