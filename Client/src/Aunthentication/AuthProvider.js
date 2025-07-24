@@ -23,7 +23,7 @@ function AuthProvider({children}){
     useEffect(()=>{
       async  function proveAuth(){
            if(drop==0){
-            console.log("Am I running...")
+            // console.log("Am I running...")
             setDrop(drop+1)
             try {
                  let res = await axios.get("https://rollcall-iakp.onrender.com/home",{
@@ -45,8 +45,9 @@ function AuthProvider({children}){
             }
         }
 
-        proveAuth()
+        
         }
+        proveAuth()
 
     })
     async function getUser(){
