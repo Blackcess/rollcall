@@ -91,7 +91,7 @@ function AuthProvider({children}){
                 const result = await axios.get("http://localhost:8000/personal-details",{
                     withCredentials:true
                 })
-                console.log("My Credentials",result.data.data);
+                // console.log("My Credentials",result.data.data);
                 if(result.data.status && result.data.data.value){
                     
                     setUserData((prev)=>{

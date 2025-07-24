@@ -30,7 +30,7 @@ function PersonalMessaging(){
         const checkAuthentication = (socket)=>{
                 socket.on("unauthorized",()=>{
                     setSecurityFlag(true)
-                    console.log("There are security errors occuring right now please try again error")
+                    // console.log("There are security errors occuring right now please try again error")
                 })
         }
 
@@ -39,12 +39,12 @@ function PersonalMessaging(){
             sessionData.refresh()
             
             setTimeout(() => {
-                console.log("sessionD",sessionData.userData.roll_number)
+                // console.log("sessionD",sessionData.userData.roll_number)
                socket = connectSocket(); 
                checkAuthentication(socket);
                socket.on("conversation-list",(data)=>{
                 
-                console.log('Data from database is ',data);
+                // console.log('Data from database is ',data);
                 let others=[]
                 for(let i=0;i<data.length;i++){
                     //first check if user_one is me 
@@ -71,7 +71,7 @@ function PersonalMessaging(){
         },[])
 
         useEffect(()=>{
-            console.log("Conversation list ",conversationList)
+            // console.log("Conversation list ",conversationList)
         },[conversationList])
 
     return <>
@@ -86,7 +86,7 @@ function PersonalMessaging(){
                 </div>
                 :
                 <div className="my-chats-template">
-                    <Chatting value={{myChats:conversationList}}/>
+                    <Chatting value={{myChats:conversationList}}/>   
                 </div>
             }
         </div>
@@ -152,7 +152,7 @@ function Chatting (props){
         if(dataDone){
             for(let i=0;i<props.value.myChats.length;i++){
             let temp = allData.find((row)=>row.roll_number === props.value.myChats[i].otherUser)
-            console.log("This is temp ",temp)
+            // console.log("This is temp ",temp)
             setFriends((prev)=>{
                 temp = {...temp,...props.value.myChats[i]};
                 return [...prev,temp]
@@ -161,11 +161,9 @@ function Chatting (props){
         }
     }
 
-      useEffect(()=>{
-        console.log("my frieds :",friends
-
-        )
-      },[friends])
+    //   useEffect(()=>{
+    //     console.log("my frieds :",friends)
+    //   },[friends])
 
 
 
