@@ -24,9 +24,11 @@ const app =express();
 
 const allowedOrigins = [
   'http://localhost:3000',             // React dev server
-  'https://rollcall-77s5.vercel.app/login',   // Production React build (example)         
+  'https://rollcall-77s5.vercel.app',   // Production React build (example)         
 ];
 
+
+// https://rollcall-77s5.vercel.app/login
 app.use(cors({
     origin: (origin, callback) => {
     // Allow requests with no origin (like mobile apps or curl)
