@@ -1,12 +1,12 @@
 import express from "express";
 import mysql from "mysql2/promise";
-// import session from "express-session";
+import session from "express-session";
 import connectMySQL from "express-mysql-session";
-// import thirdSemResults from "../ThirdSemester.js";
+import thirdSemResults from "../ThirdSemester.js";
 import "dotenv/config"
 
 
-// const MySQLStore = connectMySQL(session);
+const MySQLStore = connectMySQL(session);
 let asyncConnect = async () => {
    
 try {
@@ -27,7 +27,9 @@ return connection;
 let connection = await asyncConnect();
 
 
-// export const sessionStore= new MySQLStore({},connection);
+// await checkDatabase()
+
+export const sessionStore= new MySQLStore({},connection);
 
 
 // const getFromUserName= async(rollNumber,password)=>{
@@ -54,70 +56,70 @@ let connection = await asyncConnect();
 // const results = thirdSemResults.results;
 
 
-// const initialiseDB = async ()=>{
-//     const conn = await  connection.getConnection()
-//     try {
-//         await conn.query(`USE STUDENT_PROJECT`)
-//         await conn.query(`START TRANSACTION`)
-//         for(const student of results){
-//             //insert students into the students table
-//             const [studentResult] = await conn.execute(`
-//                 INSERT INTO THIRD_SEMESTER_STUDENTS (roll_number,student_name,father_name,result_status,passed,credits,SGPA)
-//                 VALUES(?,?,?,?,?,?,?)
-//                 `,[
-//                     student.rollNumber,
-//                     student.studentName,
-//                     student.FatherName,
-//                     student.resultStatus,
-//                     student.passed,
-//                     student.credits,
-//                     student.SGPA
-//                 ]);
-//                 const studentId = studentResult.insertId;
-//                 //insert each subject and corresponding grade... 
-//                 for(const [subjectName,gradeInfo] of Object.entries(student.gradeDetails)){
-//                     //check if subject exist in the subject table or insert it 
-//                     let [subjectRow] = await conn.query(`SELECT subject_id FROM THIRD_SEMESTER_SUBJECT WHERE subject_name = ?`,[subjectName]) 
-//                     var subId;
-//                     if(!subjectRow.length){
-//                         const  [subjectInsert] = await conn.execute(
-//                             `INSERT INTO THIRD_SEMESTER_SUBJECT(subject_name)
-//                             VALUES(?)
-//                             `,[subjectName]
-//                         );
-//                         subId = subjectInsert.insertId;
-//                     }
-//                     else{
-//                         const {subject_id}= subjectRow[0];
-//                         subId = subject_id;
-//                     }
+const initialiseDB = async ()=>{
+    const conn = await  connection.getConnection()
+    try {
+        await conn.query(`USE STUDENT_PROJECT`)
+        await conn.query(`START TRANSACTION`)
+        for(const student of results){
+            //insert students into the students table
+            const [studentResult] = await conn.execute(`
+                INSERT INTO THIRD_SEMESTER_STUDENTS (roll_number,student_name,father_name,result_status,passed,credits,SGPA)
+                VALUES(?,?,?,?,?,?,?)
+                `,[
+                    student.rollNumber,
+                    student.studentName,
+                    student.FatherName,
+                    student.resultStatus,
+                    student.passed,
+                    student.credits,
+                    student.SGPA
+                ]);
+                const studentId = studentResult.insertId;
+                //insert each subject and corresponding grade... 
+                for(const [subjectName,gradeInfo] of Object.entries(student.gradeDetails)){
+                    //check if subject exist in the subject table or insert it 
+                    let [subjectRow] = await conn.query(`SELECT subject_id FROM THIRD_SEMESTER_SUBJECT WHERE subject_name = ?`,[subjectName]) 
+                    var subId;
+                    if(!subjectRow.length){
+                        const  [subjectInsert] = await conn.execute(
+                            `INSERT INTO THIRD_SEMESTER_SUBJECT(subject_name)
+                            VALUES(?)
+                            `,[subjectName]
+                        );
+                        subId = subjectInsert.insertId;
+                    }
+                    else{
+                        const {subject_id}= subjectRow[0];
+                        subId = subject_id;
+                    }
 
-//                     // insert grade
-//                     await conn.execute(
-//                         `
-//                         INSERT INTO THIRD_SEMESTER_GRADES(student_id,subject_id,qualitative_meaning,grade_symbol,status)
-//                         VALUES(?,?,?,?,?)
-//                         `,
-//                         [
-//                             studentId,
-//                             subId,
-//                             gradeInfo.qualitative_meaning,
-//                             gradeInfo.gradeSymbol,
-//                             gradeInfo.status
-//                         ]
-//                     );
-//                 }
-//                  await conn.query(`COMMIT`)
-//         }
-//          console.log("All Data Inserted Successfully...")
-//     } catch (error){
-//         console.error("Error Inserting Data",error)
-//     }
-//     finally{
-//         conn.release();
-//     }
-// }
-// //  await initialiseDB();
+                    // insert grade
+                    await conn.execute(
+                        `
+                        INSERT INTO THIRD_SEMESTER_GRADES(student_id,subject_id,qualitative_meaning,grade_symbol,status)
+                        VALUES(?,?,?,?,?)
+                        `,
+                        [
+                            studentId,
+                            subId,
+                            gradeInfo.qualitative_meaning,
+                            gradeInfo.gradeSymbol,
+                            gradeInfo.status
+                        ]
+                    );
+                }
+                 await conn.query(`COMMIT`)
+        }
+         console.log("All Data Inserted Successfully...")
+    } catch (error){
+        console.error("Error Inserting Data",error)
+    }
+    finally{
+        conn.release();
+    }
+}
+//  await initialiseDB();
 
 // const getStudentResults = async (table,id)=>{
 //     await connection.query(`USE STUDENT_PROJECT`)

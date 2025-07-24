@@ -9,7 +9,7 @@ import session from "express-session"
 import { Cookie } from 'express-session';
 import passport from "passport"
 // import "../Passport Aunthentication Logic/passportStrategy.js"
-// import { sessionStore } from '../database connections/databaseConnect.js';
+import { sessionStore } from '../database connections/databaseConnect.js';
 import multer from 'multer';
 import path from 'path';
 // import { Server } from 'socket.io';
@@ -28,15 +28,15 @@ app.use(cors({
 }));
 app.use(express.json());
 app.use(express.urlencoded({extended:true}))
-// app.use(session({
-//     secret:"login-secret",
-//     // store:sessionStore,
-//     saveUninitialised:false,
-//     resave:false,
-//     cookie: {
-//     maxAge: 60000 * 60 * 24  // session expires after 24 hours
-//   }
-// }))
+app.use(session({
+    secret:"login-secret",
+    store:sessionStore,
+    saveUninitialised:false,
+    resave:false,
+    cookie: {
+    maxAge: 60000 * 60 * 24 * 30  // session expires after 24 hours
+  }
+}))
 // app.use(passport.initialize())
 // app.use(passport.session())
 // app.use("/uploads",express.static("uploads"))
@@ -69,7 +69,7 @@ app.use(express.urlencoded({extended:true}))
 // });  
 
 
-// console.log("My Session  Store...", sessionStore)
+console.log("My Session  Store...", sessionStore)
 
 // app.post("/login",passport.authenticate("local"),(req,res)=>{
     
@@ -122,7 +122,7 @@ app.use(express.urlencoded({extended:true}))
        
 //     })
 // })
-app.get("/not-authorized",(req,res)=>{
+app.get("/",(req,res)=>{
     res.json({msg: "Loser, you are not authorized to use my resources..."})
 })
 // app.get("/home",(req,res)=>{ 
