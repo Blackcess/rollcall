@@ -30,7 +30,7 @@ const allowedOrigins = [
 
 // https://rollcall-77s5.vercel.app/login
 app.use(cors({
-    origin: true,
+    origin: "https://rollcall-2dk7psnq4-thomas-kazondas-projects.vercel.app",
     credentials:true
 }));
 app.use(express.json());
