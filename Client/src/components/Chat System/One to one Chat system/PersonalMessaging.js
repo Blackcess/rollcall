@@ -192,7 +192,7 @@ function Chat(props){
         <div className="message-pop-up">
             <div className="competitor-name-field-1">{props.value.data.student_name}</div>
             <div className="my-last-message">
-               {(props.value.data.lastmessage) &&<span className="msg">{props.value.data.lastMessage} </span>} 
+               {(props.value.data.lastMessage) &&<span className="msg">{props.value.data.lastMessage} </span>} 
               {(props.value.data.time)&&  <span className="msg-1">{props.value.data.time.split("T")[1].split(".")[0]} </span> }
                 </div>
         </div>

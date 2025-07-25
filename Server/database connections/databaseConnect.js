@@ -252,6 +252,8 @@ const enquireStudentPersonalInfo= async (roll_number)=>{
     }
     else{
         console.log("View Aready Exists")
+        const [done]= await connection.query(`DROP VIEW student_and_student_credentials`);
+
     }
 }
   console.log(await enquireStudentPersonalInfo(2305336))
