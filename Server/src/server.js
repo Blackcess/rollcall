@@ -22,17 +22,29 @@ import "../database connections/databaseConnect.js"
 
 const app =express();
 
-const allowedOrigins = [
-  'http://localhost:3000',             // React dev server
-  'https://rollcall-77s5.vercel.app',   // Production React build (example)         
-];
+const corsOptions = {
+  origin: function (origin, callback) {
+    const allowedBase = [
+      'https://rollcall.vercel.app',
+      "rollcall-77s5-2kcst8dea-thomas-kazondas-projects.vercel.app",
+      'http://localhost:8000'
+    ];
+
+    // Allow anything ending with .vercel.app (preview deploys)
+    const isVercelPreview = origin?.endsWith('.vercel.app');
+
+    if (!origin || allowedBase.includes(origin) || isVercelPreview) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true
+};
 
 
-// https://rollcall-77s5.vercel.app/login
-app.use(cors({
-    origin: "https://rollcall-2dk7psnq4-thomas-kazondas-projects.vercel.app",
-    credentials:true
-}));
+
+app.use(cors(corsOptions))
 app.use(express.json());
 app.use(express.urlencoded({extended:true}))
 app.use(session({
