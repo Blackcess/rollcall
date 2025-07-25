@@ -28,7 +28,7 @@ const corsOptions = {
     const allowedBase = [
       'https://rollcall.vercel.app',
       "rollcall-77s5-2kcst8dea-thomas-kazondas-projects.vercel.app",
-      'http://localhost:8000'
+      'http://localhost:3000'
     ];
 
     // Allow anything ending with .vercel.app (preview deploys)
@@ -165,9 +165,9 @@ app.get("/checkAuth",(req,res)=>{
     }
 })
 app.get("/home",(req,res)=>{ 
-    console.log("USER session ",req.session);
-    console.log("USER details ",req.user);
-    console.log("USER cookie ",req.headers.cookie);
+    // console.log("USER session ",req.session);
+    // console.log("USER details ",req.user);
+    // console.log("USER cookie ",req.headers.cookie);
     (req.isAuthenticated()) ?  res.status(200).json({status:true,msg:"working",userDetails:req.user}) :  res.status(401).json({status:false,msg:"not authorized"})
         
 })
@@ -187,7 +187,7 @@ app.get("/results",async (req,res)=>{
 })
 app.get("/results/semester/subjects",async (req,res)=>{
     const {table} = req.query;
-    console.log("Table to search ",table)
+    // console.log("Table to search ",table)
     let results = await getStudentSemesterSubjects(table)
     res.status(200).send({results,user:req.user})
 })
@@ -259,7 +259,7 @@ app.get("/personal-details",async (req,res)=>{
     try {
         if(req.user){
              let data = await enquireStudentPersonalInfo(req.user.roll_number);
-            console.log("This is the data that is not rebdering",data,req.user.roll_number)
+            // console.log("This is the data that is not rebdering",data,req.user.roll_number)
             res.status(200).json({status:true,data:data});
         }
         else{
@@ -343,7 +343,7 @@ const corsOptionsSocket = {
     const allowedBase = [
       'https://rollcall.vercel.app',
       "rollcall-77s5-2kcst8dea-thomas-kazondas-projects.vercel.app",
-      'http://localhost:8000'
+      'http://localhost:3000'
     ];
 
     // Allow anything ending with .vercel.app (preview deploys)

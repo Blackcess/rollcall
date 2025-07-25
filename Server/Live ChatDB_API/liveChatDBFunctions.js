@@ -52,10 +52,11 @@ const getConversationsList = async (roll_number)=>{
             if(lastMessage.length===0){
                 console.log("That is so wiered how did that happen")
             }
+            console.log("This is my last message: ",lastMessage);
             results[i].lastMessage=lastMessage[0].message;
            results[i].time=lastMessage[0].time;
     }                                     
-     
+     console.log("Combined results of getConversation Lists:",results)
     return results;
 }
 
