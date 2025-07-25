@@ -42,7 +42,7 @@ app.use(session({
     resave:false,
     cookie: {
     secure: true,       // required for sameSite: 'None'
-    sameSite: 'None',   // allows cross-origin cookies
+    sameSite: 'none',   // allows cross-origin cookies
     maxAge: 1000 * 60 * 60 * 24 * 30 // 30 days
   }
 }))

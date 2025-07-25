@@ -30,8 +30,8 @@ let connection = await asyncConnect();
 
 
 // const checkDB = async ()=>{
-//     await connection.query(`use railway`)
-//     const [result] = await connection.query(`select * from all_students`) 
+//     // await connection.query(`use railway`)
+//     const [result] = await connection.query(`DELETE  FROM sessions`) 
 //     console.log("These are  the students",result)
 // }
 // await checkDB();

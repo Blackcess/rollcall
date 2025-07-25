@@ -8,6 +8,7 @@ import { getFromUserName,getUserById } from "../database connections/databaseCon
     try {
         let row = await getFromUserName(username,password);
         if(!row.length) throw new Error("Bad Credentials...");
+        console.log("The row is ")
         done(null,row[0])
     } catch (error) {
         done(error,null)
