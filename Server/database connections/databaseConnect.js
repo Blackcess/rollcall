@@ -26,7 +26,7 @@ return connection;
 
 let connection = await asyncConnect();
 
-// console.log("Show me this: ", await connection.query(`DROP VIEW student_and_student_credentials`))
+// console.log("Show me this: ", await connection.query(`SHOW FULL TABLES IN railway WHERE TABLE_TYPE = 'VIEW'`))
 
 
 // const checkDB = async ()=>{

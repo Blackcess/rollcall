@@ -338,11 +338,29 @@ const httpServer= app.listen(process.env.PORT,()=>{
     console.log("Server is up...",process.env.PORT);
 })
 
-const io= new Server (httpServer,{
-    cors:{
-        origin:["http://localhost:3000"],
-        credentials:true,
+const corsOptionsSocket = {
+  origin: function (origin, callback) {
+    const allowedBase = [
+      'https://rollcall.vercel.app',
+      "rollcall-77s5-2kcst8dea-thomas-kazondas-projects.vercel.app",
+      'http://localhost:8000'
+    ];
+
+    // Allow anything ending with .vercel.app (preview deploys)
+    const isVercelPreview = origin?.endsWith('.vercel.app');
+
+    if (!origin || allowedBase.includes(origin) || isVercelPreview) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
     }
+  },
+  methods: ["GET", "POST"],
+  credentials: true
+};
+
+const io= new Server (httpServer,{
+    cors:corsOptionsSocket,
 });
 
 mySocketLogic(io)
