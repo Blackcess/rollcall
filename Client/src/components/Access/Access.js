@@ -35,9 +35,11 @@ function Access(){
             navigate("/login",{
                 replace:true
             })
+
+            
         }
         }
-    checkBackend()
+    checkBackend() 
     })
 
     return<>
