@@ -21,6 +21,7 @@ import "../database connections/databaseConnect.js"
 
 
 const app =express();
+app.set("trust proxy", 1);
 
 const corsOptions = {
   origin: function (origin, callback) {
@@ -124,6 +125,11 @@ app.post("/create-account",async(req,res)=>{
         return res.status(400).json({status:false,error:"Please provide all required fields"})
     }
 })
+app.get('/cookie-test', (req, res) => {
+  req.session.test = 'value';
+  console.log("My eq cookie ",req.session.test)
+  res.json({ message: 'cookie set' });
+});
 app.get("/logout",(req,res)=>{
     console.log("Logging out...")
     req.logout((err)=>{
