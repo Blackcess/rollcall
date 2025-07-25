@@ -3,6 +3,9 @@ import axios from "axios";
 import { MdEdit } from "react-icons/md";
 import { useEffect,useState } from "react";
 import { NavLink } from "react-router-dom";
+
+const API_BASE_URL = process.env.REACT_APP_API_URL;
+
 function MyProfile(){
     let [noDataEntered,setNodataEntered]= useState(true);
     let [userCredentials,setCredentials]= useState({
@@ -18,7 +21,7 @@ function MyProfile(){
         async function student_credentials(){
             
             try {
-                const result = await axios.get("https://rollcall-iakp.onrender.com/personal-details",{
+                const result = await axios.get(`${API_BASE_URL}/personal-details`,{
                 withCredentials:true
             })
             if (result.data.data.value === null){

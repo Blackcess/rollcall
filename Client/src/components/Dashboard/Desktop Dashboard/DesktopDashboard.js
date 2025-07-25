@@ -9,7 +9,8 @@ import { BiAward } from "react-icons/bi";
 import { MdSubject } from "react-icons/md";
 import { MdOutlineNavigateNext } from "react-icons/md";
 import { indexToSemesterSubjectsTable, indexToSemesterStudentTable } from "../../../utils_functions/index_to_semester_table";
-    
+
+const API_BASE_URL = process.env.REACT_APP_API_URL;
 function DesktopDashboard(){
      let [userData,setUserData]= useState({})
     let [userSubjects,setUserSubjects] = useState({})
@@ -26,7 +27,7 @@ function DesktopDashboard(){
             const studentTable = indexToSemesterStudentTable(parseInt(index));
             if(studentTable){
                 try {
-                    const response=  await axios.get(`https://rollcall-iakp.onrender.com/results?table=${studentTable}&roll_number=${roll_number}`,{
+                    const response=  await axios.get(`${API_BASE_URL}/results?table=${studentTable}&roll_number=${roll_number}`,{
                     withCredentials:true
                     })
                     
@@ -50,7 +51,7 @@ function DesktopDashboard(){
         async function getSubjects() {
             if(subjectTable){
             try {
-                const response= await axios.get(`https://rollcall-iakp.onrender.com/results/semester/subjects?table=${subjectTable}`,{
+                const response= await axios.get(`${API_BASE_URL}/results/semester/subjects?table=${subjectTable}`,{
                     withCredentials:true
                 })
                 setRollNumber(response.data.user.roll_number)

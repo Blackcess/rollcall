@@ -2,6 +2,11 @@ import { useAuth} from "../../Aunthentication/AuthProvider"
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
+
+
+const API_BASE_URL = process.env.REACT_APP_API_URL;
+
+
 function Access(){
     const {isAuthenticated,login} = useAuth();
     let navigate  = useNavigate();
@@ -9,7 +14,7 @@ function Access(){
     useEffect(()=>{
        let checkBackend = async ()=>{
             try {
-            let res = await axios.get("https://rollcall-iakp.onrender.com/home",{
+            let res = await axios.get(`${API_BASE_URL}/home`,{
             withCredentials:true
                 })
             console.log(res.data);

@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import LoginFailure from "./LoginFailure";
 import { useAuth } from "../../Aunthentication/AuthProvider";
 
+const API_BASE_URL = process.env.REACT_APP_API_URL;
 
 function Login() {
 
@@ -32,7 +33,7 @@ function Login() {
       console.log("Temp: ",temp)
          const resultFromBackend= async ()=>{
           try{
-                let res = await axios.post("https://rollcall-iakp.onrender.com/login",{
+                let res = await axios.post(`${API_BASE_URL}/login`,{
                   username:temp.username,
                   password:temp.password
                 },{

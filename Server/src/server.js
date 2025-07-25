@@ -41,6 +41,7 @@ app.use(session({
     saveUninitialized: false,
     resave:false,
     cookie: {
+    httpOnly:true,
     secure: true,       // required for sameSite: 'None'
     sameSite: 'none',   // allows cross-origin cookies
     maxAge: 1000 * 60 * 60 * 24 * 30 // 30 days
@@ -146,7 +147,9 @@ app.get("/checkAuth",(req,res)=>{
     }
 })
 app.get("/home",(req,res)=>{ 
-    console.log("USER DETAILS ",req.session.passport);
+    console.log("USER session ",req.session);
+    console.log("USER details ",req.user);
+    console.log("USER cookie ",req.headers.cookie);
     (req.isAuthenticated()) ?  res.status(200).json({status:true,msg:"working",userDetails:req.user}) :  res.status(401).json({status:false,msg:"not authorized"})
         
 })

@@ -5,6 +5,10 @@ import { useState,useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../../../Aunthentication/AuthProvider";
 import { MdOutlineAddBox } from "react-icons/md";
+
+const API_BASE_URL = process.env.REACT_APP_API_URL;
+
+
 function EditProfile(){
 
     let [submitStatus,setSubmitStatus]= useState(false);
@@ -60,7 +64,7 @@ function EditProfile(){
             if(submitStatus){
                     async function uploadDefault(){
                         try {
-                            const result = await axios.post("https://rollcall-iakp.onrender.com/default-pic",{
+                            const result = await axios.post(`${API_BASE_URL}/default-pic`,{
                                 path:defaultPicPath
                             },{
                                 withCredentials:true

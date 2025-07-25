@@ -2,6 +2,10 @@ import "./CreateAccount.css"
 import { useEffect, useState } from "react";
 import { useNavigate,NavLink} from "react-router-dom";
 import axios from "axios";
+
+const API_BASE_URL = process.env.REACT_APP_API_URL;
+
+
 function CreateAccount(){
     let [rollNumber,setRollNumber]= useState(null)
     let [password,setPassword]= useState(null)
@@ -19,7 +23,7 @@ function CreateAccount(){
             console.log("Temp: ",temp)
             const resultFromBackend= async ()=>{
                 try{
-                    let res = await axios.post("https://rollcall-iakp.onrender.com/create-account",{
+                    let res = await axios.post(`${API_BASE_URL}/create-account`,{
                         roll_number:temp.rollNumber,
                         password:temp.password,
                         confirm_password:temp.confirmPassword

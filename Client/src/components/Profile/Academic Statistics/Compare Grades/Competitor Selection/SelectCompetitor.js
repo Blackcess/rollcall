@@ -4,6 +4,7 @@ import { useState,useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
+const API_BASE_URL = process.env.REACT_APP_API_URL;
 
 function SelectCompetitor(){
     let [allData,setAllData]= useState([]);
@@ -15,7 +16,7 @@ function SelectCompetitor(){
     async function  getAllCompetitors(){
         
         try {
-            const result=await axios.get("https://rollcall-iakp.onrender.com/students/all",{
+            const result=await axios.get(`${API_BASE_URL}/students/all`,{
                         withCredentials:true
                 })
                 if(result.data.status){
@@ -36,7 +37,7 @@ function SelectCompetitor(){
         }
         else{
           if(row.profile_picture_type==="user"){
-            return `https://rollcall-iakp.onrender.com/${row.profile_picture.replace(/\\/g, "/")}`
+            return `${API_BASE_URL}/${row.profile_picture.replace(/\\/g, "/")}`
           }else{
             console.log("profPicType is empty")
           }

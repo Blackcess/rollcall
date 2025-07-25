@@ -4,6 +4,8 @@ import { useLocation,NavLink,useParams, useNavigate } from "react-router-dom";
 import { IoIosSend } from "react-icons/io";
 import axios from "axios";
 
+const API_BASE_URL = process.env.REACT_APP_API_URL;
+
 function AddDetails(){
     const {field} = useParams()
     const [inputValue,setInputValue] = useState("");
@@ -23,7 +25,7 @@ function AddDetails(){
                 temp.field=field;
                 temp.value=inputValue;
                 try {
-                      const result= await axios.get(`https://rollcall-iakp.onrender.com/addCredentials?field=${field}&value=${inputValue}`,{
+                      const result= await axios.get(`${API_BASE_URL}/addCredentials?field=${field}&value=${inputValue}`,{
                         withCredentials:true
                             })
                             if(result.data.status){

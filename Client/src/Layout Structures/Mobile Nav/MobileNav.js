@@ -6,6 +6,9 @@ import { MdOutlineMessage } from "react-icons/md";
 import axios from "axios";
 import { useAuth } from "../../Aunthentication/AuthProvider";
 import { NavLink, useNavigate } from "react-router-dom";
+
+const API_BASE_URL = process.env.REACT_APP_API_URL;
+
 function MobileNav(){
 
     let [userData,setUserData]=useState({});
@@ -52,7 +55,7 @@ function MobileNav(){
                 }
             else{
                 if(sessionData.userData.profPicType==="user"){
-                    return `https://rollcall-iakp.onrender.com/${sessionData.userData.profPic.replace(/\\/g, "/")}`
+                    return `${API_BASE_URL}/${sessionData.userData.profPic.replace(/\\/g, "/")}`
                 }else{
                     console.log("profPicType is empty")
                     }

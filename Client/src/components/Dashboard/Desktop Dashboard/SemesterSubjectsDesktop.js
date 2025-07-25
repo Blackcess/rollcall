@@ -12,6 +12,8 @@ import axios from 'axios';
 import { indexToSemesterSubjectsTable,indexToSemesterStudentTable } from '../../../utils_functions/index_to_semester_table';        
 import { useParams } from 'react-router-dom';
 
+const API_BASE_URL = process.env.REACT_APP_API_URL;
+
 ChartJS.register(ArcElement, Tooltip, Legend);
 function SemesterSubjectsDesktop(props) {
           let [userData,setUserData]= useState({})
@@ -39,7 +41,7 @@ function SemesterSubjectsDesktop(props) {
             const studentTable = indexToSemesterStudentTable(parseInt(index));
             if(studentTable){
                 try {
-                    const response=  await axios.get(`https://rollcall-iakp.onrender.com/results?table=${studentTable}&roll_number=${id}`,{
+                    const response=  await axios.get(`${API_BASE_URL}/results?table=${studentTable}&roll_number=${id}`,{
                     withCredentials:true
                     })
                     // console.log(response)
@@ -63,7 +65,7 @@ function SemesterSubjectsDesktop(props) {
         async function getSubjects() {
             if(subjectTable){
             try {
-                const response= await axios.get(`https://rollcall-iakp.onrender.com/results/semester/subjects?table=${subjectTable}`,{
+                const response= await axios.get(`${API_BASE_URL}/results/semester/subjects?table=${subjectTable}`,{
                     withCredentials:true
                 })
                 setUserSubjects((prev)=>{
@@ -86,7 +88,7 @@ function SemesterSubjectsDesktop(props) {
         async function getFailed(mySub){
             const studentTable=indexToSemesterStudentTable(parseInt(index))
             try {
-             let my_result=   await axios.get(`https://rollcall-iakp.onrender.com/result/subject/failed?subject=${mySub}&view=${studentTable}`);
+             let my_result=   await axios.get(`${API_BASE_URL}/result/subject/failed?subject=${mySub}&view=${studentTable}`);
              setFailed(my_result.data.data[Object.keys(my_result.data.data)[0]])
             } catch (error) {
                 console.log(error)
@@ -95,7 +97,7 @@ function SemesterSubjectsDesktop(props) {
         async function getPassed(mySub){
             const studentTable=indexToSemesterStudentTable(parseInt(index))
             try {
-             let my_result=   await axios.get(`https://rollcall-iakp.onrender.com/result/subject/passed?subject=${mySub}&view=${studentTable}`);
+             let my_result=   await axios.get(`${API_BASE_URL}/result/subject/passed?subject=${mySub}&view=${studentTable}`);
              setPassed(my_result.data.data[Object.keys(my_result.data.data)[0]])
             } catch (error) {
                 console.log(error)

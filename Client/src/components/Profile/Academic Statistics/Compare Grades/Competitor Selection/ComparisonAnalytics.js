@@ -4,6 +4,8 @@ import "./ComparisonAnalytics.css"
 import styled from "styled-components";
 import { Outlet, useLocation, useNavigate,NavLink } from "react-router-dom";
 
+const API_BASE_URL = process.env.REACT_APP_API_URL;
+
 function ComparisonAnalytics(){
     let sessionData  = useAuth();
     let {search} = useLocation();
@@ -31,7 +33,7 @@ function ComparisonAnalytics(){
         else{
           if(row.profPicType==="user"){
             console.log("I rendered")
-            return `https://rollcall-iakp.onrender.com/${row.profPic.replace(/\\/g, "/")}`
+            return `${API_BASE_URL}/${row.profPic.replace(/\\/g, "/")}`
             
           }else{
             console.log("profPicType is empty")

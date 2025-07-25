@@ -3,6 +3,9 @@ import "./Logout.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useAuth } from "../../Aunthentication/AuthProvider";
+
+const API_BASE_URL = process.env.REACT_APP_API_URL;
+
 function Logout(){
     let [proceed,setProceed] = useState(false);
     let sessionData= useAuth();
@@ -17,7 +20,7 @@ function Logout(){
             async function logoutUser(){
                 
                 try {
-                    const logoutResult=  await axios.get("https://rollcall-iakp.onrender.com/logout",{
+                    const logoutResult=  await axios.get(`${API_BASE_URL}/logout`,{
                             withCredentials:true
                         })
                         sessionData.refresh()

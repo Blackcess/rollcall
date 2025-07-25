@@ -3,6 +3,8 @@ import "./UploadPic.css"
 import { useAuth } from "../../../Aunthentication/AuthProvider";
 import axios from "axios";
 
+const API_BASE_URL = process.env.REACT_APP_API_URL;
+
 function UploadPic(){
     let [submitStatus,setSubmitStatus] = useState(false);
     let sessionData = useAuth()
@@ -20,7 +22,7 @@ function UploadPic(){
     
      async function uploadFile(formData) {
                         try {
-                            const result=  await axios.post("https://rollcall-iakp.onrender.com/uploads",formData,{
+                            const result=  await axios.post(`${API_BASE_URL}/uploads`,formData,{
                             withCredentials:true
                                 }
                             )

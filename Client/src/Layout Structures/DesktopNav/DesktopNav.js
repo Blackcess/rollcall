@@ -5,6 +5,9 @@ import axios from "axios";
 import { IoNotificationsOutline } from "react-icons/io5";
 import { MdOutlineMessage } from "react-icons/md";
 import { useAuth } from "../../Aunthentication/AuthProvider";
+
+const API_BASE_URL = process.env.REACT_APP_API_URL;
+
 function DesktopNav(){
     let outerUser = useRef(null)
     let innerUser = useRef(null)
@@ -50,7 +53,7 @@ function DesktopNav(){
                 }
             else{
                 if(sessionData.userData.profPicType==="user"){
-                    return `https://rollcall-iakp.onrender.com/${sessionData.userData.profPic.replace(/\\/g, "/")}`
+                    return `${API_BASE_URL}/${sessionData.userData.profPic.replace(/\\/g, "/")}`
                 }else{
                     console.log("profPicType is empty")
                     }

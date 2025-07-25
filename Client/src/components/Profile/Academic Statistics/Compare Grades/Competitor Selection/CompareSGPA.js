@@ -27,6 +27,10 @@ ChartJS.register(
   Legend
 );
 
+
+const API_BASE_URL = process.env.REACT_APP_API_URL;
+
+
 function CompareSGPA(){
     let [allData,setAllData]= useState([]);
     let [dataDone,setDataDone] = useState(false)
@@ -46,7 +50,7 @@ function CompareSGPA(){
         let table = indexToSemesterStudentTable(sem);
         if(table &&  id){
             try {
-                const result =  await axios.get(`https://rollcall-iakp.onrender.com/results?table=${table}&roll_number=${id}`);
+                const result =  await axios.get(`${API_BASE_URL}/results?table=${table}&roll_number=${id}`);
                 return result.data[0];  //object
             } catch (error) {
                 console.error("Error",error)

@@ -34,6 +34,7 @@ import { translateName, reverseTranslateName } from "../../../utils_functions/su
       Legend
     );
    
+    const API_BASE_URL = process.env.REACT_APP_API_URL;
 
 function ActualSemesterData_Desktop(){
     let [userData,setUserData]= useState({})
@@ -55,7 +56,7 @@ function ActualSemesterData_Desktop(){
             const studentTable = indexToSemesterStudentTable(parseInt(index));
             if(studentTable){
                 try {
-                    const response=  await axios.get(`https://rollcall-iakp.onrender.com/results?table=${studentTable}&roll_number=${roll_number}`,{
+                    const response=  await axios.get(`${API_BASE_URL}/results?table=${studentTable}&roll_number=${roll_number}`,{
                     withCredentials:true
                     })
                     // console.log(response)
@@ -79,7 +80,7 @@ function ActualSemesterData_Desktop(){
         async function getSubjects() {
             if(subjectTable){
             try {
-                const response= await axios.get(`https://rollcall-iakp.onrender.com/results/semester/subjects?table=${subjectTable}`,{
+                const response= await axios.get(`${API_BASE_URL}/results/semester/subjects?table=${subjectTable}`,{
                     withCredentials:true
                 })
                  console.log("Desktop data",response.data)
@@ -138,24 +139,7 @@ function ActualSemesterData_Desktop(){
         </div>     
            
              
-             {/* <div className="desktop-doughnut-data"> 
-                 <SemestersGradesDoughnut_Desktop value={{user:userData,subjects:userSubjects}} type="bar"/>
-             </div> */}
-
-
-            {/* {(subjectDataFound)&& <div className="dashboard-select-subject">
-                <h4 className="subject-header">Subjects</h4>
-                <div className="actual-subs">
-                    {
-                        userSubjects.data.map((row,index)=>(
-                           <div key={index}> <SubjectPathTemplate value={{subject:row.subject_name}}/> </div>
-                        ))
-                    }
-                   
-                </div>
-               
-             </div>
-        } */}
+           
        </section>
     </>
 }

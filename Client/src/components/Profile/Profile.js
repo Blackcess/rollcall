@@ -8,6 +8,8 @@ import { useAuth } from "../../Aunthentication/AuthProvider";
 
 import { NavLink, Outlet, useLocation } from "react-router-dom";
 
+const API_BASE_URL = process.env.REACT_APP_API_URL;
+
 function Profile() {
   
    let [renderProf,setRenderProf] = useState(false)
@@ -39,7 +41,7 @@ function Profile() {
         }
         else{
           if(sessionData.userData.profPicType==="user"){
-            return `https://rollcall-iakp.onrender.com/${sessionData.userData.profPic.replace(/\\/g, "/")}`
+            return `${API_BASE_URL}/${sessionData.userData.profPic.replace(/\\/g, "/")}`
           }else{
             console.log("profPicType is empty")
           }

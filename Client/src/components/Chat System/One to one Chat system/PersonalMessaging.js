@@ -8,6 +8,7 @@ import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 import UploadPic from "../../Profile/Profile Picture/UploadPic";
 
+const API_BASE_URL = process.env.REACT_APP_API_URL;
 
 function PersonalMessaging(){
     let sessionData = useAuth();
@@ -18,7 +19,7 @@ function PersonalMessaging(){
         var socket;
 
         const connectSocket = ()=>{
-            return io("https://rollcall-iakp.onrender.com:8000",{
+            return io(`${API_BASE_URL}`,{
                 auth:{
                 userId:sessionData.userData.roll_number
                 }
@@ -109,7 +110,7 @@ function Chatting (props){
     async function  getAllCompetitors(){
             
             try {
-                const result=await axios.get("https://rollcall-iakp.onrender.com/students/all",{
+                const result=await axios.get(`${API_BASE_URL}/students/all`,{
                             withCredentials:true
                     })
                     if(result.data.status){
@@ -130,7 +131,7 @@ function Chatting (props){
             }
             else{
               if(row.profile_picture_type==="user"){
-                return `https://rollcall-iakp.onrender.com/${row.profile_picture.replace(/\\/g, "/")}`
+                return `${API_BASE_URL}/${row.profile_picture.replace(/\\/g, "/")}`
               }else{
                 console.log("profPicType is empty")
               }

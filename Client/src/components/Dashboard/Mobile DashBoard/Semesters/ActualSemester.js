@@ -34,6 +34,7 @@ import { translateName,reverseTranslateName } from "../../../../utils_functions/
       Legend
     );
    
+    const API_BASE_URL = process.env.REACT_APP_API_URL;
 
 function ActualSemesterData(){
     let [userData,setUserData]= useState({})
@@ -53,7 +54,7 @@ function ActualSemesterData(){
             const studentTable = indexToSemesterStudentTable(parseInt(index));
             if(studentTable && id){
                 try {
-                    const response=  await axios.get(`https://rollcall-iakp.onrender.com/results?table=${studentTable}&roll_number=${id}`,{
+                    const response=  await axios.get(`${API_BASE_URL}/results?table=${studentTable}&roll_number=${id}`,{
                     withCredentials:true
                     })
                     // console.log(response)
@@ -77,7 +78,7 @@ function ActualSemesterData(){
         async function getSubjects() {
             if(subjectTable){
             try {
-                const response= await axios.get(`https://rollcall-iakp.onrender.com/results/semester/subjects?table=${subjectTable}`,{
+                const response= await axios.get(`${API_BASE_URL}/results/semester/subjects?table=${subjectTable}`,{
                     withCredentials:true
                 })
                 user.data= response.data;
