@@ -5,7 +5,7 @@ import Home from './components/Home/Home.js';
 import Products from './components/Products/AllProducts.js';
 import Profile from './components/Profile/Profile.js';
 import Login from './components/Login/AccessPoint.js';
-import Protected from './components/Protected Area/Protected.js';
+import {Protected} from './components/Protected Area/Protected.js';
 import {Layout} from './components/Layout/Layout.js'
 import Class from './components/Class/Class.js';
 import Dashboard from './components/Dashboard/Dashboard.js';
@@ -35,7 +35,7 @@ import ComparisonAnalytics from './components/Profile/Academic Statistics/Compar
 import CompareSGPA from './components/Profile/Academic Statistics/Compare Grades/Competitor Selection/CompareSGPA.js';
 import CompareOnSemester from './components/Profile/Academic Statistics/Compare Grades/Competitor Selection/CompareOnSemester.js';
 import PersonalMessaging from './components/Chat System/One to one Chat system/PersonalMessaging.js';
-
+import InsideChat from './components/Chat System/One to one Chat system/InsideChat.js';
 
 
 function App() {
@@ -82,6 +82,7 @@ function App() {
       <Route path="about" element={<About/>}/>
       <Route path="logout" element={<Logout/>}/>
       <Route path="chatSystem" element={<PersonalMessaging/>}/>
+      <Route path="my-chats" element={<InsideChat/>}/>
 
       </Route>
     </Route>

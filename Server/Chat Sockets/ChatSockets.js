@@ -1,5 +1,6 @@
 // import { httpServer } from "../src/server.js";
 import { getConversationsList,insertMessage } from "../Live ChatDB_API/liveChatDBFunctions.js";
+import { connection } from "../database connections/databaseConnect.js";
 
 
 const mySocketLogic = (io)=>{
@@ -31,8 +32,31 @@ const mySocketLogic = (io)=>{
         else{
             socket.emit("unauthorized","You are not authorized")
         }
+        //user client emits this to check if any messages where sent while they were offline
+        socket.on("request-missed-messages", async ({to},callback) => {
+            const [messages] = await connection.query("SELECT * FROM one_one_messages WHERE sender_id = ? OR sender_id = ?", [socket.userId,to]);
+            console.log(`Messages between ${socket.userId} amd ${to}: `,messages)
+            // io.to(to).emit("missed-messages", {data:messages});
+            callback(messages)
+        });
+        //user client emits this when they send a message
+        socket.on("chat-message",async ({to,message})=>{
+            const from = socket.userId;
+            //send the message to the database...
+            await insertMessage(from,to,message);
+            //send to receipiant if receipiant is online
+            const receipiant = activeUserMap.get(to);
+            if(receipiant){
+                  io.to(receipiant).emit("receive-message", {
+                    from,
+                    message,
+                });
+            }
+
+        })
         
         socket.on("disconnect",()=>{
+            activeUserMap.delete(socket.userId)
             console.log(socket.userId, "is disconnected")
         })
     })

@@ -7,6 +7,7 @@ import axios from "axios";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 import UploadPic from "../../Profile/Profile Picture/UploadPic";
+import { useSocket } from "../../Protected Area/Protected";
 
 const API_BASE_URL = process.env.REACT_APP_API_URL;
 
@@ -16,17 +17,17 @@ function PersonalMessaging(){
     let [securityFlag,setSecurityFlag] = useState(false)
 
         
-        var socket;
+        var {socket} = useSocket();
 
-        const connectSocket = ()=>{
-            return io(`${API_BASE_URL}`,{
-                auth:{
-                userId:sessionData.userData.roll_number
-                }
-            },{
-                withCredentials:true
-                })
-        }
+        // const connectSocket = ()=>{
+        //     return io(`${API_BASE_URL}`,{
+        //         auth:{
+        //         userId:sessionData.userData.roll_number
+        //         }
+        //     },{
+        //         withCredentials:true
+        //         })
+        // }
 
         const checkAuthentication = (socket)=>{
                 socket.on("unauthorized",()=>{
@@ -41,7 +42,7 @@ function PersonalMessaging(){
             
             setTimeout(() => {
                 console.log("sessionD",sessionData.userData.roll_number)
-               socket = connectSocket(); 
+            //    socket = connectSocket(); 
                checkAuthentication(socket);
                socket.on("conversation-list",(data)=>{
                 
@@ -172,10 +173,13 @@ function Chatting (props){
         <section className="chatting-template">
              {(friensDone) &&<div className="my-competitor-list">
         {
-            friends.map((row,index)=>(
-                <Chat key={index} value={{data:row,imager:imagerResolver}}/>
+            friends.map((row,index)=>{
+                if(Object.keys(row).length){
+                    return <Chat key={index} value={{data:row,imager:imagerResolver}}/>
+                }
+                
                
-            ))
+        })
         }
     </div>}
         </section>
@@ -184,11 +188,10 @@ function Chatting (props){
 
 
 function Chat(props){
-  // useEffect(()=>{console.log("Check props",props)
+//   useEffect(()=>{console.log("Check props",props)})
     return <>
-    <NavLink className="chat-template" to={`/protected/layout/compare-grades/comparison-analytics?roll_number=${props.value.data.roll_number}&type=${props.value.data.profile_picture_type}&pic=${props.value.data.profile_picture}` }>
+    <NavLink className="chat-template" to={`/protected/layout/my-chats?roll_number=${props.value.data.roll_number}` }>
         <StyledProf value={{data:props.value.data,imager:props.value.imager}}></StyledProf>
-        
         <div className="message-pop-up">
             <div className="competitor-name-field-1">{props.value.data.student_name}</div>
             <div className="my-last-message">

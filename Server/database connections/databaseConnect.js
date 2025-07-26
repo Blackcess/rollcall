@@ -242,7 +242,7 @@ const enquireStudentPersonalInfo= async (roll_number)=>{
                                                         JOIN activated_accounts ac ON st.roll_number=ac.roll_number`)
 
         const [result1] = await connection.query(`SELECT * FROM student_and_student_credentials WHERE roll_number= ?`,[roll_number]);
-        console.log("myres",result1)
+        // console.log("myres",result1)
         const [done]= await connection.query(`DROP VIEW student_and_student_credentials`);
         if(!result1.length){
                 return {status:false,value:null} //means no data of yours has ever even entered the credentials systems...
@@ -256,7 +256,7 @@ const enquireStudentPersonalInfo= async (roll_number)=>{
 
     }
 }
-  console.log(await enquireStudentPersonalInfo(2305336))
+//   console.log(await enquireStudentPersonalInfo(2305336))
 
 const addCredentials= async (field,roll_number,data)=>{
     const [check] = await connection.query(`SELECT * FROM activated_accounts WHERE roll_number = ?`,[roll_number]);
