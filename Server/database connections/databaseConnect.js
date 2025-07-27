@@ -29,11 +29,23 @@ let connection = await asyncConnect();
 // console.log("Show me this: ", await connection.query(`SHOW FULL TABLES IN railway WHERE TABLE_TYPE = 'VIEW'`))
 
 
-// const checkDB = async ()=>{
-//     // await connection.query(`use railway`)
-//     const [result] = await connection.query(`DELETE  FROM sessions`) 
-//     console.log("These are  the students",result)
-// }
+const checkDB = async ()=>{
+    const [result] = await connection.query(`SELECT
+                        convo.id AS conversation_id,
+                        convo.user_one_id,
+                        convo.user_two_id,
+                        msg.id AS message_id,
+                        msg.sender_id,
+                        msg.message,
+                        msg.sent_at
+                        FROM one_one_conversations AS convo
+                        JOIN one_one_messages AS msg
+                        ON convo.id = msg.conversation_id
+                        WHERE convo.user_one_id = ? OR convo.user_two_id = ?
+                        ORDER BY convo.id, msg.sent_at ASC;
+        `,[2305336,2305336]) 
+    console.log("These are  the students",result)
+}
 // await checkDB();
 export const sessionStore= new MySQLStore({},connection);
 

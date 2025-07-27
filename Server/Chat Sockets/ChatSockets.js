@@ -34,23 +34,45 @@ const mySocketLogic = (io)=>{
         }
         //user client emits this to check if any messages where sent while they were offline
         socket.on("request-missed-messages", async ({to},callback) => {
-            const [messages] = await connection.query("SELECT * FROM one_one_messages WHERE sender_id = ? OR sender_id = ?", [socket.userId,to]);
-            console.log(`Messages between ${socket.userId} amd ${to}: `,messages)
+             console.log("Active users are: ",activeUserMap)
+            const [messages] = await connection.query(`SELECT
+                        convo.id AS conversation_id,
+                        convo.user_one_id,
+                        convo.user_two_id,
+                        msg.id AS message_id,
+                        msg.sender_id,
+                        msg.message,
+                        msg.sent_at
+                        FROM one_one_conversations AS convo
+                        JOIN one_one_messages AS msg
+                        ON convo.id = msg.conversation_id
+                        WHERE convo.user_one_id = ? OR convo.user_two_id = ?
+                        ORDER BY convo.id, msg.sent_at ASC`, [socket.userId,socket.userId]);
+             
+                const filtered= messages.filter(rows=>rows.user_one_id===Math.min(parseInt(socket.userId),parseInt(to)) && rows.user_two_id===Math.max(parseInt(socket.userId),parseInt(to)))
+            // console.log(`Messages between ${socket.userId} amd ${to}: `,filtered)
             // io.to(to).emit("missed-messages", {data:messages});
-            callback(messages)
+            callback(filtered)
         });
         //user client emits this when they send a message
         socket.on("chat-message",async ({to,message})=>{
+             console.log("Active users are: ",activeUserMap)
             const from = socket.userId;
             //send the message to the database...
             await insertMessage(from,to,message);
             //send to receipiant if receipiant is online
-            const receipiant = activeUserMap.get(to);
+            const receipiant = activeUserMap.get(parseInt(to));
+            console.log(typeof("Receipiant Test Result",receipiant))
             if(receipiant){
                   io.to(receipiant).emit("receive-message", {
                     from,
                     message,
+                    sent_at:new Date()
                 });
+                console.log(`You sent a message to ${to} and he/she is online`)
+            }
+            else{
+                console.log(`You sent a message to ${to} and he/she is offline`)
             }
 
         })
@@ -60,7 +82,7 @@ const mySocketLogic = (io)=>{
             console.log(socket.userId, "is disconnected")
         })
     })
-
+    console.log("Active users are: ",activeUserMap)
     
 }
 

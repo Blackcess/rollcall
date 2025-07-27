@@ -25,7 +25,7 @@ const insertMessage= async (user1,user2,message)=>{
        }
 
        const[{insertId,affectedRows}]=await connection.query(`INSERT INTO one_one_messages (conversation_id, sender_id, message)
-                                VALUES (?, ?, ?)`,[convoId,user1,message]);
+                                VALUES (?, ?, ?)`,[convoId,user1,message]);                     //important user1  is the sender and user2 is the  receiver
         if(affectedRows===0){
             throw new Error("Error in inserting user messages...")
         }
@@ -47,7 +47,7 @@ const getConversationsList = async (roll_number)=>{
 
     let temp = [];
     for(let i=0;i<results.length;i++){
-        let [lastMessage] = await connection.query(`SELECT message,sent_at AS time FROM one_one_messages WHERE 
+        let [lastMessage] = await connection.query(`SELECT message,sent_at AS time FROM one_one_last_messages WHERE 
                                                    conversation_id = ?`,[results[i].id]);
             if(lastMessage.length===0){
                 console.log("That is so wiered how did that happen")
