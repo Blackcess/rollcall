@@ -131,7 +131,18 @@ function InsideChat(){
     //       console.log("My messages with this person...",data)
     //   })
 
-   socket.on("receive-message", ({ from, message,sent_at }) => {
+  //  socket.on("receive-message", ({ from, message,sent_at }) => {
+  //         console.log(`New message from ${from}: ${message}`);
+  //         // Update your chat UI here
+  //         console.log(`received message from ${from}`,message)
+  //           setMessageList((prev)=>{
+  //           return [...prev,{sender_id:from,message:message,sent_at}];
+  //         })
+           
+  //   });
+
+    useEffect(()=>{
+      socket.on("receive-message", ({ from, message,sent_at }) => {
           console.log(`New message from ${from}: ${message}`);
           // Update your chat UI here
           console.log(`received message from ${from}`,message)
@@ -140,6 +151,7 @@ function InsideChat(){
           })
            
     });
+    },[socket])
 
     useEffect(()=>{
       console.log("Message List is ",messageList)
