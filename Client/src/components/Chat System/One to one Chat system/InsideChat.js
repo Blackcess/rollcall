@@ -1,4 +1,4 @@
-import { useEffect,useState } from "react"
+import { useEffect,useRef,useState } from "react"
 import "./InsideChart.css"
 import { useSocket } from "../../Protected Area/Protected"
 import { useLoaderData, useLocation,NavLink } from "react-router-dom";
@@ -22,11 +22,13 @@ function InsideChat(){
     let [allData,setAllData]= useState([]);
     let [dataDone,setDataDone] = useState(false);
     const [friend,setFriend] = useState({})
-    const [friensDone,setFriendsDone] = useState(false)
+    const [friensDone,setFriendsDone] = useState(false);
+    const myScrollEl = useRef(null)
 
 
        useEffect(()=>{
         getAllCompetitors();
+        scrollToBottom()
     },[])
     async function  getAllCompetitors(){
             
@@ -64,6 +66,10 @@ function InsideChat(){
           }
       }
 
+       const scrollToBottom = () => {
+        myScrollEl.current?.scrollIntoView({ behavior: "smooth" });
+       };
+
 
    
     const handleSend = (e)=>{
@@ -80,7 +86,7 @@ function InsideChat(){
         }
     }
     useEffect(()=>{ 
-      console.log("Why are you not working...",socket.connected)
+      scrollToBottom()
       if(emitDone) return ;
       console.log("Why is this not working",socket.connected)
       const fetchChatHistory = ()=>{
@@ -149,13 +155,11 @@ function InsideChat(){
             setMessageList((prev)=>{
             return [...prev,{sender_id:from,message:message,sent_at}];
           })
+          scrollToBottom()
            
     });
     },[socket])
 
-    useEffect(()=>{
-      console.log("Message List is ",messageList)
-    })
     return <>
     <div className="chat-wrapper">
   <div><Chat value={{data:friend,imager:imagerResolver}}/></div>
@@ -171,7 +175,9 @@ function InsideChat(){
       </div>
     
   }
+  <div ref={myScrollEl} className="scroll-el">.</div>
   </div>
+  
   <form className="chat-input-area">
     <input type="text" placeholder="Type a message..." value={myMessage} onChange={(e)=>{
         setMyMessage(e.target.value);

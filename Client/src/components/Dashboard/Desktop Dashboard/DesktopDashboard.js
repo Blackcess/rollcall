@@ -84,7 +84,7 @@ function DesktopDashboard(){
 
   
   
-   let semesterLinks=["Semester 1","Semester 2"];
+   let semesterLinks=["Semester 1","Semester 2","semester 3"];
    
     return <>
         <section className="desktop-dashboard-template">

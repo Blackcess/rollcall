@@ -32,6 +32,19 @@
 }
 .semester-navigation{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     gap: 15px;
+    font-size: 12px;
+}
+.sem-name{
+    display: flex;
+    align-items: center;
+}
+.sem-link-container-011{
+    display: flex;
+    align-items: center;
+}
+.sem-icon{
+    display: flex;
+    align-items: center;
 }

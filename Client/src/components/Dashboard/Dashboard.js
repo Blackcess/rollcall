@@ -12,10 +12,10 @@ function Dashboard(){
     let navigation = useNavigate();
     useEffect(()=>{
         if(globalData.mobileScreen){
-            navigation(`/protected/layout/dashboard/mobile/semester/${2}`)
+            navigation(`/protected/layout/dashboard/mobile/semester/${3}`)
         }
         else{
-                navigation(`/protected/layout/dashboard/desktop/charts/${2}`)    
+                navigation(`/protected/layout/dashboard/desktop/charts/${3}`)    
         }
     },[])
     
