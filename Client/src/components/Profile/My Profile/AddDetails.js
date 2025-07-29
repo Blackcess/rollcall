@@ -42,6 +42,8 @@ function AddDetails(){
             addDetails()
         }
 
+    
+
     },[submitStatus])
 
     useEffect(()=>{

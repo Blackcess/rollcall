@@ -29,6 +29,8 @@ let connection = await asyncConnect();
 // console.log("Show me this: ", await connection.query(`SHOW FULL TABLES IN railway WHERE TABLE_TYPE = 'VIEW'`))
 
 
+
+
 const checkDB = async ()=>{
     const [result] = await connection.query(`SELECT
                         convo.id AS conversation_id,
@@ -313,6 +315,13 @@ const getAllStudents= async ()=>{
         return result;
 }
 
+const getFollowersDetails = async (roll_number)=>{
+    const [res]=await connection.query(`SELECT * FROM activated_accounts WHERE roll_number = ?`,[roll_number]);
+    if(!res.length){
+        throw new Error("Error in getting student following details")
+    }
+    return res
+}
 
 
 
@@ -320,4 +329,9 @@ const getAllStudents= async ()=>{
 
 
 
-export {connection,getFromUserName,getUserById,getStudentResults,getStudentSemesterSubjects,getPassedFromSubject,getFailedFromSubject,createStudentAccount,addProfilePicture,retrieveProfile,enquireStudentPersonalInfo,addCredentials,getUserName,getAllStudents}
+
+
+
+
+
+export {connection,getFromUserName,getUserById,getStudentResults,getStudentSemesterSubjects,getPassedFromSubject,getFailedFromSubject,createStudentAccount,addProfilePicture,retrieveProfile,enquireStudentPersonalInfo,addCredentials,getUserName,getAllStudents,getFollowersDetails}

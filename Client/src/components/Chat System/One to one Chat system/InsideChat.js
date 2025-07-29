@@ -133,19 +133,7 @@ function InsideChat(){
     }
 
     
-    // socket.on("missed-messages",(data)=>{
-    //       console.log("My messages with this person...",data)
-    //   })
-
-  //  socket.on("receive-message", ({ from, message,sent_at }) => {
-  //         console.log(`New message from ${from}: ${message}`);
-  //         // Update your chat UI here
-  //         console.log(`received message from ${from}`,message)
-  //           setMessageList((prev)=>{
-  //           return [...prev,{sender_id:from,message:message,sent_at}];
-  //         })
-           
-  //   });
+ 
 
     useEffect(()=>{
       socket.on("receive-message", ({ from, message,sent_at }) => {
@@ -213,7 +201,7 @@ function MessageBox (props){
 function Chat(props){
 //   useEffect(()=>{console.log("Check props",props)})
     return <>
-    <NavLink className="chat-template" to={`/protected/layout/my-chats?roll_number=${props.value.data.roll_number}` }>
+    <NavLink className="chat-template" to={`/protected/layout/visitor-profile?roll_number=${props.value.data.roll_number}`}>
         <StyledProf value={{data:props.value.data,imager:props.value.imager}}></StyledProf>
         <div className="message-pop-up">
             <div className="competitor-name-field-1">{props.value.data.student_name}</div>

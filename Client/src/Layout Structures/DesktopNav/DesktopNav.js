@@ -5,6 +5,7 @@ import axios from "axios";
 import { IoNotificationsOutline } from "react-icons/io5";
 import { MdOutlineMessage } from "react-icons/md";
 import { useAuth } from "../../Aunthentication/AuthProvider";
+import { NavLink } from "react-router-dom";
 
 const API_BASE_URL = process.env.REACT_APP_API_URL;
 
@@ -75,7 +76,7 @@ function DesktopNav(){
             </div>
             <div className="desktop-nav-assesories">
                 <div className="desktop-notification"><IoNotificationsOutline/> </div>
-                <div className="desktop-messaging"><MdOutlineMessage/> </div>
+                <NavLink className="desktop-messaging" to={"/protected/layout/chatSystem"}><MdOutlineMessage/> </NavLink>
                 <div className="desktop-user-section-1">
                     <div className="desktop-profile-pic"></div>
                     <div className="desktop-title">

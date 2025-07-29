@@ -50,22 +50,33 @@ function ComparisonAnalytics(){
         <section className="compare-analytics-template">
             <h2>Comparison Analytics</h2>
              <div className="compatitors-line-up">
-                <div className="avatar-display">
+                <NavLink className="avatar-display" to={`/protected/layout/profile`}>
                     <StyledProf value={{data:sessionData.userData,imager:imagerResolver}}></StyledProf>
                     <span style={{color:"green", fontSize:"12px"}}>{sessionData.userData.roll_number}-You👈👈</span>
-                </div>
+                </NavLink>
                 
                 <h2 className="comp-vs"> VS</h2>
-                <div className="avatar-display">
+                <NavLink className="avatar-display" to={`/protected/layout/visitor-profile?roll_number=${comp_roll_number}`}>
                     <StyledProf value ={{data:competitorData,imager:imagerResolver}}></StyledProf>
                     <span style={{color:"red",fontSize:"12px"}}>{comp_roll_number}</span>
-                </div>
+                </NavLink>
                 
              </div>
              <div className="my-competion-links">
-                <NavLink className="try-this-0" to={`sgpa-compare?roll_number=${comp_roll_number}`}>SGPA</NavLink>
-            <NavLink className="try-this-0" to={`semester-compare?roll_number=${comp_roll_number}&semester=${1}`}>Semester-1</NavLink>
-            <NavLink className="try-this-0" to={`semester-compare?roll_number=${comp_roll_number}&semester=${2}`}>Semester-2</NavLink>
+                <NavLink className={({isActive})=>{
+                  return  (isActive) ? "try-this-1" : "try-this-0"
+                }} to={`sgpa-compare?roll_number=${comp_roll_number}`}>SGPA</NavLink>
+            <NavLink className={({isActive})=>{
+                  return  (isActive) ? "try-this-1" : "try-this-0"
+                }} to={`semester-compare?roll_number=${comp_roll_number}&semester=${1}`}>
+                  Semester-1
+                  </NavLink>
+            <NavLink className={({isActive})=>{
+                  return  (isActive) ? "try-this-1" : "try-this-0"
+                }} to={`semester-compare?roll_number=${comp_roll_number}&semester=${2}`}>Semester-2</NavLink>
+            {/* <NavLink className={({isActive})=>{
+                  return  (isActive) ? "try-this-1" : "try-this-0"
+                }} to={`semester-compare?roll_number=${comp_roll_number}&semester=${3}`}>Semester-3</NavLink> */}
              </div>
             
             <div className="compare-analytics-outlet">

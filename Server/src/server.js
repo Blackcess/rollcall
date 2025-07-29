@@ -4,7 +4,7 @@ import "express-async-errors";
 import fs from 'fs';
 import cors from 'cors';
 import "dotenv/config"
-import { getFromUserName,getStudentResults,getStudentSemesterSubjects,getPassedFromSubject,getFailedFromSubject,createStudentAccount,addProfilePicture,retrieveProfile,enquireStudentPersonalInfo,addCredentials,getUserName,getAllStudents} from '../database connections/databaseConnect.js';
+import { getFromUserName,getStudentResults,getStudentSemesterSubjects,getPassedFromSubject,getFailedFromSubject,createStudentAccount,addProfilePicture,retrieveProfile,enquireStudentPersonalInfo,addCredentials,getUserName,getAllStudents,getFollowersDetails} from '../database connections/databaseConnect.js';
 import session from "express-session"
 import { Cookie } from 'express-session';
 import passport from "passport"
@@ -263,9 +263,21 @@ app.get("/personal-details",async (req,res)=>{
             res.status(200).json({status:true,data:data});
         }
         else{
-            console.log("Sorry but passport did not leave you any cookies  :(");
+            // console.log("Sorry but passport did not leave you any cookies  :(");
             res.status(200).json({status:false,data:[]});
         }
+       
+    } catch (error) {
+       console.log("error",error)
+       res.status.apply(500).json({status:false});
+    }
+})
+app.get("/personal-details/visitor",async (req,res)=>{
+    const {roll_number} = req.query;
+    try {
+             let data = await enquireStudentPersonalInfo(roll_number);
+            // console.log("This is the data that is not rebdering",data,req.user.roll_number)
+            res.status(200).json({status:true,data:data});
        
     } catch (error) {
        console.log("error",error)
@@ -313,6 +325,16 @@ app.get("/students/all",async (req,res)=>{
         console.log(error);
         res.status(500).json({status:false})
         }
+})
+app.get("/student/getfollowers",async (req,res)=>{
+    try {
+        const {roll_number} = req.query;
+        const studentDetails = await getFollowersDetails(roll_number);
+        res.status(200).json({status:true,data:studentDetails})
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({status:false});
+    }
 })
 
 
