@@ -1,7 +1,7 @@
 import { useEffect,useRef,useState } from "react"
 import "./InsideChart.css"
 import { useSocket } from "../../Protected Area/Protected"
-import { useLoaderData, useLocation,NavLink } from "react-router-dom";
+import {useLocation,NavLink } from "react-router-dom";
 import { useAuth } from "../../../Aunthentication/AuthProvider";
 import axios from "axios";
 import styled from "styled-components";
@@ -31,13 +31,11 @@ function InsideChat(){
         scrollToBottom()
     },[])
     async function  getAllCompetitors(){
-            
             try {
                 const result=await axios.get(`${API_BASE_URL}/students/all`,{
                             withCredentials:true
                     })
                     if(result.data.status){
-                      console.log("All Students data is : ",result.data)
                         setDataDone(true);
                         setAllData([...result.data.value])
                     }
@@ -46,8 +44,6 @@ function InsideChat(){
                 console.error(error)
             }
         }
-    
-        
         function imagerResolver(row){
           if(row.profile_picture_type){
             if(row.profile_picture_type.length &&  row.profile_picture_type==="default"){
@@ -69,9 +65,6 @@ function InsideChat(){
        const scrollToBottom = () => {
         myScrollEl.current?.scrollIntoView({ behavior: "smooth" });
        };
-
-
-   
     const handleSend = (e)=>{
         e.preventDefault();
         if(myMessage.length){
@@ -88,17 +81,10 @@ function InsideChat(){
     useEffect(()=>{ 
       scrollToBottom()
       if(emitDone) return ;
-      console.log("Why is this not working",socket.connected)
       const fetchChatHistory = ()=>{
         setMessageList(()=>{return []})
         socket.emit("request-missed-messages",{to:endpointRollNumber},(response)=>{
-          console.log("My messages with this person...",response);
-          // for(let i=0;i<response.length;i++){
-          //   setMessageList((prev)=>{
-          //     return [...prev,response[i]]
-          //   })
-          // }
-          setMessageList(()=>{return [...response]})
+          setMessageList(()=>{return response})
           setEmitDone(true);
         });
       }
@@ -111,7 +97,6 @@ function InsideChat(){
         setSocketState(true)
         return () => socket.off("connect", fetchChatHistory); // clean up
       }
-   
 },[myMessage])
  useEffect(()=>{
             uploadFriends();
@@ -119,22 +104,16 @@ function InsideChat(){
             setFriendsDone(true)
         
         },[dataDone])
-
  function  uploadFriends(){
         if(dataDone){
             
             let temp = allData.find((row)=>row.roll_number === parseInt(endpointRollNumber))
-            console.log("This is temp ",temp)
             setFriend((prev)=>{
                 return temp;
             })
             }
         
     }
-
-    
- 
-
     useEffect(()=>{
       socket.on("receive-message", ({ from, message,sent_at }) => {
           console.log(`New message from ${from}: ${message}`);
@@ -159,7 +138,7 @@ function InsideChat(){
       ))
       :
       <div className="wake-up-chats">
-        <span>RollCall Locks  chats when not in use to reserve resources. Press Random keys on keyboard to wake up the chat. Thank Yo :) </span>
+        <span>RollCall Locks  chats when not in use to reserve resources. Press Random keys on keyboard to wake up the chat. Thank You :) </span>
       </div>
     
   }
@@ -181,9 +160,7 @@ function MessageBox (props){
   const sessionData= useAuth();
   const [senderClassName,setSenderClassName]= useState("");
   useEffect(()=>{
-    console.log("My Propsss  ",props)
     if(props.value.message.sender_id === sessionData.userData.roll_number ){
-      console.log("Im  working really well")
       setSenderClassName("sent-messages")
     }
     else{

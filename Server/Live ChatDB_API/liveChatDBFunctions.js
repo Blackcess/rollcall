@@ -43,7 +43,7 @@ const insertMessage= async (user1,user2,message)=>{
 const getConversationsList = async (roll_number)=>{
 
     const [results]=await connection.query(`SELECT * FROM one_one_conversations WHERE user_one_id = ?
-                                            OR user_two_id`,[roll_number,roll_number]);
+                                            OR user_two_id=?`,[roll_number,roll_number]);
 
     let temp = [];
     for(let i=0;i<results.length;i++){

@@ -9,9 +9,7 @@ function  Home() {
   let sessionData = useAuth();
   
   const navigation= useNavigate();
-  useEffect(()=>{
-    sessionData.refresh()
-  },[])
+  
  
   return (
     <> 

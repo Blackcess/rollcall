@@ -37,6 +37,7 @@ import CompareOnSemester from './components/Profile/Academic Statistics/Compare 
 import PersonalMessaging from './components/Chat System/One to one Chat system/PersonalMessaging.js';
 import InsideChat from './components/Chat System/One to one Chat system/InsideChat.js';
 import VisitorProfile from './components/Profile/Visitor Profile/VisitorProfile.js';
+import AddChat from './components/Chat System/One to one Chat system/AddChat.js';
 
 function App() {
   
@@ -83,6 +84,7 @@ function App() {
       <Route path="logout" element={<Logout/>}/>
       <Route path="chatSystem" element={<PersonalMessaging/>}/>
       <Route path="my-chats" element={<InsideChat/>}/>
+      <Route path="my-chats-add" element={<AddChat/>}/>
       <Route path="visitor-profile" element={<VisitorProfile/>}/>
 
       </Route>

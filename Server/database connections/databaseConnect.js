@@ -28,7 +28,18 @@ let connection = await asyncConnect();
 
 // console.log("Show me this: ", await connection.query(`SHOW FULL TABLES IN railway WHERE TABLE_TYPE = 'VIEW'`))
 
+const checkThis= async ()=>{
+    const [res]=await connection.query(`DELETE FROM activated_accounts`);
+    if(res.affectedRows){
+        console.log("Delete Done")
+    }
+    else{
+        console.log("Delete Failed")
+    }
 
+    // console.log("res: ",res)
+}
+// await checkThis()
 
 
 const checkDB = async ()=>{
@@ -323,6 +334,24 @@ const getFollowersDetails = async (roll_number)=>{
     return res
 }
 
+const getActivatedStudentsChats = async ()=>{
+    const [result]=await connection.query(`SELECT 
+                            act.roll_number,
+                            act.followers,
+                            b.profile_picture,
+                            b.profile_picture_type,
+                            b.student_name
+                            FROM activated_accounts act
+                            JOIN all_students b ON act.roll_number= b.roll_number`);
+
+    if(!result.length){
+        throw new Error("Failed getting activated users")
+    }   
+    return result                     
+        
+}
+
+// console.log("My Activated users: ",await getActivatedStudentsChats())
 
 
 
@@ -333,5 +362,4 @@ const getFollowersDetails = async (roll_number)=>{
 
 
 
-
-export {connection,getFromUserName,getUserById,getStudentResults,getStudentSemesterSubjects,getPassedFromSubject,getFailedFromSubject,createStudentAccount,addProfilePicture,retrieveProfile,enquireStudentPersonalInfo,addCredentials,getUserName,getAllStudents,getFollowersDetails}
+export {connection,getFromUserName,getUserById,getStudentResults,getStudentSemesterSubjects,getPassedFromSubject,getFailedFromSubject,createStudentAccount,addProfilePicture,retrieveProfile,enquireStudentPersonalInfo,addCredentials,getUserName,getAllStudents,getFollowersDetails,getActivatedStudentsChats}

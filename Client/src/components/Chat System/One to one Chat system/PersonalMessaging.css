@@ -74,4 +74,15 @@
      white-space: nowrap;
      overflow-y: hidden;
 }
+.add-more-chats{
+    border: 1px solid green;
+    border-radius: 50%;
+    background-color: #fff;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    font-size: 20px;
+}
 

@@ -19,16 +19,6 @@ function PersonalMessaging(){
         
         var {socket} = useSocket();
 
-        // const connectSocket = ()=>{
-        //     return io(`${API_BASE_URL}`,{
-        //         auth:{
-        //         userId:sessionData.userData.roll_number
-        //         }
-        //     },{
-        //         withCredentials:true
-        //         })
-        // }
-
         const checkAuthentication = (socket)=>{
                 socket.on("unauthorized",()=>{
                     setSecurityFlag(true)
@@ -70,11 +60,13 @@ function PersonalMessaging(){
                });
                
             }, 300);
+
+            // getMoreChats()
         },[])
 
-        useEffect(()=>{
-            console.log("Conversation list ",conversationList)
-        },[conversationList])
+        
+
+        
 
     return <>
     <section className="chat-system-container">
@@ -92,6 +84,7 @@ function PersonalMessaging(){
                 </div>
             }
         </div>
+        <NavLink className="add-more-chats" to={`/protected/layout/my-chats-add`}><IoAdd /></NavLink>
     </section>
     
     </>
