@@ -29,15 +29,15 @@ let connection = await asyncConnect();
 // console.log("Show me this: ", await connection.query(`SHOW FULL TABLES IN railway WHERE TABLE_TYPE = 'VIEW'`))
 
 const checkThis= async ()=>{
-    const [res]=await connection.query(`DELETE FROM activated_accounts`);
-    if(res.affectedRows){
-        console.log("Delete Done")
-    }
-    else{
-        console.log("Delete Failed")
-    }
+    const [res]=await connection.query(`SELECT * from all_students`);
+    // if(res.affectedRows){
+    //     console.log("Update Done")
+    // }
+    // else{
+    //     console.log("Update Failed")
+    // }
 
-    // console.log("res: ",res)
+    console.log("res: ",res)
 }
 // await checkThis()
 

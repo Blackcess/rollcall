@@ -83,7 +83,7 @@ function Profile() {
         </div>
        
         {(screenWidth>800) &&<div className="put-something">
-           <p>Put Somthing here</p>
+           <p>.</p>
         </div>}
       </div>
 

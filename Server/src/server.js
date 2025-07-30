@@ -21,7 +21,7 @@ import "../database connections/databaseConnect.js"
 
 
 const app =express();
-// app.set("trust proxy", 1);
+app.set("trust proxy", 1);
 
 const corsOptions = {
   origin: function (origin, callback) {
@@ -54,9 +54,9 @@ app.use(session({
     saveUninitialized: false,
     resave:false,
     cookie: {
-    // httpOnly:true,
-    // secure: true,       // required for sameSite: 'None'
-    // sameSite: 'none',   // allows cross-origin cookies
+    httpOnly:true,
+    secure: true,       // required for sameSite: 'None'
+    sameSite: 'none',   // allows cross-origin cookies
     maxAge: 1000 * 60 * 60 * 24 * 30 // 30 days
   }
 }))
