@@ -3,9 +3,7 @@ import "./AddDetails.css"
 import { useLocation,NavLink,useParams, useNavigate } from "react-router-dom";
 import { IoIosSend } from "react-icons/io";
 import axios from "axios";
-
 const API_BASE_URL = process.env.REACT_APP_API_URL;
-
 function AddDetails(){
     const {field} = useParams()
     const [inputValue,setInputValue] = useState("");
@@ -18,8 +16,6 @@ function AddDetails(){
             setTimeout(()=>{ 
                 setDoor(true);
             },2000);
-
-              
             async function addDetails(){
                 let temp  = {};
                 temp.field=field;
@@ -41,11 +37,7 @@ function AddDetails(){
             }
             addDetails()
         }
-
-    
-
     },[submitStatus])
-
     useEffect(()=>{
         if(door){
             setSubmitStatus(false)
@@ -58,7 +50,6 @@ function AddDetails(){
             },3000)
         }
 })
-
 function selectType (field){
     let value = "text"
     switch (field) {
@@ -77,7 +68,6 @@ function selectType (field){
     }
     return value;
 }
-  
     return <>
         <section className="add-details-section">
             <h3>Update {field}</h3>

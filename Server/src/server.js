@@ -4,7 +4,7 @@ import "express-async-errors";
 import fs from 'fs';
 import cors from 'cors';
 import "dotenv/config"
-import { getFromUserName,getStudentResults,getStudentSemesterSubjects,getPassedFromSubject,getFailedFromSubject,createStudentAccount,addProfilePicture,retrieveProfile,enquireStudentPersonalInfo,addCredentials,getUserName,getAllStudents,getFollowersDetails,getActivatedStudentsChats} from '../database connections/databaseConnect.js';
+import { getFromUserName,getStudentResults,getStudentSemesterSubjects,getPassedFromSubject,getFailedFromSubject,createStudentAccount,addProfilePicture,retrieveProfile,enquireStudentPersonalInfo,addCredentials,getUserName,getAllStudents,getFollowersDetails,getActivatedStudentsChats,getTimetable} from '../database connections/databaseConnect.js';
 import session from "express-session"
 import { Cookie } from 'express-session';
 import passport from "passport"
@@ -344,6 +344,16 @@ app.get("/my-activated-users",async (req,res)=>{
     } catch (error) {
         console.error(error);
         res.status(500).json({status:false})
+    }
+})
+
+app.get("/class/timetable",async (req,res)=>{
+    try {
+        const myData = await getTimetable();
+        res.status(200).json({status:true,data:myData})
+    } catch (error) {
+        console.error(error);
+        res.status(501).json({status:false})
     }
 })
 

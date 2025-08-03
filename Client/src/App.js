@@ -38,6 +38,10 @@ import PersonalMessaging from './components/Chat System/One to one Chat system/P
 import InsideChat from './components/Chat System/One to one Chat system/InsideChat.js';
 import VisitorProfile from './components/Profile/Visitor Profile/VisitorProfile.js';
 import AddChat from './components/Chat System/One to one Chat system/AddChat.js';
+import {TimeTable} from './components/Class/Class TimeTable/Timetable.js';
+import DaySchedule from './components/Class/Class TimeTable/IndividualDaySchedule.js';
+import WeekendSpecial from './components/Class/Class TimeTable/WeekendSpecial.js';
+
 
 function App() {
   
@@ -86,6 +90,10 @@ function App() {
       <Route path="my-chats" element={<InsideChat/>}/>
       <Route path="my-chats-add" element={<AddChat/>}/>
       <Route path="visitor-profile" element={<VisitorProfile/>}/>
+      <Route path="class-timetable" element={<TimeTable/>}>
+        <Route path="day-schedule" element={<DaySchedule/>}/>
+        <Route path="day-schedule-weekend" element={<WeekendSpecial/>}/>
+      </Route>
 
       </Route>
     </Route>

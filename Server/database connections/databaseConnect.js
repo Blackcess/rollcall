@@ -4,6 +4,7 @@ import session from "express-session";
 import connectMySQL from "express-mysql-session";
 import thirdSemResults from "../ThirdSemester.js";
 import "dotenv/config"
+import { connect } from "http2";
 
 
 const MySQLStore = connectMySQL(session);
@@ -26,22 +27,52 @@ return connection;
 
 let connection = await asyncConnect();
 
-// console.log("Show me this: ", await connection.query(`SHOW FULL TABLES IN railway WHERE TABLE_TYPE = 'VIEW'`))
-
 const checkThis= async ()=>{
-    const [res]=await connection.query(`SELECT * from all_students`);
-    // if(res.affectedRows){
-    //     console.log("Update Done")
-    // }
-    // else{
-    //     console.log("Update Failed")
-    // }
+    // const [result]  = await connection.query(`CREATE TABLE lecture_reviews (
+    //                                             id INT PRIMARY KEY AUTO_INCREMENT,
+    //                                             user_id INT UNSIGNED NOT NULL,
+    //                                             subject_id INT NOT NULL,
+    //                                             date DATE NOT NULL,
+    //                                             summary TEXT,
+    //                                             difficulty_rating INT CHECK (difficulty_rating BETWEEN 1 AND 5), 
+    //                                             tags VARCHAR(255),
+    //                                             FOREIGN KEY (user_id) REFERENCES all_students(roll_number),
+    //                                             FOREIGN KEY (subject_id) REFERENCES fifth_sem_subjects(id),
+    //                                             UNIQUE (user_id, subject_id, date) 
+    //                                             )`);
 
-    console.log("res: ",res)
+    const allSubjects = ["PIP","FLAT","Library","DBMS","ERP","BREAK","DBMS Lab","Software Engineering","SE Lab","Computer Networks","VAC","PIP Lab","CN Lab"];
+    const lecturers = ["Ms Rashmi","Ms Amanjot Kaur","N/A","Dr Rajesh","Ms Mrigana Walia","N/A","Dr Rajesh","Ms Nidhi","Ms Nidhi","Mr Jatinder","N/A","Ms Rashmi","Mr Jatinder"];
+    const subjectCodes = ["BTCS 510-18","BTCS 502-18","N/A","BTCS 501-18","BTES 501-18","N/A","BTCS 505-18","BTCS 503-18","BTCS 506-18", "BTCS 504-18","N/A","BTCS 510-18","BTCS 507-18"];
+    const colors = ["red","cream","crimson","pink","green","yellow","violet","blue","orange","brown","purple","teal","sky blue"]    
+    const tableId =[3,4,5,6,7,8,9,10,11,12,13,14,15]
+    const timeSlots =[{start_time:"09:00:00",end_time:"10:00:00"},
+                      {start_time:"10:00:00",end_time:"10:50:00"},
+                      {start_time:"10:50:00",end_time:"11:40:00"},
+                      {start_time:"11:40:00",end_time:"12:30:00"},
+                      {start_time:"12:30:00",end_time:"13:15:00"},
+                      {start_time:"13:15:00",end_time:"14:00:00"},
+                      {start_time:"14:00:00",end_time:"14:45:00"},
+                      {start_time:"14:45:00",end_time:"15:30:00"},
+                      {start_time:"15:30:00",end_time:"16:15:00"},
+                      
+    ]
+    const daySubjects = ["FLAT","Software Engineering","CN Lab","CN Lab","DBMS","BREAK","DBMS Lab","DBMS Lab","VAC"];
+    const getIndex = (subject)=>{
+        return allSubjects.findIndex((row)=>row.toLowerCase() == subject.toLowerCase())
+    }
+    // Insert the timetable entries...
+        // const result= []
+    //    for(let i=0;i<timeSlots.length;i++){
+    //         const myIndex = getIndex(daySubjects[i]);
+    //         const [insertionDetails] = await connection.query(`INSERT INTO fifth_sem_timetable (day_of_week,start_time,end_time,subject_id,lecturer)
+    //                                                            VALUES(?,?,?,?,?)`,["Friday",timeSlots[i].start_time,timeSlots[i].end_time,tableId[myIndex],lecturers[myIndex]]);
+    //         result.push(insertionDetails)
+    //    }
+        const [result]=await connection.query(`SELECT * FROM fifth_sem_timetable`);
+        console.log("Table created status is...",result);
 }
 // await checkThis()
-
-
 const checkDB = async ()=>{
     const [result] = await connection.query(`SELECT
                         convo.id AS conversation_id,
@@ -61,8 +92,6 @@ const checkDB = async ()=>{
 }
 // await checkDB();
 export const sessionStore= new MySQLStore({},connection);
-
-
 const getFromUserName= async(rollNumber,password)=>{
     const [rows] = await connection.query("SELECT * FROM activated_accounts WHERE roll_number = ? ",[rollNumber])
     if (!rows.length){
@@ -81,10 +110,7 @@ const getUserById = async (id)=>{
     }
     return rows;
 }
-
 const results = thirdSemResults.results;
-
-
 const initialiseDB = async ()=>{
     const conn = await  connection.getConnection()
     try {
@@ -163,7 +189,6 @@ const getStudentSemesterSubjects = async (semester_subjects_table)=>{
        }
        return result;
 }
-
 const getPassedFromSubject = async (sem_view,subject)=>{
     const [result] = await connection.query(`SELECT COUNT(${subject}) FROM ${sem_view}
          WHERE FIND_IN_SET("pass",${subject}) > ?`,[0]);
@@ -173,7 +198,6 @@ const getPassedFromSubject = async (sem_view,subject)=>{
         console.log("The result is ", result[0]['COUNT(Engineering_Physics)'])
         return result[0]
 }
-
 const getFailedFromSubject = async (sem_view,subject)=>{
        const [result] = await connection.query(`SELECT COUNT(${subject}) FROM ${sem_view}
          WHERE FIND_IN_SET("pass",${subject})= ? `,[0]);
@@ -183,7 +207,6 @@ const getFailedFromSubject = async (sem_view,subject)=>{
         console.log("The result is ", result[0]['COUNT(Engineering_Physics)'])
         return result[0]
 }
-
 const createStudentAccount = async (roll_number,password,confirm_password)=>{
     const myConn=await connection.getConnection();
     await myConn.query("START TRANSACTION")
@@ -217,7 +240,6 @@ const createStudentAccount = async (roll_number,password,confirm_password)=>{
     myConn.release();
     return true; 
 }   
-
 const addProfilePicture = async (roll_number, filePath,type)=>{
     if(!filePath){
         console.log("File path is undefined here")
@@ -243,7 +265,6 @@ const retrieveProfile = async (roll_number)=>{
         }
         return result;
 }
-
 const enquireStudentPersonalInfo= async (roll_number)=>{
      let [result0]=await connection.query(`SELECT EXISTS (
             SELECT 1
@@ -272,17 +293,14 @@ const enquireStudentPersonalInfo= async (roll_number)=>{
         if(!result1.length){
                 return {status:false,value:null} //means no data of yours has ever even entered the credentials systems...
             }
-            
         return {status:true,value:result1}; //some or all of your data has been entered in the credentials system...
     }
     else{
         console.log("View Aready Exists")
         const [done]= await connection.query(`DROP VIEW student_and_student_credentials`);
-
     }
 }
 //   console.log(await enquireStudentPersonalInfo(2305336))
-
 const addCredentials= async (field,roll_number,data)=>{
     const [check] = await connection.query(`SELECT * FROM activated_accounts WHERE roll_number = ?`,[roll_number]);
     if(!check.length){
@@ -343,23 +361,29 @@ const getActivatedStudentsChats = async ()=>{
                             b.student_name
                             FROM activated_accounts act
                             JOIN all_students b ON act.roll_number= b.roll_number`);
-
     if(!result.length){
         throw new Error("Failed getting activated users")
     }   
     return result                     
-        
+}
+const getTimetable = async ()=>{
+    const [result] = await connection.query(`SELECT 
+                                             tt.day_of_week,
+                                             tt.start_time,
+                                             tt.end_time,
+                                             tt.lecturer,
+                                             s.subject_name,
+                                             s.code,
+                                             s.color
+                                             FROM fifth_sem_timetable tt
+                                             JOIN fifth_sem_subjects s ON tt.subject_id=s.id`
+                                        );
+    if(!result.length){
+        throw new Error("The time time table appears top be empty");
+    }
+    return result;
 }
 
-// console.log("My Activated users: ",await getActivatedStudentsChats())
 
-
-
-
-
-
-
-
-
-
-export {connection,getFromUserName,getUserById,getStudentResults,getStudentSemesterSubjects,getPassedFromSubject,getFailedFromSubject,createStudentAccount,addProfilePicture,retrieveProfile,enquireStudentPersonalInfo,addCredentials,getUserName,getAllStudents,getFollowersDetails,getActivatedStudentsChats}
+console.log("My Activated users: ",await getTimetable())
+export {connection,getFromUserName,getUserById,getStudentResults,getStudentSemesterSubjects,getPassedFromSubject,getFailedFromSubject,createStudentAccount,addProfilePicture,retrieveProfile,enquireStudentPersonalInfo,addCredentials,getUserName,getAllStudents,getFollowersDetails,getActivatedStudentsChats,getTimetable}
