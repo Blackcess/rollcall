@@ -430,7 +430,7 @@ app.get("/class/get-attendance-list",async (req,res)=>{
 
 app.use('/login',(err,req,res,next)=>{
     console.error("Something wrong in the server...",err.message)
-    res.status(500).json({status:false,msg:err.message})
+    res.status(500).json({status:false,msg:err})
 })
 
 const httpServer= app.listen(process.env.PORT,()=>{
