@@ -41,13 +41,14 @@ import AddChat from './components/Chat System/One to one Chat system/AddChat.js'
 import {TimeTable} from './components/Class/Class TimeTable/Timetable.js';
 import DaySchedule from './components/Class/Class TimeTable/IndividualDaySchedule.js';
 import WeekendSpecial from './components/Class/Class TimeTable/WeekendSpecial.js';
-
+import MyAttendance from './components/Class/Class Attendance/MyAttendance.js';
+import {ToastContainer} from "react-toastify"
 
 function App() {
   
   let location = useLocation();
   return <>
-
+   <ToastContainer position="top-right" autoClose={3000} hideProgressBar={false} />
   <Routes  >
     <Route path="/" element={<Access/>}/>
     <Route path="/create-account" element={<CreateAccount/>}/>
@@ -94,6 +95,7 @@ function App() {
         <Route path="day-schedule" element={<DaySchedule/>}/>
         <Route path="day-schedule-weekend" element={<WeekendSpecial/>}/>
       </Route>
+      <Route path="class-attendance" element={<MyAttendance/>}/>
 
       </Route>
     </Route>

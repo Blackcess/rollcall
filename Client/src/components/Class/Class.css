@@ -1,0 +1,54 @@
+
+.class-module-root {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+.class-headings{
+    display: flex;
+
+}
+.class-head.mobile-heading{
+    font-size: 16px;
+}
+.class-module-root h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Grid container */
+.module-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+/* Overlay for text readability */
+.overlay {
+  width: 100%;
+  padding: 15px;
+  background: rgba(0, 0, 0, 0.4);
+  text-align: center;
+}
+
+.overlay h2 {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+/* Hover effects */
+.module-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive font size */
+@media (max-width: 500px) {
+  .overlay h2 {
+    font-size: 1.2rem;
+  }
+}

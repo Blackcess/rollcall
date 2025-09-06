@@ -13,7 +13,7 @@ function TimeTable(){
 
     useEffect(()=>{
         getTimetable();
-        console.log("The Date Status Is ",myDate.toLocaleDateString("en-EN",{weekday:"long"}));
+        // console.log("The Date Status Is ",myDate.toLocaleDateString("en-EN",{weekday:"long"}));
         if(myDate.toLocaleDateString("en-EN",{weekday:"long"})==="Sunday" || myDate.toLocaleDateString("en-EN",{weekday:"long"})==="Saturday"){
             navigation(`day-schedule-weekend?type=weekend`)
         }

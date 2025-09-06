@@ -11,68 +11,84 @@ const MySQLStore = connectMySQL(session);
 let asyncConnect = async () => {
    
 try {
-     const connection = await new mysql.createPool(process.env.MYSQL_DATABASE);
-    // host: process.env.DB_HOST, 
-    // user:process.env.DB_USER,
-    // password:process.env.DB_PASSWORD,     
-    // database:process.env.DB_NAME,
+     const connection = await new mysql.createPool({ 
+    host: process.env.REMOTE_DB_HOST, 
+    user:process.env.REMOTE_DB_USER,
+    password:process.env.REMOTE_DB_PASSWORD,     
+    database:process.env.REMOTE_DB_NAME,
     // port: process.env.DB_PORT,
+});
+
+// console.log("Database connnected successfully",connection)
 
 return connection;
 } catch (error) {
-    throw Error("Error connecting to the database:");
+    throw Error("Error connecting to the database:",error);
 }
 
 }
 
 let connection = await asyncConnect();
 
-const checkThis= async ()=>{
-    // const [result]  = await connection.query(`CREATE TABLE lecture_reviews (
-    //                                             id INT PRIMARY KEY AUTO_INCREMENT,
-    //                                             user_id INT UNSIGNED NOT NULL,
-    //                                             subject_id INT NOT NULL,
-    //                                             date DATE NOT NULL,
-    //                                             summary TEXT,
-    //                                             difficulty_rating INT CHECK (difficulty_rating BETWEEN 1 AND 5), 
-    //                                             tags VARCHAR(255),
-    //                                             FOREIGN KEY (user_id) REFERENCES all_students(roll_number),
-    //                                             FOREIGN KEY (subject_id) REFERENCES fifth_sem_subjects(id),
-    //                                             UNIQUE (user_id, subject_id, date) 
-    //                                             )`);
-
-    const allSubjects = ["PIP","FLAT","Library","DBMS","ERP","BREAK","DBMS Lab","Software Engineering","SE Lab","Computer Networks","VAC","PIP Lab","CN Lab"];
-    const lecturers = ["Ms Rashmi","Ms Amanjot Kaur","N/A","Dr Rajesh","Ms Mrigana Walia","N/A","Dr Rajesh","Ms Nidhi","Ms Nidhi","Mr Jatinder","N/A","Ms Rashmi","Mr Jatinder"];
-    const subjectCodes = ["BTCS 510-18","BTCS 502-18","N/A","BTCS 501-18","BTES 501-18","N/A","BTCS 505-18","BTCS 503-18","BTCS 506-18", "BTCS 504-18","N/A","BTCS 510-18","BTCS 507-18"];
-    const colors = ["red","cream","crimson","pink","green","yellow","violet","blue","orange","brown","purple","teal","sky blue"]    
-    const tableId =[3,4,5,6,7,8,9,10,11,12,13,14,15]
-    const timeSlots =[{start_time:"09:00:00",end_time:"10:00:00"},
-                      {start_time:"10:00:00",end_time:"10:50:00"},
-                      {start_time:"10:50:00",end_time:"11:40:00"},
-                      {start_time:"11:40:00",end_time:"12:30:00"},
-                      {start_time:"12:30:00",end_time:"13:15:00"},
-                      {start_time:"13:15:00",end_time:"14:00:00"},
-                      {start_time:"14:00:00",end_time:"14:45:00"},
-                      {start_time:"14:45:00",end_time:"15:30:00"},
-                      {start_time:"15:30:00",end_time:"16:15:00"},
-                      
-    ]
-    const daySubjects = ["FLAT","Software Engineering","CN Lab","CN Lab","DBMS","BREAK","DBMS Lab","DBMS Lab","VAC"];
-    const getIndex = (subject)=>{
-        return allSubjects.findIndex((row)=>row.toLowerCase() == subject.toLowerCase())
+const updateAttendanceSchema = async ()=>{
+    const today = new Date();
+    const weekDay= new Intl.DateTimeFormat("en-EN",{weekday:"long"}).format(today);
+    const testingDate = "Tuesday";
+    const [timetable_lookup]=await connection.query(`SELECT * FROM fifth_sem_timetable WHERE day_of_week = ?`,[weekDay]);
+    // I will simulate a fake date for testing purposes...
+    if(timetable_lookup.length){
+        for(let i=0; i<timetable_lookup.length;i++){
+            await connection.query(`INSERT INTO daily_lectures(timetable_id,lecture_date,start_time,end_time)
+                                    VALUES(?,CURDATE(),?,?)`,[timetable_lookup[i].id,
+                                    timetable_lookup[i].start_time,
+                                    timetable_lookup[i].end_time,
+                                ])
+        }
     }
-    // Insert the timetable entries...
-        // const result= []
-    //    for(let i=0;i<timeSlots.length;i++){
-    //         const myIndex = getIndex(daySubjects[i]);
-    //         const [insertionDetails] = await connection.query(`INSERT INTO fifth_sem_timetable (day_of_week,start_time,end_time,subject_id,lecturer)
-    //                                                            VALUES(?,?,?,?,?)`,["Friday",timeSlots[i].start_time,timeSlots[i].end_time,tableId[myIndex],lecturers[myIndex]]);
-    //         result.push(insertionDetails)
-    //    }
-        const [result]=await connection.query(`SELECT * FROM fifth_sem_timetable`);
-        console.log("Table created status is...",result);
 }
-// await checkThis()
+// updateAttendanceSchema()
+
+const markAttendance = async (day,subject,roll_number,status,start_time)=>{
+    // search the subject in fifth_sem_subject (to get the subject_id) 
+    const [search_result_id ]= await connection.query(`SELECT * FROM fifth_sem_subjects WHERE subject_name = ?`,[subject]);
+    if(!search_result_id.length){
+        throw new Error("Subject not found in the database");
+    }
+    const subject_id = search_result_id[0].id;
+
+    // Search the timetable_id in the fifth_sem_timetable table
+    const [search_result_timetable] = await connection.query(`SELECT * FROM fifth_sem_timetable WHERE subject_id = ? AND day_of_week = ?`,[subject_id,day]);
+    if(search_result_timetable.length === 0){
+        throw new Error(`No timetable found for this subject on the specified day; subject-id: ${subject_id}`);
+    }
+    
+    // search the daily_lectures
+    const [search_result_lecture] = await connection.query(`SELECT * FROM daily_lectures WHERE timetable_id = ?`,[search_result_timetable[0].id]);
+    if(!search_result_lecture.length){
+        throw new Error("No lecture found for today for this subject");
+    }
+    const lecture_id = search_result_lecture[0].lecture_id;
+    console.log("My timetable data",lecture_id)
+    // check if the student has already attended the lecture
+    const [attendance_check] = await connection.query(`SELECT * FROM attendance WHERE user_id = ? AND subject_id = ? AND start_time= ? AND date = CURDATE()`,[roll_number,subject_id,start_time]);
+    if(attendance_check.length){
+        throw new Error("You have already marked attendance for this lecture");
+    }
+    // insert the attendance
+    const [attendance_insert] = await connection.query(`INSERT INTO attendance(user_id,subject_id,date,status,start_time)
+                                                        VALUES(?,?,CURDATE(),?,?)`,[roll_number,subject_id,status,start_time]);
+    
+    if(attendance_insert.affected_rows===0){
+        throw new Error("Error marking attendance, please try again later");
+    }
+    return true; // attendance marked successfully
+
+}
+
+// await markAttendance("ERP",2305336,1);
+
+
+
 const checkDB = async ()=>{
     const [result] = await connection.query(`SELECT
                         convo.id AS conversation_id,
@@ -97,7 +113,6 @@ const getFromUserName= async(rollNumber,password)=>{
     if (!rows.length){
         throw Error("No such user is found")
     }
-    // console.log("wiuei: ",rows[0])
     if(rows[0].password !== password){
         throw Error("Incorrect Password")
     }
@@ -385,5 +400,5 @@ const getTimetable = async ()=>{
 }
 
 
-console.log("My Activated users: ",await getTimetable())
-export {connection,getFromUserName,getUserById,getStudentResults,getStudentSemesterSubjects,getPassedFromSubject,getFailedFromSubject,createStudentAccount,addProfilePicture,retrieveProfile,enquireStudentPersonalInfo,addCredentials,getUserName,getAllStudents,getFollowersDetails,getActivatedStudentsChats,getTimetable}
+// console.log("My Activated users: ",await getTimetable())
+export {connection,getFromUserName,getUserById,getStudentResults,getStudentSemesterSubjects,getPassedFromSubject,getFailedFromSubject,createStudentAccount,addProfilePicture,retrieveProfile,enquireStudentPersonalInfo,addCredentials,getUserName,getAllStudents,getFollowersDetails,getActivatedStudentsChats,getTimetable,markAttendance}

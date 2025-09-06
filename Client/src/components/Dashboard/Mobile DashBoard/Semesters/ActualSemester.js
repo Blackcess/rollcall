@@ -147,17 +147,6 @@ function ActualSemesterData(){
     </>
 }
 
-
-
-
-
-
-
-
-
-
-
-
 function SemestersGradesDoughnut(props){
     const [loaded,setLoaded]= useState(false)
     const [chart,setChart] = useState("Doughnut")
@@ -170,8 +159,6 @@ function SemestersGradesDoughnut(props){
             setChart("doughnut")
         }
     })
-
- 
 
     // Utility function to generate random hex color
     const getRandomColor = () => {

@@ -15,7 +15,7 @@ function DaySchedule(){
             const sortedTemp = temp.sort((a, b) => {
                                 // Compare start times
                                 return a.start_time.localeCompare(b.start_time);
-});
+            });
             // console.log("My day schedule:  ",sortedTemp);
 
             setTodaySchedule(()=>{return sortedTemp});

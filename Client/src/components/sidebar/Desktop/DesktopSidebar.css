@@ -23,3 +23,8 @@
     border-radius: 8px;
     cursor: pointer;
 }
+.s-b-icon,.s-b-title{
+    display: flex;
+    align-items: center;
+}
+

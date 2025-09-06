@@ -4,7 +4,7 @@ import "express-async-errors";
 import fs from 'fs';
 import cors from 'cors';
 import "dotenv/config"
-import { getFromUserName,getStudentResults,getStudentSemesterSubjects,getPassedFromSubject,getFailedFromSubject,createStudentAccount,addProfilePicture,retrieveProfile,enquireStudentPersonalInfo,addCredentials,getUserName,getAllStudents,getFollowersDetails,getActivatedStudentsChats,getTimetable} from '../database connections/databaseConnect.js';
+import {connection, getFromUserName,getStudentResults,getStudentSemesterSubjects,getPassedFromSubject,getFailedFromSubject,createStudentAccount,addProfilePicture,retrieveProfile,enquireStudentPersonalInfo,addCredentials,getUserName,getAllStudents,getFollowersDetails,getActivatedStudentsChats,getTimetable,markAttendance} from '../database connections/databaseConnect.js';
 import session from "express-session"
 import { Cookie } from 'express-session';
 import passport from "passport"
@@ -18,6 +18,8 @@ import { mySocketLogic } from "../Chat Sockets/ChatSockets.js";
 import { createServer } from 'http';
 // import  bcrypt from "bycrpt"
 import "../database connections/databaseConnect.js"
+import { connect } from "http2";
+import classRouter from "../Routes/classRoutes.js";
 
 
 const app =express();
@@ -55,13 +57,14 @@ app.use(session({
     resave:false,
     cookie: {
     httpOnly:true,
-    secure: true,       // required for sameSite: 'None'
+    secure: true,// required for sameSite: 'None'
     sameSite: 'none',   // allows cross-origin cookies
     maxAge: 1000 * 60 * 60 * 24 * 30 // 30 days
   }
 }))
 app.use(passport.initialize())
 app.use(passport.session())
+app.use("/class",classRouter)
 app.use("/uploads",express.static("uploads"))
 //setting up multer storage engine
 const storage = multer.diskStorage({
@@ -78,6 +81,7 @@ const storage = multer.diskStorage({
         cb(null,`${userId}-${Date.now()}${ext}`);
     },
 })
+
  function imageFileFilter(req,file,cb){
     //Accept files with the MIME type  of image
     if(file.mimetype.startsWith("image/")){
@@ -308,7 +312,7 @@ app.get("/myUserName",async (req,res)=>{
         if(req.user){
         let roll_number = req.user.roll_number;
         let result = await getUserName(roll_number);
-        console.log("My Data",result[0],roll_number)
+        // console.log("My Data",result[0],roll_number)
         res.status(200).json({status:true,value:result[0].student_name});
     }
     } catch (error) {
@@ -356,7 +360,60 @@ app.get("/class/timetable",async (req,res)=>{
         res.status(501).json({status:false})
     }
 })
+app.post("/class/mark-subject-attendance",async (req,res)=>{
+    if(req.user){
+          try {
+        const {today,subject,attendance,start_time} = req.body;
+        if(!subject || !start_time || !today){
+            throw new Error("Invalid data provided");
+        }
+        const result = await markAttendance(today,subject,req.user.roll_number,attendance,start_time);
+        if(result){
+            res.status(200).json({status:true,msg:"Attendance marked successfully"});
+        }
+        else{
+            res.status(400).json({status:false,msg:"Failed to mark attendance"});
+        }
+    } catch (error) {
+        console.error("Error marking attendance: ", error.message);
+        res.status(500).json({status:false,msg:error.message});
+    }
+    }
+  
+})
+app.get("/class/subject-attendance-check",async (req,res)=>{
+    if(!req.user){
+        return res.status(401).json({status:false,msg:"Unauthorized"});
+    }
+    try {
+        const {subject,start_time} = req.query;
+        const mydate = new Date();
+        const today = mydate.toISOString().slice(0,10) // Format: YYYY-MM-DD
+        const [attendance_stats] = await connection.query(`SELECT * FROM attendance WHERE user_id = ? AND date  = ?`,[req.user.roll_number,today])
+        res.status(200).json({status:true,data:attendance_stats});
+    } catch (error) {
+        console.error("Error fetching attendance status: ", error.message);
+        return res.status(500).json({status:false,msg:error.message});
+    }
+})
 
+app.get("/class/get-attendance-list",async (req,res)=>{
+    if(!req.user){
+        return res.status(401).json({status:false,msg:"Unauthorized"});
+    }
+    try {
+        const [result] = await connection.query(`SELECT *
+                                FROM attendance 
+                                JOIN fifth_sem_subjects
+                                ON attendance.subject_id = fifth_sem_subjects.id
+                                WHERE user_id=?
+                                `,[req.user.roll_number]);
+        res.status(200).json({status:true,data:result})
+    } catch (error) {
+        console.log("Error Fetching Attendance List",error);
+        res.status(500).json({status:false,msg:error})
+    }
+})
 
 
 
