@@ -87,7 +87,7 @@ function MobileNav(){
             <div className="mobile-notification">
                 <IoNotificationsOutline/>
             </div>
-            <NavLink className="mobile-messaging" to={"/protected/layout/chatSystem"}>
+            <NavLink className="mobile-messaging" to={"/protected/layout/class/chatSystem"}>
                 <MdOutlineMessage/>
             </NavLink>
         </div>

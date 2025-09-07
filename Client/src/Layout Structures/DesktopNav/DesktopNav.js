@@ -76,7 +76,7 @@ function DesktopNav(){
             </div>
             <div className="desktop-nav-assesories">
                 <div className="desktop-notification"><IoNotificationsOutline/> </div>
-                <NavLink className="desktop-messaging" to={"/protected/layout/chatSystem"}><MdOutlineMessage/> </NavLink>
+                <NavLink className="desktop-messaging" to={"/protected/layout/class/chatSystem"}><MdOutlineMessage/> </NavLink>
                 <div className="desktop-user-section-1">
                     <div className="desktop-profile-pic"></div>
                     <div className="desktop-title">

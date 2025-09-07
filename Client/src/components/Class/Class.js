@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom"
+import { NavLink, Outlet, useLocation } from "react-router-dom"
 import "./Class.css"
 import { useScreenData } from "../Layout/Layout"
 import { useEffect, useState } from "react"
@@ -7,9 +7,11 @@ import AttendanceHome from "./Class Attendance/AttendanceHome"
 import RetrieveAttendance from "./Class Attendance/RetrieveAttendance"
 function Class(){
     const screenData = useScreenData()
+    let location = useLocation();
+    const isBaseRoute = location.pathname === "/protected/layout/class";
     let [bgDispay,setBgDisplay]= useState(0)
     let pageTitles= ["Attendance","Timetable","Subjects","Class Chats"]
-    let pageLinks=["/protected/layout/class-attendance","/protected/layout/class-timetable","/protected/layout/home","/protected/layout/chatSystem"]
+    let pageLinks=["class-attendance","class-timetable","/protected/layout/home","chatSystem"]
     let backgroundImages= [["https://elements-resized.envatousercontent.com/envato-dam-assets-production/EVA/TRX/f9/cb/bc/67/ab/v1_E10/E109ZUF3.jpg?w=800&cf_fit=scale-down&mark-alpha=18&mark=https%3A%2F%2Felements-assets.envato.com%2Fstatic%2Fwatermark4.png&q=85&format=auto&s=00533e572eb04eeba13319c4088af85ca7fdb2c9e366d7a8aec181b5e483be2c",
                             "https://elements-resized.envatousercontent.com/envato-dam-assets-production/EVA/TRX/ed/71/9d/2d/7c/v1_E10/E103AY5W.jpg?w=800&cf_fit=scale-down&mark-alpha=18&mark=https%3A%2F%2Felements-assets.envato.com%2Fstatic%2Fwatermark4.png&q=85&format=auto&s=f3d9ad4604d8f17e06e495aa082e922f5695a5c44bbf89d4b2eb45ac30c85a29",
                             "https://elements-resized.envatousercontent.com/envato-dam-assets-production/EVA/TRX/a9/77/27/11/6d/v1_E10/E105TJH5.jpeg?w=800&cf_fit=scale-down&mark-alpha=18&mark=https%3A%2F%2Felements-assets.envato.com%2Fstatic%2Fwatermark4.png&q=85&format=auto&s=9e47d3c24a2667013dcd02a7325f7c0baf11409ec89703c52b44a8a77cd449f8"
@@ -36,6 +38,7 @@ function Class(){
         setInterval(()=>{
             setBgDisplay((bgDispay+1) % 3)
         },10000)
+        // console.log("recquired location is ",location.pathname)
     })
     
 
@@ -49,34 +52,44 @@ function Class(){
         </h1>
     </div>
   
-  <div className="module-grid">
+  <div className={`${screenData.mobileScreen ? "mobile-class-grid" : "module-grid"}`}>
     {
         pageTitles.map((page,index)=>{
-            return <ClassNavLink key={index *4545} value={{to:pageLinks[index],title:page,background:backgroundImages[index][bgDispay]}}/>
+            return <ClassNavLink key={index *4545} value={{to:pageLinks[index],title:page,background:backgroundImages[index][0],isBaseRoute}}/>
         })
     }
   </div>
 
-  <div className="attendance-overview">
-    <RetrieveAttendance/>
+  <div className="outlet-overview">
+    <Outlet/>
   </div>
 </div>
-    <AttendanceHome/>
+    {/* <AttendanceHome/> */}
     </>
 }
 
 function ClassNavLink({value}){
 
     return <>
-        <StyledNavLink to={value.to} value={{background:value.background}} className="module-card">
+    { (value.isBaseRoute) ?
+        <StyledNavLinkCard to={value.to} value={{background:value.background}} >
             <div className="overlay">
-        <h2>{value.title}</h2>
-      </div>
+              <h2>{value.title}</h2>
+            </div>
+        </StyledNavLinkCard>
+
+        :
+        <StyledNavLink to={value.to} value={{background:value.background}}>
+            <div className="overlay-mobile">
+              <div>{value.title}</div>
+            </div>
         </StyledNavLink>
+        
+    }
     </>
 }
 
-const StyledNavLink = styled(NavLink)`
+const StyledNavLinkCard = styled(NavLink)`
   position: relative;
   display: flex;
   align-items: flex-end;
@@ -91,6 +104,20 @@ const StyledNavLink = styled(NavLink)`
   background-position: center;
   transition: transform 1s ease, box-shadow 0.3s ease;
 `
+
+const StyledNavLink = styled(NavLink).attrs(({isActive})=> ({className: isActive ? "active" : ""}))`
+  text-decoration: none;
+  font-size:12px;
+  color:black;
+
+  &.active{
+    color: #0077ff;
+    border-bottom: 2px solid #0077ff;
+    font-weight: bold; 
+  }
+`
+
+
 export default Class
 
 // https://static.vecteezy.com/system/resources/previews/024/218/671/non_2x/erp-enterprise-resource-planning-system-illustration-with-business-integration-productivity-and-company-enhancement-in-hand-drawn-templates-vector.jpg

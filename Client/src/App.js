@@ -56,7 +56,16 @@ function App() {
     <Route path='/protected' element={<Protected/>} >
     <Route path="layout" element={<Layout/>}>
       <Route path="home"element={<Home/>}/>
-      <Route path="class" element={<Class/>}/>
+      <Route path="class" element={<Class/>}>
+        <Route path="class-timetable" element={<TimeTable/>}>
+          <Route path="day-schedule" element={<DaySchedule/>}/>
+          <Route path="day-schedule-weekend" element={<WeekendSpecial/>}/>
+        </Route>
+        <Route path="class-attendance" element={<MyAttendance/>}/>
+        <Route path="chatSystem" element={<PersonalMessaging/>}/>
+        <Route path="my-chats" element={<InsideChat/>}/>
+        <Route path="my-chats-add" element={<AddChat/>}/>
+      </Route>
       <Route path="dashboard" element={<Dashboard/>}>
         <Route path='mobile' element={<MobileDashBoard/>}>
           <Route path='semester/:index' element={<ActualSemesterData/>}/>
@@ -87,15 +96,10 @@ function App() {
       </Route>
       <Route path="about" element={<About/>}/>
       <Route path="logout" element={<Logout/>}/>
-      <Route path="chatSystem" element={<PersonalMessaging/>}/>
-      <Route path="my-chats" element={<InsideChat/>}/>
-      <Route path="my-chats-add" element={<AddChat/>}/>
+      
       <Route path="visitor-profile" element={<VisitorProfile/>}/>
-      <Route path="class-timetable" element={<TimeTable/>}>
-        <Route path="day-schedule" element={<DaySchedule/>}/>
-        <Route path="day-schedule-weekend" element={<WeekendSpecial/>}/>
-      </Route>
-      <Route path="class-attendance" element={<MyAttendance/>}/>
+      
+      
 
       </Route>
     </Route>
