@@ -4,6 +4,7 @@ import { useScreenData } from "../Layout/Layout"
 import { useEffect, useState } from "react"
 import styled from "styled-components"
 import AttendanceHome from "./Class Attendance/AttendanceHome"
+import RetrieveAttendance from "./Class Attendance/RetrieveAttendance"
 function Class(){
     const screenData = useScreenData()
     let [bgDispay,setBgDisplay]= useState(0)
@@ -41,7 +42,7 @@ function Class(){
     return<>
    
 
-{/* <div className="class-module-root">
+<div className="class-module-root">
     <div className="class-headings">
         <h1 className={`class-head ${screenData.mobileScreen ? "mobile-heading": ""}`}>
             Class Module
@@ -55,7 +56,11 @@ function Class(){
         })
     }
   </div>
-</div> */}
+
+  <div className="attendance-overview">
+    <RetrieveAttendance/>
+  </div>
+</div>
     <AttendanceHome/>
     </>
 }

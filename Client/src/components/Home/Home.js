@@ -17,7 +17,7 @@ function  Home() {
     <section className='home-template'>
     <h1>Welcome To the Home page.</h1>
     <p> If you are here it means you have been authenticated...</p>
-      <RetrieveAttendance/>
+      {/* <RetrieveAttendance/> */}
     </section>
     
     </>

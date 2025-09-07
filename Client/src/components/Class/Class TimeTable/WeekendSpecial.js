@@ -1,11 +1,11 @@
 import "./WeekendSpecial.css"
-
+import NoClass from "../../Util Components/No Class Disclaimer/NoClass"
 
 function WeekendSpecial(){
 
     return <>
     <section className="weekend-special-template">
-        <h2>Enjoy It's a weekend</h2>
+        <NoClass/>
     </section>
     </>
 }

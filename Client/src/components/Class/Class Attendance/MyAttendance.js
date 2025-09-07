@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { IoMdClose } from "react-icons/io";
 import { toast } from "react-toastify";
 import { GoDotFill } from "react-icons/go";
+import NoClass from "../../Util Components/No Class Disclaimer/NoClass";
 const API_BASE_URL = process.env.REACT_APP_API_URL;
 
 
@@ -247,12 +248,10 @@ function MyAttendance (){
                 <h3 className="all-recorded-text">All Lectures Recorded</h3>
             </AllLecturesRecordedComponent>
              </div>
-            
-        
-        
-        
     :
-    <div>No Classes Today</div>}
+        <NoClass/>
+    
+    }
     {(notifyUnspecified) &&
     <div className="user-notification-specify">
            <NotifyUserOnSpecification  value={{lectureBin,filterAlreadyRecordedLectures,unspecifiedLectureFilter,closeNotification}}/>
