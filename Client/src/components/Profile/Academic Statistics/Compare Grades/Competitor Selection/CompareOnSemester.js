@@ -18,7 +18,7 @@ import { indexToSemesterStudentTable, indexToSemesterSubjectsTable } from "../..
 import axios from "axios";
 import { translateName,reverseTranslateName } from "../../../../../utils_functions/subject_name_translation";
 import { grade_value,reverseGrade_value } from "../../../../../utils_functions/grade_to_value_transformation";
-
+import ShimmerLoader from "../../../../Util Components/ShimmerLoader/ShimmerLoader";
 const API_BASE_URL = process.env.REACT_APP_API_URL;
     
     ChartJS.register(
@@ -63,7 +63,7 @@ const API_BASE_URL = process.env.REACT_APP_API_URL;
             }
         }
         else{
-            console.log("Sorry Seems like your table is wrong",table,id)
+            // console.log("Sorry Seems like your table is wrong",table,id)
         }
     }
      async  function allSemesterData(){
@@ -92,7 +92,7 @@ const API_BASE_URL = process.env.REACT_APP_API_URL;
                     prev.data= response.data.results;
                     return prev;
                 })
-                console.log("My subject data is here...",response.data.results)
+                // console.log("My subject data is here...",response.data.results)
                 
                 if(response.data.results.length){
                     setSubjectDataFound(true)
@@ -114,7 +114,7 @@ const API_BASE_URL = process.env.REACT_APP_API_URL;
         return <>
         <section>
             {
-                (sessionData.userData.all_semester_results && subjectDataFound && player2Ready)?<MyBarChart value={{user:sessionData.userData.all_semester_results[`semester_${whichSemester}`],subjects:userSubjects,user2:player2Data.all_semester_results,semester:whichSemester}}/>:<p>Loading</p>
+                (sessionData.userData.all_semester_results && subjectDataFound && player2Ready)?<MyBarChart value={{user:sessionData.userData.all_semester_results[`semester_${whichSemester}`],subjects:userSubjects,user2:player2Data.all_semester_results,semester:whichSemester}}/>:<ShimmerLoader/>
             }
         </section>
         
@@ -152,7 +152,7 @@ const API_BASE_URL = process.env.REACT_APP_API_URL;
                      gradeValues.push(gradeValue)
                 }
         })
-        console.log("Grade values are",gradeValues)
+        // console.log("Grade values are",gradeValues)
         return gradeValues;
         }
         

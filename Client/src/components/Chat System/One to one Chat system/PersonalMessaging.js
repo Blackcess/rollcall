@@ -29,14 +29,11 @@ function PersonalMessaging(){
 
         useEffect(()=>{
             sessionData.refresh()
-            
-            setTimeout(() => {
-                console.log("sessionD",sessionData.userData.roll_number)
+                // console.log("sessionD",sessionData.userData.roll_number)
             //    socket = connectSocket(); 
                checkAuthentication(socket);
                socket.on("conversation-list",(data)=>{
-                
-                console.log('Data from database is ',data);
+                // console.log('Data from database is ',data);
                 let others=[]
                 for(let i=0;i<data.length;i++){
                     // first check if user_one is me 
@@ -56,11 +53,9 @@ function PersonalMessaging(){
                     temp.lastMessage=data[i].lastMessage;
                     others.push(temp);
                 }
-                setConversationList((prev)=>{return [...others]})
-               });
-               
-            }, 300);
+                setConversationList(others)
 
+               });
             // getMoreChats()
         },[])
 

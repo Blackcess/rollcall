@@ -13,6 +13,7 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
+import ShimmerLoader from "../../../../Util Components/ShimmerLoader/ShimmerLoader";
 import { MdBorderColor } from "react-icons/md";
 import { Line } from "react-chartjs-2";
 import { useLocation } from "react-router-dom";
@@ -72,7 +73,7 @@ function CompareSGPA(){
 
         useEffect(()=>{
             if(Object.keys(player2Data).length){
-                console.log("Palye2 Data",player2Data.all_semester_results,sessionData.userData.all_semester_results)
+                // console.log("Palye2 Data",player2Data.all_semester_results,sessionData.userData.all_semester_results)
             }
         })
     
@@ -82,7 +83,7 @@ function CompareSGPA(){
     return <>
    <section className="mysgpa-vs-yours">
     <div>
-        { (sessionData.userData.all_semester_results && player2Data.all_semester_results)?<SGPA_Chart value={{data1:sessionData.userData.all_semester_results,data2:player2Data.all_semester_results}}/>:<p>Loading</p>}
+        { (sessionData.userData.all_semester_results && player2Data.all_semester_results)?<SGPA_Chart value={{data1:sessionData.userData.all_semester_results,data2:player2Data.all_semester_results}}/>:<ShimmerLoader/>}
     </div>
 
    </section>

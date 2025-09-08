@@ -7,7 +7,7 @@ import axios from "axios";
 import { useAuth } from "../../Aunthentication/AuthProvider";
 import { NavLink, useNavigate } from "react-router-dom";
 import ShimmerLoader from "../../components/Util Components/ShimmerLoader/ShimmerLoader";
-
+import SpinLoader from "../../components/Util Components/SpinLoader/SpinLoader";
 const API_BASE_URL = process.env.REACT_APP_API_URL;
 
 function MobileNav(){
@@ -79,7 +79,7 @@ function MobileNav(){
                         {sessionData.userData.student_name}
                     </div>
                     : 
-                    <ShimmerLoader/>}
+                    <SpinLoader/>}
                 </div>
             </div>
         </div>

@@ -6,6 +6,7 @@ import { IoNotificationsOutline } from "react-icons/io5";
 import { MdOutlineMessage } from "react-icons/md";
 import { useAuth } from "../../Aunthentication/AuthProvider";
 import { NavLink } from "react-router-dom";
+import SpinLoader from "../../components/Util Components/SpinLoader/SpinLoader";
 
 const API_BASE_URL = process.env.REACT_APP_API_URL;
 
@@ -81,11 +82,14 @@ function DesktopNav(){
                     <div className="desktop-profile-pic"></div>
                     <div className="desktop-title">
                         <div className="desktop-user-category">Student</div>
-                        <div className="mob-user-name" ref={outerUser}>
+                        {(sessionData.loaded) ? <div className="mob-user-name" ref={outerUser}>
                             <div className={ `mob-user-name-inner ${(shouldScroll) ? "scroll" : "" }`}  ref={innerUser}> 
                                 {sessionData.userData.student_name}
                             </div>
                         </div>
+                        :
+                        <SpinLoader/>
+                        }
                     </div>
                 </div>
             </div>

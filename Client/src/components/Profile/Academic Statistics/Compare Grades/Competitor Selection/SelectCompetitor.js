@@ -3,6 +3,7 @@ import axios from "axios"
 import { useState,useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
+import ShimmerLoader from "../../../../Util Components/ShimmerLoader/ShimmerLoader";
 
 const API_BASE_URL = process.env.REACT_APP_API_URL;
 
@@ -51,13 +52,14 @@ function SelectCompetitor(){
     return <>
     <section className="whole-compare-section">
          <h3>Compare grades with: </h3>
-        {(dataDone) &&<div className="my-competitor-list">
+        {(dataDone) ? <div className="my-competitor-list">
         {
             allData.map((row,index)=>(
                 <Competitor key={index} value={{data:row,imager:imagerResolver}}/>
             ))
         }
-    </div>}
+    </div>
+    : <ShimmerLoader/>}
     </section>
    
     </>

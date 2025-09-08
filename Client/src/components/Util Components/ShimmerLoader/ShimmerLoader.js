@@ -3,7 +3,7 @@ import "./ShimmerLoader.css"
 const ShimmerLoader = () => {
   return (
     <div className="shimmer-grid">
-      {/* Name Loader at the top */}
+     {/* Name Loader at the top */}
       <div className="name-loader">
         <div className="spinner"></div>
       </div>
