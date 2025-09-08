@@ -5,6 +5,7 @@ import { MdSubject } from "react-icons/md";
 import { MdOutlineNavigateNext } from "react-icons/md";
 import { useEffect, useState } from "react"
 import { useParams,useLocation } from "react-router-dom"
+import ShimmerLoader from "../../Util Components/ShimmerLoader/ShimmerLoader";
 import { indexToSemesterSubjectsTable, indexToSemesterStudentTable } from "../../../utils_functions/index_to_semester_table";
 import Testing from "../../Testing Purposes/Testing";
 import { translateName, reverseTranslateName } from "../../../utils_functions/subject_name_translation";
@@ -106,7 +107,7 @@ function ActualSemesterData_Desktop(){
     },[index])
     
     return<>
-       <section className="actual-desktop-semester-data-template">
+       { (userDataFound) ? <section className="actual-desktop-semester-data-template">
         <div className="desktop-bar-data">
             <div className="desktop-bar-heading">
                 <div className="desktop-bar-heading-1">
@@ -141,6 +142,8 @@ function ActualSemesterData_Desktop(){
              
            
        </section>
+       :
+       <ShimmerLoader/>}
     </>
 }
 

@@ -20,6 +20,7 @@ function AuthProvider({children}){
     const [profPicType,setProfPicType]= useState(false)
     const [profPic,setProfPic]= useState(false)
     const [credentials,setCredentials]=useState({})
+    const [loaded,setLoaded] = useState(false)
     let [userSGPA,setUserSGPA]= useState({});
     useEffect(()=>{
       async  function proveAuth(){
@@ -50,7 +51,7 @@ function AuthProvider({children}){
         }
         proveAuth()
 
-    })
+    },[])
     async function getUser(){
             try {
                 const response = await axios.get(`${API_BASE_URL}/home`,{
@@ -141,16 +142,24 @@ function AuthProvider({children}){
         
 
         async function getAll(){
-            await getUser();
-            await retrivePic();
-            await getCredentials();
+            
+            try {
+                await getUser();
+                await retrivePic();
+                await getCredentials();
+            } catch (error) {
+                console.error(error)
+            }
+            finally{
+                setLoaded(true)
+            }
         }
 
     useEffect(()=>{
         getAll();
     },[])
     return <>
-    <Auth.Provider value={{isAuthenticated,logout,login,userData,refresh:getAll,myResults:allSemesterData}}>
+    <Auth.Provider value={{isAuthenticated,logout,login,userData,refresh:getAll,myResults:allSemesterData,loaded}}>
         {children}
     </Auth.Provider>
     </>

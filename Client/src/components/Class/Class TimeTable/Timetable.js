@@ -2,6 +2,7 @@ import axios from "axios"
 import "./Timetable.css"
 import { createContext, useEffect,useState,useContext} from "react";
 import { NavLink, Outlet,useLocation, useNavigate } from "react-router-dom";
+import ShimmerLoader from "../../Util Components/ShimmerLoader/ShimmerLoader";
 const API_BASE_URL = process.env.REACT_APP_API_URL;
 const GlobalTimetable= createContext();
 function TimeTable(){
@@ -41,7 +42,7 @@ function TimeTable(){
     <section className="my-time-table-template">
         {/* <h2>This is my classs Time table</h2> */}
         {
-            (timetableLoaded) && 
+            (timetableLoaded) ?
             <div className="time-table-loaded-temmplate">
                 <div className="timetable-days-of-week">
                     {
@@ -66,6 +67,8 @@ function TimeTable(){
                     </GlobalTimetable.Provider>
                 </div>
             </div>
+            :
+            <ShimmerLoader/>
         }
     </section>
     </>

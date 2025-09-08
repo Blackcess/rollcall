@@ -6,6 +6,7 @@ import { MdOutlineMessage } from "react-icons/md";
 import axios from "axios";
 import { useAuth } from "../../Aunthentication/AuthProvider";
 import { NavLink, useNavigate } from "react-router-dom";
+import ShimmerLoader from "../../components/Util Components/ShimmerLoader/ShimmerLoader";
 
 const API_BASE_URL = process.env.REACT_APP_API_URL;
 
@@ -74,9 +75,11 @@ function MobileNav(){
             <div className="mob-title">
                 <div className="mob-user-category">Student</div>
                 <div className="mob-user-name" ref={outerUser}>
-                    <div className={ `mob-user-name-inner ${(shouldScroll) ? "scroll" : "" }`}  ref={innerUser}> 
+                    {(sessionData.loaded) ? <div className={ `mob-user-name-inner ${(shouldScroll) ? "scroll" : "" }`}  ref={innerUser}> 
                         {sessionData.userData.student_name}
                     </div>
+                    : 
+                    <ShimmerLoader/>}
                 </div>
             </div>
         </div>

@@ -6,6 +6,7 @@ import { IoMdClose } from "react-icons/io";
 import { toast } from "react-toastify";
 import { GoDotFill } from "react-icons/go";
 import NoClass from "../../Util Components/No Class Disclaimer/NoClass";
+import ShimmerLoader from "../../Util Components/ShimmerLoader/ShimmerLoader";
 const API_BASE_URL = process.env.REACT_APP_API_URL;
 
 
@@ -190,7 +191,7 @@ function MyAttendance (){
         <div className="attendance-dashboard-display">
             {/* <AttendanceDashboard value={{}}/> */}
         </div>
-        {(attendanceListLoaded && attendanceList.length > 0) ?
+        {(attendanceListLoaded) ?
         (!allLecturesRecorded) ? <div className="outer-list-attendance">
             <div className="attendance-list-template">
                 Lectures selected is {lectureBin.length}/{attendanceList.length}
@@ -249,7 +250,8 @@ function MyAttendance (){
             </AllLecturesRecordedComponent>
              </div>
     :
-        <NoClass/>
+        // <NoClass/>
+            <ShimmerLoader/>
     
     }
     {(notifyUnspecified) &&

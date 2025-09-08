@@ -7,6 +7,7 @@ import { useEffect, useState } from "react"
 import { NavLink, useParams } from "react-router-dom"
 import { indexToSemesterSubjectsTable , indexToSemesterStudentTable } from "../../../../utils_functions/index_to_semester_table"
 import Testing from "../../../Testing Purposes/Testing"
+import ShimmerLoader from "../../../Util Components/ShimmerLoader/ShimmerLoader";
 import { translateName,reverseTranslateName } from "../../../../utils_functions/subject_name_translation"
     import {Line,Doughnut, Bar} from "react-chartjs-2"
     import {
@@ -106,15 +107,15 @@ function ActualSemesterData(){
         
     },[index])
 
-    useEffect(()=>{
-        console.log("UsertData", userData)
-    })
+    // useEffect(()=>{
+    //     console.log("UsertData", userData)
+    // })
 
     
     
     return<>
-       {(startRender) && 
-       <section className="actual-semester-data-template">
+       
+       { (userDataFound) ? <section className="actual-semester-data-template">
         <div className="subjects-doughnut-graph">
              <SemestersGradesDoughnut value={{user:userData,subjects:userSubjects}} type="doughnut"/>
         </div>     
@@ -141,11 +142,14 @@ function ActualSemesterData(){
                 </div>
                
              </div>
-        }
+                }
        </section>
-       }
-    </>
+        :
+        <ShimmerLoader/>
 }
+       
+    </>
+    }
 
 function SemestersGradesDoughnut(props){
     const [loaded,setLoaded]= useState(false)
