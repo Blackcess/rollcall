@@ -43,6 +43,8 @@ import DaySchedule from './components/Class/Class TimeTable/IndividualDaySchedul
 import WeekendSpecial from './components/Class/Class TimeTable/WeekendSpecial.js';
 import MyAttendance from './components/Class/Class Attendance/MyAttendance.js';
 import {ToastContainer} from "react-toastify"
+import AttendanceHome from './components/Class/Class Attendance/AttendanceHome.js';
+import RetrieveAttendance from './components/Class/Class Attendance/RetrieveAttendance.js';
 
 function App() {
   
@@ -61,7 +63,9 @@ function App() {
           <Route path="day-schedule" element={<DaySchedule/>}/>
           <Route path="day-schedule-weekend" element={<WeekendSpecial/>}/>
         </Route>
-        <Route path="class-attendance" element={<MyAttendance/>}/>
+        <Route path="class-attendance" element={<AttendanceHome/>}/>
+        <Route path="class-attendance-record" element={<MyAttendance/>}/>
+        <Route path="class-attendance-retrieve" element={<RetrieveAttendance/>}/>
         <Route path="chatSystem" element={<PersonalMessaging/>}/>
         <Route path="my-chats" element={<InsideChat/>}/>
         <Route path="my-chats-add" element={<AddChat/>}/>

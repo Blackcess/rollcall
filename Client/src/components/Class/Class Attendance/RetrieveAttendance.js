@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "./RetrieveAttendance.css"
+import { useScreenData } from "../../Layout/Layout";
 // import AttendanceHome from "./AttendanceHome";
 import axios from "axios";
 const API_BASE_URL = process.env.REACT_APP_API_URL;
@@ -9,6 +10,7 @@ function RetrieveAttendance(){
   const [filteredData, setFilteredData] = useState([]);
   const [search, setSearch] = useState("");
   const [subjectFilter, setSubjectFilter] = useState("");
+  const screenData= useScreenData()
 
   useEffect(()=>{
     getAttendenceRecords()

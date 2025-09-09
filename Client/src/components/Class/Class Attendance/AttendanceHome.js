@@ -2,6 +2,8 @@ import axios from "axios";
 import "./AttendanceHome.css"
 import { useState,useEffect } from "react";
 import { FcCalculator } from "react-icons/fc";
+import ShimmerLoader from "../../Util Components/ShimmerLoader/ShimmerLoader";
+import { NavLink } from "react-router-dom";
 const API_BASE_URL = process.env.REACT_APP_API_URL;
 
 function AttendanceHome(){
@@ -23,6 +25,7 @@ function AttendanceDashboard1() {
   const [whatIf, setWhatIf] = useState(""); // skip input
   const [predicted, setPredicted] = useState(null);
   const [needed, setNeeded] = useState(null); // reverse calculator result
+  const [loaded,setLoaded] = useState(false)
 
   useEffect(() => {
     // get data from database 
@@ -61,10 +64,14 @@ const fetchDailyData = async ()=>{
                   else break;
                 }
                 setStreak(streakCount);
+                
             }
         
         } catch (err) {
             console.error("Error fetching data", err);
+        }
+        finally{
+          setLoaded(true)
         }
     };
 
@@ -100,12 +107,14 @@ const fetchDailyData = async ()=>{
   };
 
   return (
-    <div className="dashboard">
+    <>
+    {(loaded) ? <div className="dashboard">
       <header className="dashboard-header">
         <h1 className="dhd">
           <img  className="attendance-icon" src="https://img.freepik.com/premium-vector/analytics-with-graph-flat-vector-illustration-white-background_674398-2166.jpg"/> 
           Attendance Dashboard
         </h1>
+        <NavLink to={`/protected/layout/class/class-attendance-record`}>Record Today Attendance</NavLink>
       </header>
 
       {/* Overall Attendance */}
@@ -188,9 +197,14 @@ const fetchDailyData = async ()=>{
             <p>🏅 Perfect Week</p>
             <p>🔥 Comeback King</p>
           </div>
+          <NavLink to={`/protected/layout/class/class-attendance-retrieve`}>View Attendance</NavLink>
         </div>
       </div>
     </div>
+    :
+    <ShimmerLoader/>
+    }
+    </>
   );
 }
 
