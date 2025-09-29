@@ -30,7 +30,8 @@ const corsOptions = {
     const allowedBase = [
       'https://rollcall.vercel.app',
       "rollcall-77s5-2kcst8dea-thomas-kazondas-projects.vercel.app",
-      'http://localhost:3000'
+      'http://localhost:3000',
+      process.env.LAN_HOST_CLIENT_URL
     ];
 
     // Allow anything ending with .vercel.app (preview deploys)
@@ -56,9 +57,9 @@ app.use(session({
     saveUninitialized: false,
     resave:false,
     cookie: {
-    httpOnly:true,
+    httpOnly:false,
     secure: true,// required for sameSite: 'None'
-    sameSite: 'none',   // allows cross-origin cookies
+    sameSite: 'lax',   // allows cross-origin cookies
     maxAge: 1000 * 60 * 60 * 24 * 30 // 30 days
   }
 }))
@@ -98,11 +99,10 @@ const upload = multer({storage:storage,
 
 // console.log("My Session  Store...", sessionStore)
 
-app.post("/login",passport.authenticate("local"),(req,res)=>{
-    
-
+app.post("/login",passport.authenticate("local"),async (req,res)=>{
     try {
-        console.log("Request from ",req.user);
+        // const [user_name]=await connection.query(`SELECT student_name FROM all_students WHERE roll_number = ?`,[req.user])
+        // console.log("Request from ",user_name);
         res.status(200).json({status:true,msg:"You are logged in"});
     } catch (error) {
         console.error("Error during login: ", error.message);
@@ -131,7 +131,7 @@ app.post("/create-account",async(req,res)=>{
 })
 app.get('/cookie-test', (req, res) => {
   req.session.test = 'value';
-  console.log("My eq cookie ",req.session.test)
+  console.log("My eq cookie ",req.user)
   res.json({ message: 'cookie set' });
 });
 app.get("/logout",(req,res)=>{
@@ -433,7 +433,7 @@ app.use('/login',(err,req,res,next)=>{
     res.status(500).json({status:false,msg:err})
 })
 
-const httpServer= app.listen(process.env.PORT,()=>{
+const httpServer= app.listen(process.env.PORT,process.env.HOST,()=>{
     console.log("Server is up...",process.env.PORT);
 })
 
@@ -442,7 +442,8 @@ const corsOptionsSocket = {
     const allowedBase = [
       'https://rollcall.vercel.app',
       "rollcall-77s5-2kcst8dea-thomas-kazondas-projects.vercel.app",
-      'http://localhost:3000'
+      'http://localhost:3000',
+      process.env.LAN_HOST_CLIENT_URL
     ];
 
     // Allow anything ending with .vercel.app (preview deploys)

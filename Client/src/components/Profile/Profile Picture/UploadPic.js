@@ -45,9 +45,8 @@ function UploadPic(){
             <form className="my-upload-form">
                 <input type="file" className="upload-file-input" accept="image/*"/>
                 <button className="send-btn" onClick={(e)=>{
-                    e.preventDefault();
-                    setSubmitStatus(true);
-
+                    e.preventDefault()
+                    setSubmitStatus(true)
                 }}>Upload</button>
             </form>
         </div>

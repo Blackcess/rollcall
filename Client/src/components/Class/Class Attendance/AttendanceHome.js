@@ -133,7 +133,7 @@ const fetchDailyData = async ()=>{
       <div className="dashboard-grid">
         {/* LEFT PANEL */}
         <div className="left-panel">
-          <h2>Subject Attendance</h2>
+          <h2 className="subject-attendance-header">Subject Attendance</h2>
           <div className="subject-cards">
             {subjects.map((sub, idx) => (
               <div key={idx} className="card">
@@ -183,7 +183,7 @@ const fetchDailyData = async ()=>{
             
           </div>
 
-          <div className="widget">
+          {/* <div className="widget">
             <AttendanceCalculators/>
           </div>
 
@@ -196,7 +196,7 @@ const fetchDailyData = async ()=>{
             <h2>Achievements</h2>
             <p>🏅 Perfect Week</p>
             <p>🔥 Comeback King</p>
-          </div>
+          </div> */}
           <NavLink to={`/protected/layout/class/class-attendance-retrieve`}>View Attendance</NavLink>
         </div>
       </div>
