@@ -67,7 +67,7 @@ function SelectCompetitor(){
 
 
 function Competitor(props){
-  // useEffect(()=>{console.log("Check props",props)
+  // useEffect(()=>{console.log("Check props",props)})
     return <>
     <NavLink className="competitor-template" to={`/protected/layout/compare-grades/comparison-analytics?roll_number=${props.value.data.roll_number}&type=${props.value.data.profile_picture_type}&pic=${props.value.data.profile_picture}` }>
         <StyledProf value={{data:props.value.data,imager:props.value.imager}}></StyledProf>

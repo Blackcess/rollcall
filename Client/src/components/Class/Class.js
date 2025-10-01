@@ -47,9 +47,9 @@ function Class(){
 
 <div className="class-module-root">
     <div className="class-headings">
-        <h1 className={`class-head ${screenData.mobileScreen ? "mobile-heading": ""}`}>
-            Class Module
-        </h1>
+        <h2 className={`class-head ${screenData.mobileScreen ? "mobile-heading": ""}`}>
+            Class 
+        </h2>
     </div>
   
   <div className={`${screenData.mobileScreen ? "mobile-class-grid" : "module-grid"}`}>
@@ -90,6 +90,7 @@ function ClassNavLink({value}){
 }
 
 const StyledNavLinkCard = styled(NavLink)`
+  width:100%;
   position: relative;
   display: flex;
   align-items: flex-end;

@@ -65,7 +65,7 @@ function PersonalMessaging(){
 
     return <>
     <section className="chat-system-container">
-        <h2 className="personal-messages-heading">Personal Messages</h2>
+        {/* <h2 className="personal-messages-heading">Personal Messages</h2> */}
         <div  className="conversation-list-container">
             {
                 (!conversationList.length)?

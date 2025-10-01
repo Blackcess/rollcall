@@ -38,17 +38,15 @@ function RetrieveAttendance(){
       );
     }
     if (subjectFilter) {
-      data = data.filter(row => row.subject === subjectFilter);
+      data = data.filter(row => row.subject_name === subjectFilter);
     }
     setFilteredData(data);
   }, [search, subjectFilter, attendance]);
 
-  const subjects = [...new Set(attendance.map(row => row.subject))];
+  const subjects = [...new Set(attendance.map(row => row.subject_name))];
 
   return (
     <div className="attendance-container">
-      <h2 className="attendance-title">Your Attendance</h2>
-
       {/* Filters */}
       <div className="filters">
         <input

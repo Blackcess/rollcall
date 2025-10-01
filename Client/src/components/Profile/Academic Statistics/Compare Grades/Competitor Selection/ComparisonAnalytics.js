@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useAuth } from "../../../../../Aunthentication/AuthProvider"
 import "./ComparisonAnalytics.css" 
 import styled from "styled-components";
@@ -13,13 +13,13 @@ function ComparisonAnalytics(){
     let comp_roll_number = queryParams.get("roll_number")
     let picType= queryParams.get("type")
     let compPic= queryParams.get("pic")
-    let competitorData= {profPicType:picType,profPic:compPic}
+    let [competitorData,setCompetitorData]= useState({profPicType:picType,profPic:compPic})
     let navigate = useNavigate();
 
     useEffect(()=>{
         sessionData.myResults();
         //I need to get Compatitor data
-        navigate(`sgpa-compare?roll_number=${comp_roll_number}`);
+        navigate(`sgpa-compare?roll_number=${comp_roll_number}&pic=${compPic}&type=${picType}`);
     },[])
 
     
@@ -27,7 +27,7 @@ function ComparisonAnalytics(){
     function imagerResolver(row){
       if(row.profPicType){
         if(row.profPicType.length &&  row.profPicType==="default"){
-            console.log("I rendered")
+            // console.log("I rendered")
             return row.profPic;
         }
         else{
@@ -45,20 +45,24 @@ function ComparisonAnalytics(){
       }
   }
 
+  useEffect(()=>{
+    console.log("My competitor Data is ",competitorData)
+  })
+
 
     return <>
         <section className="compare-analytics-template">
-            <h2>Comparison Analytics</h2>
+            {/* <h2>Comparison Analytics</h2> */}
              <div className="compatitors-line-up">
                 <NavLink className="avatar-display" to={`/protected/layout/profile`}>
                     <StyledProf value={{data:sessionData.userData,imager:imagerResolver}}></StyledProf>
-                    <span style={{color:"green", fontSize:"12px"}}>{sessionData.userData.roll_number}-You👈👈</span>
+                    <span style={{color:"green", fontSize:"12px",fontWeight:600}}>{sessionData.userData.roll_number}-You👈👈</span>
                 </NavLink>
                 
                 <h2 className="comp-vs"> VS</h2>
                 <NavLink className="avatar-display" to={`/protected/layout/visitor-profile?roll_number=${comp_roll_number}`}>
                     <StyledProf value ={{data:competitorData,imager:imagerResolver}}></StyledProf>
-                    <span style={{color:"red",fontSize:"12px"}}>{comp_roll_number}</span>
+                    <span style={{color:"crimson",fontSize:"12px",fontWeight:600}}>{comp_roll_number}</span>
                 </NavLink>
                 
              </div>

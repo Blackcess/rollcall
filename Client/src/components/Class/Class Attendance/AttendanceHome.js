@@ -75,7 +75,7 @@ const fetchDailyData = async ()=>{
         }
     };
 
-
+  
 
   // 🔹 Skip Calculator
   const handleWhatIf = () => {
@@ -106,26 +106,28 @@ const fetchDailyData = async ()=>{
     setNeeded(extra);
   };
 
+   
+
   return (
     <>
     {(loaded) ? <div className="dashboard">
       <header className="dashboard-header">
-        <h1 className="dhd">
+        {/* <h1 className="dhd">
           <img  className="attendance-icon" src="https://img.freepik.com/premium-vector/analytics-with-graph-flat-vector-illustration-white-background_674398-2166.jpg"/> 
           Attendance Dashboard
-        </h1>
-        <NavLink to={`/protected/layout/class/class-attendance-record`}>Record Today Attendance</NavLink>
+        </h1> */}
+        <NavLink to={`/protected/layout/class/class-attendance-record`} className="record-my-attendance">Record Today Attendance</NavLink>
       </header>
 
       {/* Overall Attendance */}
       {overall && (
         <section className="overall-progress">
           <div className="progress-ring">
-            <div className="circle">{overall.percentage}%</div>
-            <p>
-              {overall.attended} / {overall.total} classes attended
-            </p>
-            <small>Safe Zone = 75%</small>
+            <div className="circle" style={{color:(parseInt(overall.percentage)>=50 ? "teal" : "red")}}>{overall.percentage}%</div>
+            <small>
+              {overall.attended} / {overall.total} classes attended <br/>
+            </small>
+            <small style={{color:"teal"}}>Safe Zone = 75%</small>
           </div>
         </section>
       )}
@@ -133,7 +135,7 @@ const fetchDailyData = async ()=>{
       <div className="dashboard-grid">
         {/* LEFT PANEL */}
         <div className="left-panel">
-          <h2 className="subject-attendance-header">Subject Attendance</h2>
+          <h3 className="subject-attendance-header">Subject Attendance</h3>
           <div className="subject-cards">
             {subjects.map((sub, idx) => (
               <div key={idx} className="card">
@@ -148,7 +150,7 @@ const fetchDailyData = async ()=>{
 
           {/* Heatmap */}
           <div className="heatmap">
-            <h2>Attendance Heatmap</h2>
+            <h3>Attendance Heatmap</h3>
             <div className="heatmap-grid">
               {heatmap.map((d, i) => (
                 <div
@@ -170,9 +172,9 @@ const fetchDailyData = async ()=>{
               <img className={`streak-image`} src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSv8-e_FahqzU7s__TalUxn0PUkx4ZKicGJdPI_q-K068Yq9AE&s"/>
             </span>
             <div className="streak-body">
-              <h2>
+              <h3>
                Streak Tracker
-              </h2>
+              </h3>
               <p>
                {streak > 0
                  ? `✅ ${streak} days in a row!`

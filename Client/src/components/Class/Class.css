@@ -2,19 +2,20 @@
 .class-module-root {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
+  /* padding: 20px; */
   font-family: Arial, sans-serif;
   text-align: center;
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 20px;
 }
 .class-headings{
     display: flex;
 
 }
 .class-head.mobile-heading{
-    font-size: 16px;
+    font-size: 18px;
+
 }
 .class-module-root h1 {
   font-size: 2.5rem;
@@ -53,6 +54,9 @@
 .module-card:hover {
   transform: scale(1.05);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+.overlay-mobile{
+  font-weight: 600;
 }
 /* .active-link{
   color:orange;
