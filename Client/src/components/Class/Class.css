@@ -8,25 +8,23 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+  padding-top: 0px;
 }
 .class-headings{
     display: flex;
-
+    background-color: red;
 }
 .class-head.mobile-heading{
     font-size: 18px;
 
 }
-.class-module-root h1 {
-  font-size: 2.5rem;
-  margin-bottom: 20px;
-  color: #333;
-}
-
 /* Grid container */
 .module-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+   display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); 
+  /* display: flex; */
+  /* flex-wrap: wrap; */
+  justify-content: space-evenly;
   gap: 20px;
   /* background-color: yellow; */
 }
@@ -56,7 +54,7 @@
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
 }
 .overlay-mobile{
-  font-weight: 600;
+  /* font-weight: 600; */
 }
 /* .active-link{
   color:orange;

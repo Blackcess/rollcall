@@ -22,8 +22,8 @@ function AuthProvider({children}){
     const [credentials,setCredentials]=useState({})
     const [loaded,setLoaded] = useState(false)
     let [userSGPA,setUserSGPA]= useState({});
-    useEffect(()=>{
-      async  function proveAuth(){
+    
+    async  function proveAuth(){
            if(drop==0){
             // console.log("Am I running...")
             setDrop(drop+1)
@@ -31,9 +31,9 @@ function AuthProvider({children}){
                  let res = await axios.get(`${API_BASE_URL}/home`,{
                  withCredentials:true,
             })
-             setIsAuthenticated(true);
+            //  setIsAuthenticated(true);
                 if(res.data.status){
-                    console.log("You are logged in")
+                    // console.log("You are logged in")
                     setIsAuthenticated(true)
 
                 }
@@ -42,16 +42,11 @@ function AuthProvider({children}){
                     setIsAuthenticated(false)
                 }
             } catch (error) {
-                // setIsAuthenticated(false)
+                setIsAuthenticated(false)
                 console.log(error)
             }
         }
-
-        
         }
-        proveAuth()
-
-    },[])
     async function getUser(){
             try {
                 const response = await axios.get(`${API_BASE_URL}/home`,{
@@ -61,15 +56,13 @@ function AuthProvider({children}){
                     setUserData((prev)=>{
                         return response.data.userDetails;
                     })
-                    return response.data;
+                    // return response.data;    
                 }
             } catch (error) {
                 console.log("Error fetching user data: ",error)
             }
         }
-
         async function retrivePic(){
-         
             try {
                   const result = await axios.get(`${API_BASE_URL}/uploads`,{
                 withCredentials:true
@@ -102,13 +95,9 @@ function AuthProvider({children}){
                         return data;
                     })
                 }
-                else{
-                    console.log("Passport did not leave you any cookies :(")
-                }
             } catch (error) {
                 console.log("Error",error)
             }
-
         }
 
         const fetchSemesterData = async (id,sem)=>{
@@ -138,12 +127,9 @@ function AuthProvider({children}){
             return data;
         })
     }
-
-        
-
         async function getAll(){
-            
             try {
+                await proveAuth()
                 await getUser();
                 await retrivePic();
                 await getCredentials();

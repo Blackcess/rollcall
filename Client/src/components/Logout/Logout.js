@@ -24,7 +24,7 @@ function Logout(){
                             withCredentials:true
                         })
                         sessionData.refresh()
-                        console.log("Logout Result: ",logoutResult);
+                        // console.log("Logout Result: ",logoutResult);
                         navigate("/login")
                 } catch (error) {
                     console.log("Error logging out: ",error);

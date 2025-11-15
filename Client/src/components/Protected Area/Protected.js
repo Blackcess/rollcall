@@ -26,7 +26,7 @@ function Protected({children}){
         }
 
     useEffect(()=>{
-            navigate("/protected/layout/home");
+            navigate("/protected/layout/editor");
             
     },[])
     const socket = connectSocket();

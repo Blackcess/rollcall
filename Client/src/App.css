@@ -19,3 +19,6 @@
 body{
     /* background-color: black; */
 }
+ li[data-list]::before {
+  border-left: none !important;
+}

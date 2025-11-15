@@ -9,12 +9,14 @@ import { NavLink } from "react-router-dom";
 import { VscSymbolClass } from "react-icons/vsc";
 import { RxDashboard } from "react-icons/rx";
 import MobileNav from "./Mobile Nav/MobileNav";
+import { SiStudyverse } from "react-icons/si";
+
 
 
 function MobileLayout(){
-    let pages = ["Home","Class","Dashboard","Profile"]
-    let links=["home","class",`/protected/layout/dashboard/mobile/semester/${2}`,"profile"]
-    let icons=[<FaHome/>,<VscSymbolClass/>,<RxDashboard/>,<CgProfile/>]
+    let pages = ["Class","Dashboard","Profile","content"]
+    let links=["class",`/protected/layout/dashboard/mobile/semester/${2}`,"profile","study-material"]
+    let icons=[<VscSymbolClass/>,<RxDashboard/>,<CgProfile/>,<SiStudyverse/>]
     return <>
     <section className="mobile-layout-template">
         <div className="mobile-header">

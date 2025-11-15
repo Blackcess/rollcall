@@ -21,7 +21,7 @@ function RetrieveAttendance(){
             withCredentials:true
         })
         if(response.data.status){
-            console.log("Data is",response)
+            // console.log("attendance list is ",response)
             setAttendance(response.data.data)
             setFilteredData(response.data.data)
         }
@@ -82,7 +82,7 @@ function RetrieveAttendance(){
           </thead>
           <tbody>
             {filteredData.map((row, index) => (
-              <tr key={index}>
+              <tr key={index}  style={{cursor:"pointer"}}>
                 <td>{row.subject_name}</td>
                 <td>{new Date(row.date).toLocaleDateString()}</td>
                 <td>

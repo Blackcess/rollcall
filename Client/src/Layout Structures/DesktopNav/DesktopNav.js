@@ -18,10 +18,14 @@ function DesktopNav(){
     let [renderProf,setRenderProf] = useState(false)
     let [profPic,setProfPic] = useState("");
     let [profPicType,setProfPicType] =useState("");
+    let [dropSync,setDropSync] = useState(0)
     let sessionData = useAuth();
 
 
-
+    useEffect(()=>{
+        sessionData.refresh()
+        setDropSync(dropSync+1)
+    },[])
     useEffect(()=>{
             if(innerUser.current && outerUser.current){
                 const inner = innerUser.current;
@@ -45,8 +49,7 @@ function DesktopNav(){
                 }
                 profContainer.style.backgroundSize="cover";
                 profContainer.style.backgroundPosition = "center"
-            
-        },[sessionData])
+        },[sessionData,dropSync])
 
         function imagerResolver(){
             if(sessionData.userData.profPicType){

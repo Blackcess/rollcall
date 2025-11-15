@@ -85,9 +85,12 @@ const API_BASE_URL = process.env.REACT_APP_API_URL;
             async function getSubjects() {
             if(subjectTable){
             try {
-                const response= await axios.get(`${API_BASE_URL}/results/semester/subjects?table=${subjectTable}`,{
+                const response= await axios.get(`${API_BASE_URL}/assets/results/semester/subjects?table=${subjectTable}`,{
                     withCredentials:true
                 })
+                if(response.data.status){
+                    console.log("Subject data response is ",response.data)
+                }
                 setUserSubjects((prev)=>{
                     prev.data= response.data.results;
                     return prev;

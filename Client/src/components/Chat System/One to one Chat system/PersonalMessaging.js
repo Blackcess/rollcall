@@ -68,7 +68,7 @@ function PersonalMessaging(){
         {/* <h2 className="personal-messages-heading">Personal Messages</h2> */}
         <div  className="conversation-list-container">
             {
-                (!conversationList.length)?
+                (!conversationList.length) ?
                 <div className="no-chats-cobntainer">
                     <h3 className="no-chat-flag"> Start Messaging...</h3>
                     <div className="add-chat-icon">  <IoAdd /> </div>
@@ -142,7 +142,6 @@ function Chatting (props){
         if(dataDone){
             for(let i=0;i<props.value.myChats.length;i++){
             let temp = allData.find((row)=>row.roll_number === props.value.myChats[i].otherUser)
-            console.log("This is temp ",temp)
             setFriends((prev)=>{
                 temp = {...temp,...props.value.myChats[i]};
                 return [...prev,temp]
@@ -150,11 +149,6 @@ function Chatting (props){
             }
         }
     }
-
-      useEffect(()=>{
-        console.log("my frieds :",friends)
-      },[friends])
-
 
 
     return <>

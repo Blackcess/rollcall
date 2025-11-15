@@ -79,7 +79,7 @@ function ActualSemesterData(){
         async function getSubjects() {
             if(subjectTable){
             try {
-                const response= await axios.get(`${API_BASE_URL}/results/semester/subjects?table=${subjectTable}`,{
+                const response= await axios.get(`${API_BASE_URL}/assets/results/semester/subjects?table=${subjectTable}`,{
                     withCredentials:true
                 })
                 user.data= response.data;

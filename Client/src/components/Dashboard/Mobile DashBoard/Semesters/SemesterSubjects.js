@@ -59,7 +59,7 @@ const API_BASE_URL = process.env.REACT_APP_API_URL;
         async function getSubjects(index) {
             if(subjectTable){
             try {
-                const response= await axios.get(`${API_BASE_URL}/results/semester/subjects?table=${subjectTable}`,{
+                const response= await axios.get(`${API_BASE_URL}/assets/results/semester/subjects?table=${subjectTable}`,{
                     withCredentials:true
                 })
                 setUserSubjects((prev)=>{
@@ -82,7 +82,7 @@ const API_BASE_URL = process.env.REACT_APP_API_URL;
         async function getFailed(mySub){
             const studentTable=indexToSemesterStudentTable(parseInt(index))
             try {
-             let my_result=   await axios.get(`${API_BASE_URL}/result/subject/failed?subject=${mySub}&view=${studentTable}`);
+             let my_result=   await axios.get(`${API_BASE_URL}/assets/result/subject/failed?subject=${mySub}&view=${studentTable}`);
              setFailed(my_result.data.data[Object.keys(my_result.data.data)[0]])
             } catch (error) {
                 console.log(error)
@@ -91,7 +91,7 @@ const API_BASE_URL = process.env.REACT_APP_API_URL;
         async function getPassed(mySub){
             const studentTable=indexToSemesterStudentTable(parseInt(index))
             try {
-             let my_result=   await axios.get(`${API_BASE_URL}/result/subject/passed?subject=${mySub}&view=${studentTable}`);
+             let my_result=   await axios.get(`${API_BASE_URL}/assets/result/subject/passed?subject=${mySub}&view=${studentTable}`);
              setPassed(my_result.data.data[Object.keys(my_result.data.data)[0]])
             } catch (error) {
                 console.log(error)

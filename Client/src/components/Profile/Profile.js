@@ -4,6 +4,7 @@ import axios from "axios";
 import styled from "styled-components"
 import { MdEdit } from "react-icons/md";
 import { useAuth } from "../../Aunthentication/AuthProvider";
+import SelectCompetitor from "./Academic Statistics/Compare Grades/Competitor Selection/SelectCompetitor";
 
 
 import { NavLink, Outlet, useLocation } from "react-router-dom";
@@ -83,7 +84,8 @@ function Profile() {
         </div>
        
         {(screenWidth>800) &&<div className="put-something">
-           <p>.</p>
+          <h5>My Classmates</h5>
+           <SelectCompetitor/>
         </div>}
       </div>
 

@@ -11,6 +11,9 @@ function indexToSemesterSubjectsTable(index){
         case 3:
             value="third_semester_subject"
             break;
+        case 4:
+            value="fifth_sem_subjects"
+            break;
         
     
         default:
@@ -29,6 +32,9 @@ function indexToSemesterStudentTable(index){
             value="second_sem_result_collection"
             break;
         case 3:
+            value="third_sem_result_collection"
+            break;
+        case 4:
             value="third_sem_result_collection"
             break;
     

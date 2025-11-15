@@ -4,7 +4,7 @@ import "express-async-errors";
 import fs from 'fs';
 import cors from 'cors';
 import "dotenv/config"
-import {connection, getFromUserName,getStudentResults,getStudentSemesterSubjects,getPassedFromSubject,getFailedFromSubject,createStudentAccount,addProfilePicture,retrieveProfile,enquireStudentPersonalInfo,addCredentials,getUserName,getAllStudents,getFollowersDetails,getActivatedStudentsChats,getTimetable,markAttendance} from '../database connections/databaseConnect.js';
+import {connection,getStudentSemesterSubjectsById, getFromUserName,getStudentResults,getStudentSemesterSubjects,getPassedFromSubject,getFailedFromSubject,createStudentAccount,addProfilePicture,retrieveProfile,enquireStudentPersonalInfo,addCredentials,getUserName,getAllStudents,getFollowersDetails,getActivatedStudentsChats,getTimetable,markAttendance} from '../database connections/databaseConnect.js';
 import session from "express-session"
 import { Cookie } from 'express-session';
 import passport from "passport"
@@ -18,9 +18,14 @@ import { mySocketLogic } from "../Chat Sockets/ChatSockets.js";
 import { createServer } from 'http';
 // import  bcrypt from "bycrpt"
 import "../database connections/databaseConnect.js"
+import { uploadImage } from "../Data Controllers/Study Articles Controllers/imageUploadsController.js";
 import { connect } from "http2";
 import classRouter from "../Routes/classRoutes.js";
-
+import { syllabusRouter } from "../Routes/Subject Module Routes/subjectSyllabusRoute.js";
+import { assignmentRouter } from "../Routes/Subject Module Routes/subjectAssignmentRoute.js";
+import { error } from "console";
+import studyArticleRouter from "../Routes/Study Article Routes/studyArticlesRouter.js";
+// import imageUploadRouter from "../Routes/Study Article Routes/imageUploadsRoutes.js";
 
 const app =express();
 app.set("trust proxy", 1);
@@ -58,8 +63,8 @@ app.use(session({
     resave:false,
     cookie: {
     httpOnly:true,
-    secure: true,// required for sameSite: 'None'
-    sameSite: 'lax',   // allows cross-origin cookies
+    secure: false,// required for sameSite: 'None'
+    sameSite: 'none',   // allows cross-origin cookies
     maxAge: 1000 * 60 * 60 * 24 * 30 // 30 days
   }
 }))
@@ -67,8 +72,13 @@ app.use(passport.initialize())
 app.use(passport.session())
 app.use("/class",classRouter)
 app.use("/uploads",express.static("uploads"))
+app.use("/assets",express.static("assets"))
+app.use("/syllabus",syllabusRouter)
+app.use("/assignments",assignmentRouter)
+app.use("/study-articles",studyArticleRouter)
+// app.use("/study-articles/image",imageUploadRouter)
 //setting up multer storage engine
-const storage = multer.diskStorage({
+const storage = multer.diskStorage({       //set the local disk storage as the storage engine in this case....
     destination:(req,file,cb)=>{
         const dir = './uploads';
         if(!fs.existsSync(dir)){
@@ -77,6 +87,11 @@ const storage = multer.diskStorage({
         cb(null,dir);
     },
     filename:(req,file,cb)=>{
+        if(req.user===undefined){
+            const ext = path.extname(file.originalname);
+            cb(null,`${Math.floor(Math.random()*54)}-${Date.now()}${ext}`);
+            return
+        }
         const userId = req.user.roll_number;
         const ext = path.extname(file.originalname);
         cb(null,`${userId}-${Date.now()}${ext}`);
@@ -92,7 +107,7 @@ const storage = multer.diskStorage({
         throw new Error("Only Image Files Are Allowed")
     }
  }
-const upload = multer({storage:storage,
+export const upload = multer({storage:storage,
                     fileFilter:imageFileFilter
 });  
 
@@ -148,7 +163,6 @@ app.get("/logout",(req,res)=>{
             }
             console.log("Session destroyed successfully");
             res.clearCookie('connect.sid');
-            // res.redirect("http://localhost:3000/");
             return res.json({status:true,msg:"You are logged out"})
         })
        
@@ -169,11 +183,7 @@ app.get("/checkAuth",(req,res)=>{
     }
 })
 app.get("/home",(req,res)=>{ 
-    // console.log("USER session ",req.session);
-    // console.log("USER details ",req.user);
-    // console.log("USER cookie ",req.headers.cookie);
-    (req.isAuthenticated()) ?  res.status(200).json({status:true,msg:"working",userDetails:req.user}) :  res.status(401).json({status:false,msg:"not authorized"})
-        
+    (req.isAuthenticated()) ?  res.status(200).json({status:true,msg:"logged in",userDetails:req.user}) :  res.status(401).json({status:false,msg:"not authorized"})
 })
 app.get("/results",async (req,res)=>{
     const {table,roll_number} = req.query;
@@ -186,16 +196,53 @@ app.get("/results",async (req,res)=>{
         console.log("Something wrong with the search params...",table,roll_number)
         res.status(400).send("Error")
     }
-   
-    
 })
-app.get("/results/semester/subjects",async (req,res)=>{
-    const {table} = req.query;
-    // console.log("Table to search ",table)
+app.get("/assets/results/semester/subjects",async (req,res)=>{
+    const {table} = (req.query);
+    console.log("Table to search ",table)
     let results = await getStudentSemesterSubjects(table)
-    res.status(200).send({results,user:req.user})
+    function normalizeImagePath(localPath) {
+        // Replace the absolute part with the URL base
+        return localPath
+            .replace(/\\/g, '/') // fix backslashes
+            .replace(
+            /^C:\/Users\/Thomas\/Documents\/full-stack-app-1\/Server/,
+            'http://192.168.1.4:8000'
+        );
+}
+if(table==="fifth_sem_subjects"){
+    results.map((el)=>{
+    el.subject_image= normalizeImagePath(el.subject_image);
 })
-app.get("/result/subject/failed",async(req,res)=>{
+}
+    res.status(200).json({results,user:req.user,status:true})
+})
+app.get("/assets/results/semester/specific/subject",async (req,res)=>{
+    const {table,id} = req.query;
+    if(!id){
+        throw new Error("Subject Id is Invalid")
+    }
+    // console.log("Table to search ",table)
+    let results = await getStudentSemesterSubjectsById(table,id)
+    function normalizeImagePath(localPath) {
+        // Replace the absolute part with the URL base
+        return localPath
+            .replace(/\\/g, '/') // fix backslashes
+            .replace(
+            /^C:\/Users\/Thomas\/Documents\/full-stack-app-1\/Server/,
+            process.env.BACKENDHOST
+        );
+}
+if(table==="fifth_sem_subjects"){
+    results.map((el)=>{
+    el.subject_image= normalizeImagePath(el.subject_image);
+})
+}
+
+
+    res.status(200).send({results,user:req.user,status:true})
+})
+app.get("/assets/result/subject/failed",async(req,res)=>{
     const {subject,view} = req.query;
     if(subject && view) {
         const result= await getFailedFromSubject(view,subject)
@@ -205,7 +252,7 @@ app.get("/result/subject/failed",async(req,res)=>{
         console.log("Something wrong with the search params...")
     }
 })
-app.get("/result/subject/passed",async(req,res)=>{
+app.get("/assets/result/subject/passed",async(req,res)=>{
     const {subject,view} = req.query;
     if(subject && view){
         const result= await getPassedFromSubject(view,subject)
@@ -215,6 +262,7 @@ app.get("/result/subject/passed",async(req,res)=>{
         console.log("Something wrong with the search params...")
     }
 })
+app.post("/uploads/article-image",upload.single("image"),uploadImage)
 app.post("/uploads",upload.single("profilePicture"),async (req,res)=>{
     const filePath = req.file.path
     try {

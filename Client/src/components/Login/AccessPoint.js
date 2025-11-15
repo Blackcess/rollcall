@@ -39,7 +39,7 @@ function Login() {
                 },{
                   withCredentials:true
                 })
-                console.log(res.data)
+                // console.log(res.data)
                 if(res.data.status){
                   // refresh()
                   navigate("/protected/layout/home",{

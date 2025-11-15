@@ -12,11 +12,11 @@ let asyncConnect = async () => {
    
 try {
      const connection = await new mysql.createPool({ 
-    host: process.env.REMOTE_DB_HOST, 
-    user:process.env.REMOTE_DB_USER,
-    password:process.env.REMOTE_DB_PASSWORD,     
-    database:process.env.REMOTE_DB_NAME,
-    // port: process.env.DB_PORT,
+    host: process.env.DB_HOST, 
+    user:process.env.DB_USER,
+    password:process.env.DB_PASSWORD,     
+    database:process.env.DB_NAME,
+    port: process.env.DB_PORT,
 });
 
 // console.log("Database connnected successfully",connection)
@@ -47,6 +47,7 @@ const updateAttendanceSchema = async ()=>{
     }
 }
 // updateAttendanceSchema()
+
 
 const markAttendance = async (day,subject,roll_number,status,start_time)=>{
     // search the subject in fifth_sem_subject (to get the subject_id) 
@@ -197,8 +198,17 @@ const getStudentResults = async (table,id)=>{
     }
     return results;
 }
+
 const getStudentSemesterSubjects = async (semester_subjects_table)=>{
        const [result]= await connection.query(`SELECT * FROM ${semester_subjects_table}`)
+       if(!result.length){
+        throw new Error("No Subjects Found")
+       }
+       return result;
+}
+const getStudentSemesterSubjectsById = async (semester_subjects_table,id)=>{
+    
+       const [result]= await connection.query(`SELECT * FROM ${semester_subjects_table} WHERE id = ?`,[parseInt(id)])
        if(!result.length){
         throw new Error("No Subjects Found")
        }
@@ -401,4 +411,4 @@ const getTimetable = async ()=>{
 
 
 // console.log("My Activated users: ",await getTimetable())
-export {connection,getFromUserName,getUserById,getStudentResults,getStudentSemesterSubjects,getPassedFromSubject,getFailedFromSubject,createStudentAccount,addProfilePicture,retrieveProfile,enquireStudentPersonalInfo,addCredentials,getUserName,getAllStudents,getFollowersDetails,getActivatedStudentsChats,getTimetable,markAttendance}
+export {connection,getStudentSemesterSubjectsById,getFromUserName,getUserById,getStudentResults,getStudentSemesterSubjects,getPassedFromSubject,getFailedFromSubject,createStudentAccount,addProfilePicture,retrieveProfile,enquireStudentPersonalInfo,addCredentials,getUserName,getAllStudents,getFollowersDetails,getActivatedStudentsChats,getTimetable,markAttendance}

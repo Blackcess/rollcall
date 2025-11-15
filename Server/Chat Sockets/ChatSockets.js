@@ -9,7 +9,7 @@ const mySocketLogic = (io)=>{
     io.use((socket,next)=>{
         const userId = socket.handshake.auth.userId;
         // console.clear()
-        console.log("User is ",socket.handshake.auth.userId);
+        // console.log("User is ",socket.handshake.auth.userId);
         if(userId){
             socket.userId = userId;
             socket.user_error=true;
@@ -34,7 +34,7 @@ const mySocketLogic = (io)=>{
         }
         //user client emits this to check if any messages where sent while they were offline
         socket.on("request-missed-messages", async ({to},callback) => {
-             console.log("Active users are: ",activeUserMap)
+            //  console.log("Active users are: ",activeUserMap)
             const [messages] = await connection.query(`SELECT
                         convo.id AS conversation_id,
                         convo.user_one_id,
@@ -56,7 +56,7 @@ const mySocketLogic = (io)=>{
         });
         //user client emits this when they send a message
         socket.on("chat-message",async ({to,message})=>{
-             console.log("Active users are: ",activeUserMap)
+            //  console.log("Active users are: ",activeUserMap)
             const from = socket.userId;
             //send the message to the database...
             await insertMessage(from,to,message);
@@ -69,10 +69,10 @@ const mySocketLogic = (io)=>{
                     message,
                     sent_at:new Date()
                 });
-                console.log(`You sent a message to ${to} and he/she is online`)
+                // console.log(`You sent a message to ${to} and he/she is online`)
             }
             else{
-                console.log(`You sent a message to ${to} and he/she is offline`)
+                // console.log(`You sent a message to ${to} and he/she is offline`)
             }
 
         })
@@ -85,18 +85,13 @@ const mySocketLogic = (io)=>{
     console.log("Active users are: ",activeUserMap)
     
 }
-
-
-
 async function getChats (userOne ){
-
       try {
             const res = await getConversationsList(userOne);
             return res;
         } catch (error) {
             console.log(error)
         }
-
 }
 
 // console.log("Check this out : ",await getChats())

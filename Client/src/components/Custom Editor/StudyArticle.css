@@ -1,0 +1,58 @@
+.article-editor-page{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    position: relative;
+    /* background-color: teal; */
+
+}
+.editor-toolbar-buttons{
+    /* width: 100%; */
+    /* max-width: 800px; */
+    display: flex;
+    /* justify-content: space-between; */
+    margin-bottom: 10px;
+    gap: 20px;
+}
+.editor-preview-container{
+    flex: 2;
+    width: 100%;
+    max-width: 900px;
+    position: relative;
+    /* border: 1px solid rgba(6, 162, 50, 0.783); */
+    padding: 20px;
+    overflow-x: scroll;
+    border-radius: 20px;
+
+}
+.editor-compo-template{
+    width: 100%;
+}
+.editing-work-station{
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    /* background-color: yellow; */
+    width: 100%;
+
+}
+.meta-data-insert{
+    /* background-color: red; */
+    flex: 1;
+    width: 100%;
+    height: fit-content;
+    min-height: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    /* max-width: 500px; */
+}
+
+@media (max-width: 600px) {
+    .editor-preview-container{
+        padding: 0px;
+        border: none;
+    }
+}

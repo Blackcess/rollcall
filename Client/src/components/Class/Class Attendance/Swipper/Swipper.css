@@ -1,0 +1,27 @@
+.swiper-slide {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border-radius: 12px;
+  /* box-shadow: 0 4px 12px rgba(0,0,0,0.08); */
+  width: 100%;
+}
+.chart-card {
+  /* background: #fff; */
+  border-radius: 16px;
+  /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); */
+  padding: 16px;
+  height: 100%;   
+}
+
+@media (max-width:700px) {
+  .swiper-slide{
+    box-shadow: none;
+  }
+  .chart-card{
+    box-shadow: none;
+  }
+}
+ 

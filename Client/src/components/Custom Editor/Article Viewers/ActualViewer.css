@@ -1,0 +1,24 @@
+.my-actual-content-display{
+      width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.actual-cont-display-container{
+    display: flex;
+
+}
+.prop-add-scheme{
+    flex: 2;
+}
+.content-meta-data{
+    flex: 1;
+}
+
+@media (max-width : 900px) {
+    .actual-cont-display-container{
+        /* flex-direction: column; */
+    }
+    .content-meta-data{
+        display: none;
+    }
+}

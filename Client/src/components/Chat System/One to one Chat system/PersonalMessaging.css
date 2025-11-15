@@ -37,12 +37,13 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
-    width: 100%;
+    /* width: 100%; */
     /* border-bottom: 1px solid green; */
     align-items: start;
     justify-content: center;
     /* width: 90%; */
     /* padding: 10px 0px; */
+    /* background-color: teal; */
 
 }
 .competitor-name-field-1{
@@ -68,7 +69,7 @@
     border-bottom: 0.2px solid black;
     gap: 20px;
     /* margin-bottom:15px ; */
-    justify-content: start;
+    /* justify-content: center; */
     padding: 10px 0px;
     /* background-color: green; */
 }

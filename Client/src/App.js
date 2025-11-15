@@ -45,7 +45,20 @@ import MyAttendance from './components/Class/Class Attendance/MyAttendance.js';
 import {ToastContainer} from "react-toastify"
 import AttendanceHome from './components/Class/Class Attendance/AttendanceHome.js';
 import RetrieveAttendance from './components/Class/Class Attendance/RetrieveAttendance.js';
-
+import {SubjectDashboard} from './components/Class/Subjects/Subject.js';
+import AttendanceLineChart from './components/Class/Class Attendance/attendance charts/AttendanceLineChart.js';
+import Courasel from './components/Class/Class Attendance/Swipper/Swipper.js';
+import { SubjectHome } from './components/Class/Subjects/Subject.js';
+import AssignmentSolution from './components/Class/Subjects/Individual Subjects/Subject Assignment Logic/AssignmentSolution.js';
+import AssignmentDisplay from './components/Class/Subjects/Individual Subjects/Subject Assignment Logic/AssignmentDisplay.js';
+import RenderSyllabus from './components/Class/Subjects/Individual Subjects/Subject Syllabus Logic/SubjectSyllabusRender.js';
+import {IndividualSubject} from './components/Class/Subjects/Individual Subjects/IndividualSubject.js';
+import AddLongSolutionForm from './components/Class/Subjects/Individual Subjects/Subject Assignment Logic/Assignment Management Center (Admin Only)/AssignmentManagement.js';
+import AssignmentList from './components/Class/Subjects/Individual Subjects/Subject Assignment Logic/MyAssignments.js';
+import { SelectCourseOptions } from './components/Class/Subjects/Individual Subjects/IndividualSubject.js';
+import ArticleEditorPage from './components/Custom Editor/StudyArticle.js';
+import ContentDisplayPage from './components/Custom Editor/Article Viewers/ContentDisplayPage.js';
+import ActualViewer from './components/Custom Editor/Article Viewers/ActualViewer.js';
 function App() {
   
   let location = useLocation();
@@ -57,7 +70,8 @@ function App() {
     <Route path="/login" element={<Login/>}/>
     <Route path='/protected' element={<Protected/>} >
     <Route path="layout" element={<Layout/>}>
-      <Route path="home"element={<Home/>}/>
+      {/* <Route path="home"element={<Home/>}/> */}
+      <Route path="home"element={<Courasel/>}/>
       <Route path="class" element={<Class/>}>
         <Route path="class-timetable" element={<TimeTable/>}>
           <Route path="day-schedule" element={<DaySchedule/>}/>
@@ -69,6 +83,24 @@ function App() {
         <Route path="chatSystem" element={<PersonalMessaging/>}/>
         <Route path="my-chats" element={<InsideChat/>}/>
         <Route path="my-chats-add" element={<AddChat/>}/>
+        <Route path='subjects' element={<SubjectHome/>}>
+          <Route index element={<SubjectDashboard/>}/>
+          
+          <Route path='individual-course' element={<IndividualSubject/>}>
+            <Route index element={<SelectCourseOptions/>}/>
+            <Route path='subject-syllabus' element={<RenderSyllabus/>}/>
+            <Route path='subject-assignments' element={<AssignmentList/>}/>
+            <Route path='subject-assignments-display' element={<AssignmentDisplay/>}/>
+            <Route path='assignment-management' element={<AddLongSolutionForm/>}/>
+            <Route path='assignment-solution' element={<AssignmentSolution/>}/>
+          </Route>
+          {/* <Route path='individual-course' element={<AddLongSolutionForm/>}/> */}
+          {/* <Route path='individual-course' element={<AssignmentList/>}/> */}
+
+
+          {/* <Route path='course-time-table'/> */}
+        </Route>
+
       </Route>
       <Route path="dashboard" element={<Dashboard/>}>
         <Route path='mobile' element={<MobileDashBoard/>}>
@@ -81,6 +113,9 @@ function App() {
         <Route path='subject' element={<SemesterSubjects/>}/>    
         <Route path='subject/desk' element={<SemesterSubjectsDesktop/>}/>    
       </Route>
+      <Route path="editor" element={<ArticleEditorPage/>}/>
+      <Route path="study-material" element={<ContentDisplayPage/>}/>
+      <Route path="study-material-viewer" element={<ActualViewer/>}/>
       <Route path="profile" element={<Profile/>}>
         <Route index element={<DefaultProf/>}/>
         <Route path="myProfile" element={<MyProfile/>}/>
@@ -100,6 +135,7 @@ function App() {
       </Route>
       <Route path="about" element={<About/>}/>
       <Route path="logout" element={<Logout/>}/>
+      
       
       <Route path="visitor-profile" element={<VisitorProfile/>}/>
       

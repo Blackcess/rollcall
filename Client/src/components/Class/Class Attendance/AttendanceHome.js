@@ -3,7 +3,9 @@ import "./AttendanceHome.css"
 import { useState,useEffect } from "react";
 import { FcCalculator } from "react-icons/fc";
 import ShimmerLoader from "../../Util Components/ShimmerLoader/ShimmerLoader";
-import { NavLink } from "react-router-dom";
+import { NavLink,useNavigate} from "react-router-dom";
+import AttendanceLineChart from "./attendance charts/AttendanceLineChart";
+import Courasel from "./Swipper/Swipper";
 const API_BASE_URL = process.env.REACT_APP_API_URL;
 
 function AttendanceHome(){
@@ -26,6 +28,7 @@ function AttendanceDashboard1() {
   const [predicted, setPredicted] = useState(null);
   const [needed, setNeeded] = useState(null); // reverse calculator result
   const [loaded,setLoaded] = useState(false)
+  const Navigation = useNavigate()
 
   useEffect(() => {
     // get data from database 
@@ -40,7 +43,7 @@ function AttendanceDashboard1() {
                 withCredentials:true
             }) 
             if(res.data.status){
-                // console.log("Dummy Data = ",res)
+                console.log("Subject  Data => ",res.data.subjects)
                 setOverall(res.data.overall);
                 setSubjects(res.data.subjects);
             }
@@ -56,7 +59,7 @@ const fetchDailyData = async ()=>{
                 withCredentials:true
             }) 
             if(res.data.status && res.data.data){
-                console.log("Dummy Data = ",res)
+                // console.log("Dummy Data = ",res)
                 setHeatmap(res.data.data)
                  let streakCount = 0;
                 for (let i = res.data.data.length - 1; i >= 0; i--) {
@@ -102,7 +105,6 @@ const fetchDailyData = async ()=>{
     while (((attended + extra) / (total + extra)) * 100 < target) {
       extra++;
     }
-
     setNeeded(extra);
   };
 
@@ -110,18 +112,13 @@ const fetchDailyData = async ()=>{
 
   return (
     <>
+    <Courasel className="chart-data-cont"/>
     {(loaded) ? <div className="dashboard">
-      <header className="dashboard-header">
-        {/* <h1 className="dhd">
-          <img  className="attendance-icon" src="https://img.freepik.com/premium-vector/analytics-with-graph-flat-vector-illustration-white-background_674398-2166.jpg"/> 
-          Attendance Dashboard
-        </h1> */}
-        <NavLink to={`/protected/layout/class/class-attendance-record`} className="record-my-attendance">Record Today Attendance</NavLink>
-      </header>
-
       {/* Overall Attendance */}
       {overall && (
+      
         <section className="overall-progress">
+          
           <div className="progress-ring">
             <div className="circle" style={{color:(parseInt(overall.percentage)>=50 ? "teal" : "red")}}>{overall.percentage}%</div>
             <small>
@@ -129,14 +126,31 @@ const fetchDailyData = async ()=>{
             </small>
             <small style={{color:"teal"}}>Safe Zone = 75%</small>
           </div>
-        </section>
+           {/* <span className="line-carhat"><AttendanceLineChart value={{subject:"FLAT"}} className="line-cahart"/></span> */}
+           <div className="dashboard-header">
+        {/* <NavLink to={`/protected/layout/class/class-attendance-record`} className="record-my-attendance">Record Today Attendance</NavLink> */}
+        
+        <div className="attendance-btns-custom">
+          <button onClick={(e)=>{
+              Navigation(`/protected/layout/class/class-attendance-record`)
+            }} className="mark-btn">
+              Record Attendance
+          </button>
+          <NavLink to={`/protected/layout/class/class-attendance-retrieve`} className="view-btn-cu">View Attendance</NavLink>
+        </div>
+      </div>
+      
+      {/*  */}
+    
+    </section>
       )}
+     
 
       <div className="dashboard-grid">
         {/* LEFT PANEL */}
         <div className="left-panel">
-          <h3 className="subject-attendance-header">Subject Attendance</h3>
-          <div className="subject-cards">
+          {/* <h3 className="subject-attendance-header">Subject Attendance</h3> */}
+          {/* <div className="subject-cards">
             {subjects.map((sub, idx) => (
               <div key={idx} className="card">
                 <h3>{sub.subject}</h3>
@@ -146,28 +160,15 @@ const fetchDailyData = async ()=>{
                 </p>
               </div>
             ))}
-          </div>
+          </div> */}
+          <AttendanceCardList subjects={subjects}/>
 
-          {/* Heatmap */}
-          <div className="heatmap">
-            <h3>Attendance Heatmap</h3>
-            <div className="heatmap-grid">
-              {heatmap.map((d, i) => (
-                <div
-                  key={i}
-                  className={`day ${d.status}`}
-                  title={`Day ${i+1}: ${d.status}`}
-                >
-                  {i+1}
-                </div>
-              ))}
-            </div>
-          </div>
+          
         </div>
 
         {/* RIGHT PANEL */}
-        <div className="right-panel">
-          <div className="widget streak">
+        {/* <div className="right-panel"> */}
+          {/* <div className="widget streak">
             <span>
               <img className={`streak-image`} src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSv8-e_FahqzU7s__TalUxn0PUkx4ZKicGJdPI_q-K068Yq9AE&s"/>
             </span>
@@ -183,25 +184,42 @@ const fetchDailyData = async ()=>{
             </div>
 
             
-          </div>
+          </div> */}
 
           {/* <div className="widget">
             <AttendanceCalculators/>
-          </div>
+          </div> */}
 
-          <div className="widget">
+          {/* <div className="widget">
             <h2>Predicted Attendance</h2>
             <p>At current pace: 79% by semester end</p>
-          </div>
+          </div> */}
 
-          <div className="widget">
+          {/* <div className="widget">
             <h2>Achievements</h2>
             <p>🏅 Perfect Week</p>
             <p>🔥 Comeback King</p>
-          </div> */}
-          <NavLink to={`/protected/layout/class/class-attendance-retrieve`}>View Attendance</NavLink>
-        </div>
+          </div>  */}
+          
+        {/* </div> */}
       </div>
+        {/* Heatmap */}
+          <div className="heatmap">
+            <h3>Attendance Heatmap</h3>
+            <div className="heatmap-grid">
+              {heatmap.map((d, i) => (
+                <div
+                  key={i}
+                  className={`day ${d.status}`}
+                  title={`Day ${i+1}: ${d.status}`}
+                >
+                  {i+1}
+                </div>
+              ))}
+            </div>
+          </div>
+      
+      
     </div>
     :
     <ShimmerLoader/>
@@ -274,6 +292,7 @@ function AttendanceCalculators({ studentId }) {
         />
         {whatIfResult && <p>New attendance: {whatIfResult}%</p>}
       </div>
+       
 
       {/* <div className="card">
         <h3>Reverse Calculator</h3>
@@ -289,6 +308,61 @@ function AttendanceCalculators({ studentId }) {
     </div>
   );
 }
+
+const AttendanceCardList= ({subjects})=>{
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const cardsPerPage = 6;
+  // Calculate total pages
+  const totalPages = Math.ceil(subjects.length / cardsPerPage);
+  
+  // Calculate slice indexes
+  const startIndex = (currentPage - 1) * cardsPerPage;
+  const endIndex = startIndex + cardsPerPage;
+  // Get current page data
+  const currentSubjects = subjects.slice(startIndex, endIndex);
+   // Handlers
+  const goToNextPage = () => {
+    if (currentPage < totalPages) setCurrentPage(currentPage + 1);
+  };
+
+  const goToPrevPage = () => {
+    if (currentPage > 1) setCurrentPage(currentPage - 1);
+  };
+
+  return <>
+  <section className="subject-cards">
+     {currentSubjects.map((sub, idx) => (
+          <div key={idx} className="card">
+            <h3>{sub.subject}</h3>
+            <div className="mini-circle">{sub.percentage}%</div>
+            <p>
+              {sub.attended} / {sub.total} classes
+            </p>
+          </div>
+        ))}
+
+        
+  </section>
+  <div className="pagination-controls">
+        <button onClick={goToPrevPage} disabled={currentPage === 1}>
+          ← Previous
+        </button>
+        <span>
+          Page {currentPage} of {totalPages}
+        </span>
+        <button onClick={goToNextPage} disabled={currentPage === totalPages}>
+          Next →
+        </button>
+      </div>
+  </>
+}
+
+
+const module3 = [`Context-free grammars (CFG) and languages (CFL)`, `Chomsky and Greibach normal forms`,
+`nondeterministic pushdown automata (PDA) and equivalence with CFG`, `parse trees`, `ambiguity
+in CFG`, `pumping lemma for context-free languages`,  `deterministic pushdown automata`, `closure
+properties of CFLs` ]
 
 
 
