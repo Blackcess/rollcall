@@ -37,7 +37,7 @@ const corsOptions = {
       "rollcall-77s5-2kcst8dea-thomas-kazondas-projects.vercel.app",
       'http://localhost:3000',
       'https://rollcallclass.com',
-      process.env.LAN_HOST_CLIENT_URL
+    //   process.env.LAN_HOST_CLIENT_URL
     ];
 
     // Allow anything ending with .vercel.app (preview deploys)
@@ -64,8 +64,8 @@ app.use(session({
     resave:false,
     cookie: {
     httpOnly:true,
-    secure: false,// required for sameSite: 'None'
-    sameSite: 'none',   // allows cross-origin cookies
+    secure: true,// required for sameSite: 'None'
+    sameSite: 'lax',   // allows cross-origin cookies
     maxAge: 1000 * 60 * 60 * 24 * 30 // 30 days
   }
 }))
