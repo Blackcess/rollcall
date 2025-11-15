@@ -36,6 +36,7 @@ const corsOptions = {
       'https://rollcall.vercel.app',
       "rollcall-77s5-2kcst8dea-thomas-kazondas-projects.vercel.app",
       'http://localhost:3000',
+      'https://rollcallclass.com',
       process.env.LAN_HOST_CLIENT_URL
     ];
 
@@ -491,6 +492,7 @@ const corsOptionsSocket = {
       'https://rollcall.vercel.app',
       "rollcall-77s5-2kcst8dea-thomas-kazondas-projects.vercel.app",
       'http://localhost:3000',
+      'https://rollcallclass.com',
       process.env.LAN_HOST_CLIENT_URL
     ];
 
