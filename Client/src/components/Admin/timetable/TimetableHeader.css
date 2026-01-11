@@ -1,0 +1,70 @@
+@import "../styles/adminVariables.css";
+
+/* Root header container */
+.timetable-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding-bottom: var(--space-sm);
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* ---------------- Left Section ---------------- */
+
+.th-left {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.th-title {
+  font-size: var(--text-sm);
+  font-weight: 400;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+/* Context chips */
+.th-context {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.th-chip {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+
+  padding: 2px 8px;
+}
+
+/* ---------------- Right Section ---------------- */
+
+.th-right {
+  display: flex;
+  align-items: center;
+}
+
+/* Lock state indicator */
+.th-lock {
+  font-size: var(--text-sm);
+  font-weight: 500;
+  white-space: nowrap;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+/* Locked */
+.th-lock.locked {
+  color: var(--color-error);
+}
+
+/* Editable */
+.th-lock.unlocked {
+  color: var(--color-success);
+}

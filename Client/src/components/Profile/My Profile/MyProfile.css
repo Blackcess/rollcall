@@ -1,0 +1,40 @@
+.my-prof-section{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    font-size: 12px;
+
+}
+.enter-crucial-data-template{
+    border: 1px solid red;
+    padding: 20px;
+    box-shadow: 5px 5px 5px red;
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.my-details-template{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 400px;
+    /* background-color: teal; */
+
+}
+.my-name-section{
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 0.4px solid  rgb(207, 205, 205);
+    /* border-radius: 10px; */
+    justify-content: space-between;
+}
+.your-details-section{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+@media (max-width:700px) {
+    
+}

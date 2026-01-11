@@ -1,0 +1,412 @@
+/* .assignment-solution-template{
+
+}
+
+.short-solution {
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 1.2rem;
+  margin: 1rem 0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  font-family: 'Inter', sans-serif;
+  transition: all 0.3s ease;
+}
+
+.short-solution:hover {
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+}
+
+.solution-header {
+  border-bottom: 2px solid #e3e3e3;
+  margin-bottom: 0.8rem;
+}
+
+.question-title {
+  font-size: 1.1rem;
+  color: #1a73e8;
+}
+
+.solution-body p {
+  margin: 0.5rem 0;
+  line-height: 1.5;
+}
+
+.solution-body strong {
+  color: #333;
+}
+
+.solution-footer {
+  border-top: 1px dashed #d4d4d4;
+  margin-top: 0.8rem;
+  padding-top: 0.5rem;
+}
+
+.keywords {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+
+
+
+
+/* Long questions */
+/* ---------- Base Container ---------- */
+.long-solution {
+  background-color: #ffffff;
+  color: #222;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  line-height: 1.7;
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 25px 35px;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e3e3e3;
+}
+
+/* ---------- Headings ---------- */
+.long-solution h3,
+.long-solution h4 {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-weight: 600;
+  color: #2a3b5f;
+  margin-bottom: 10px;
+}
+
+.long-solution h3 {
+  font-size: 1.5rem;
+  border-bottom: 2px solid #d9d9d9;
+  padding-bottom: 5px;
+  margin-bottom: 20px;
+}
+
+.long-solution h4 {
+  font-size: 1.2rem;
+  margin-top: 20px;
+}
+
+/* ---------- Paragraphs and Text ---------- */
+.long-solution p {
+  margin-bottom: 15px;
+  text-align: justify;
+  font-size: 1rem;
+  color: #333;
+}
+
+/* ---------- Section Styling ---------- */
+.solution-section {
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: #fafafa;
+  border-left: 4px solid #5578c2;
+  border-radius: 6px;
+}
+
+.solution-section h4 {
+  color: #1e3a8a;
+}
+.solution-section li {
+  /* color: #1e3a8a; */
+  list-style: none;
+}
+
+.solution-section p {
+  margin: 8px 0;
+}
+
+.example-illustration {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  padding: 0.75rem;
+  border-radius: 8px;
+  margin: 0.75rem 0;
+}
+
+.example-illustration h4 {
+  font-size: 1rem;
+  color: #16a34a;
+  margin-bottom: 0.5rem;
+}
+
+.example-illustration code {
+  background-color: #f3f4f6;
+  padding: 2px 4px;
+  border-radius: 4px;
+  font-family: monospace;
+}
+
+.solution-references ul {
+  padding-left: 1.2rem;
+}
+
+.solution-references li {
+  margin-bottom: 0.3rem;
+  list-style: none;
+}
+
+/* ---------- Introduction, Conclusion, References ---------- */
+.solution-intro,
+.solution-conclusion,
+.solution-references {
+  margin-top: 25px;
+  padding: 15px;
+  background: #fdfdfd;
+  border: 1px solid #ececec;
+  border-radius: 8px;
+}
+
+.solution-intro h4,
+.solution-conclusion h4,
+.solution-references h4 {
+  color: #004085;
+}
+
+/* ---------- References ---------- */
+.solution-references ul {
+  list-style-type: disc;
+  margin-left: 20px;
+}
+
+.solution-references li {
+  margin-bottom: 5px;
+}
+
+/* ---------- Responsive Design ---------- */
+@media (max-width: 768px) {
+  .long-solution {
+    padding: 20px;
+    margin: 15px;
+  }
+
+  .long-solution h3 {
+    font-size: 1.3rem;
+  }
+
+  .long-solution h4 {
+    font-size: 1.1rem;
+  }
+
+  .long-solution p {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .long-solution {
+    padding: 15px;
+    border-radius: 10px;
+  }
+
+  .long-solution h3 {
+    font-size: 1.2rem;
+  }
+
+  .long-solution h4 {
+    font-size: 1rem;
+  }
+
+  .solution-section {
+    padding: 10px;
+  }
+}
+
+
+/* New Style */
+
+/* ========== Global Layout ========== */
+.long-solution {
+  font-family: 'Inter', 'Segoe UI', Roboto, sans-serif;
+  color: #1f2937;
+  background: #ffffff;
+  padding: 2rem 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  line-height: 1.8;
+  max-width: 950px;
+  margin: 2rem auto;
+  transition: all 0.3s ease-in-out;
+}
+
+.long-solution:hover {
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.08);
+}
+
+/* ========== Headings ========== */
+.long-solution h3 {
+  font-size: 1.75rem;
+  color: #0f172a;
+  border-bottom: 3px solid #3b82f6;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+}
+
+.long-solution h4 {
+  font-size: 1.25rem;
+  color: #1d4ed8;
+  font-weight: 600;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+  position: relative;
+}
+
+.long-solution h4::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 50px;
+  height: 2px;
+  background: linear-gradient(90deg, #3b82f6, #60a5fa);
+  border-radius: 1px;
+}
+
+/* ========== Section Blocks ========== */
+.solution-section {
+  margin-bottom: 2rem;
+  padding: 1rem 1.25rem;
+  border-left: 4px solid #e5e7eb;
+  background: #f9fafb;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+.solution-section:hover {
+  border-left: 4px solid #3b82f6;
+  background: #f1f5f9;
+}
+
+/* ========== Lists and Paragraphs ========== */
+.long-solution p {
+  margin-bottom: 1rem;
+  text-align: justify;
+  color: #374151;
+}
+
+.long-solution ul {
+  margin: 0.75rem 0 1rem 1.5rem;
+}
+
+.long-solution li {
+  margin-bottom: 0.5rem;
+  line-height: 1.6;
+}
+
+/* ========== Code Snippets ========== */
+code {
+  background-color: #f3f4f6;
+  padding: 3px 6px;
+  border-radius: 4px;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.95rem;
+  color: #1e40af;
+}
+
+pre {
+  background-color: #f9fafb;
+  padding: 1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  font-size: 0.95rem;
+  margin: 1rem 0;
+  border-left: 4px solid #3b82f6;
+}
+
+/* ========== Example Block ========== */
+.example-illustration {
+  background: linear-gradient(180deg, #f9fafb 0%, #f3f4f6 100%);
+  border: 1px solid #e5e7eb;
+  padding: 1rem 1.25rem;
+  border-radius: 10px;
+  margin: 1.25rem 0;
+  transition: transform 0.2s ease-in-out, box-shadow 0.3s;
+}
+
+.example-illustration:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
+}
+
+.example-illustration h4 {
+  font-size: 1.1rem;
+  color: #059669;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.example-illustration code {
+  background-color: #e0f2fe;
+  color: #075985;
+}
+
+/* ========== Reference Section ========== */
+.solution-references {
+  margin-top: 2.5rem;
+  background: #f1f5f9;
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  border: 1px solid #e2e8f0;
+}
+
+.solution-references h4 {
+  font-size: 1.2rem;
+  color: #2563eb;
+  margin-bottom: 1rem;
+}
+
+.solution-references ul {
+  padding-left: 1.5rem;
+}
+
+.solution-references li {
+  margin-bottom: 0.6rem;
+  color: #334155;
+  font-size: 0.95rem;
+}
+
+/* ========== Conclusion Section ========== */
+.solution-conclusion {
+  background: #eff6ff;
+  border-left: 5px solid #3b82f6;
+  padding: 1rem 1.25rem;
+  margin-top: 2rem;
+  border-radius: 10px;
+}
+
+.solution-conclusion h4 {
+  color: #1d4ed8;
+  font-size: 1.15rem;
+}
+
+.solution-conclusion p {
+  color: #1e3a8a;
+  font-style: italic;
+}
+
+/* ========== Small Animations ========== */
+.solution-section,
+.example-illustration,
+.solution-conclusion {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ========== Responsive Adjustments ========== */
+@media (max-width: 768px) {
+  .long-solution {
+    padding: 1.5rem;
+  }
+
+  .long-solution h3 {
+    font-size: 1.4rem;
+  }
+
+  .long-solution h4 {
+    font-size: 1.1rem;
+  }
+}

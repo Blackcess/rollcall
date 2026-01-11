@@ -1,0 +1,12 @@
+
+.error-display{
+    display: flex;
+    flex-direction: column;
+    color: red;
+    font-size: var(--fs-sm);
+}
+.back-to-login{
+     font-size: var(--fs-sm);
+    display: flex;
+    justify-content: center;
+}

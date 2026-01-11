@@ -1,0 +1,17 @@
+.subject-individual-container{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.courseSelection-opt{
+    display:flex;
+    gap:20px;
+    padding:10px 0;
+    border-bottom:1px solid #ccc;
+}
+
+.subject-individual-page-options{
+    display:flex;
+    flex-direction: column;
+    gap:15px;
+}

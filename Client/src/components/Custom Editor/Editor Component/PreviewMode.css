@@ -1,0 +1,192 @@
+.article-preview{
+  /* min-height: 100vh; */
+   
+            /* border: 1px solid #ddd; */
+            border-radius: 8px;
+            padding: 20px;
+            /* background-color: #fafafa; */
+            /* background-color: yellow; */
+            min-height: 300px;
+            margin-top: 10px;
+            /* max-height: 70vh; */
+}
+.article-preview img {
+  max-width: 100%;
+  border-radius: 8px;
+}
+/* .article-preview pre {
+  background: #282c34;
+  color: #f8f8f2;
+  padding: 10px;
+  border-radius: 6px;
+  overflow-x: auto;
+} */
+
+.article-preview code {
+  font-family: "Courier New", monospace;
+  /* color: #05c763; */
+  /* background-color: #181616; */
+}
+ .article-preview blockquote{
+  border-left: 4px solid #a51919;
+  padding-left: 8px;
+  color: #555;
+  font-style: italic;
+}
+ .article-viewer blockquote {
+  border-left: 4px solid #a51919;
+  padding-left: 8px;
+  color: #555;
+  font-style: italic;
+}
+
+
+/* 
+
+*/
+/* Container */
+.article-viewer {
+  max-width: 800px;              /* keeps content readable */
+  margin: 0 auto;
+  /* padding: 1.5rem; */
+  line-height: 1.7;
+  font-size: 14px;
+  color: #1a1a1a;
+  word-break: break-word;
+  font-family: "Inter", "Segoe UI", sans-serif;
+}
+
+/* Headings */
+.article-viewer h1,
+.article-viewer h2,
+.article-viewer h3,
+.article-viewer h4,
+.article-viewer h5 {
+  margin-top: 1.6rem;
+  margin-bottom: 0.8rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+/* Paragraphs */
+.article-viewer p {
+  margin: 1rem 0;
+}
+/*  */
+/* Banner (first) image */
+.article-preview .banner-img {
+  margin: 1.2rem auto;    
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;  /* maintains a wide look */
+  object-fit:fill; /* crop beautifully */
+  border-radius: 12px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+/* Slight hover zoom */
+.article-preview .banner-img:hover {
+  transform: scale(1.02);
+}
+
+/* Normal images inside article */
+.article-preview img:not(.banner-img) {
+  width: 75%;
+  height: auto;
+  object-fit: contain;
+  margin: 15px 0;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  /* border: 1px solid #05c763; */
+  /* aspect-ratio: 1/ 1; */
+}
+/* Responsive tweak for small screens */
+@media (max-width: 480px) {
+  .article-preview .banner-img {
+    /* aspect-ratio: 1 / 1;  */
+  }
+  .article-viewer{
+    padding: 0px;
+  }
+}
+
+@media (max-width: 600px) {
+  .article-viewer {
+    padding: 0px;
+    font-size: 1rem;
+    background-color: #fff;
+    border: none;
+  }
+  .article-preview .banner-img {
+  /* aspect-ratio: 4 / 3;  */
+  /* box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); */
+}
+
+/* Normal images inside article */
+.article-preview img:not(.banner-img) {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  margin: 15px 0;
+  border-radius: 8px;
+}
+}
+
+/* Optional: Captions */
+.article-viewer figure {
+  margin: 1.5rem 0;
+  text-align: center;
+}
+.article-viewer figcaption {
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 0.3rem;
+  font-style: italic;
+}
+
+/* Code blocks (if any) */
+.article-viewer pre {
+   background: #1e1e1e;
+  /* color: #b44107; */
+  color: rgb(8, 230, 8);
+  padding: 12px;
+  border-radius: 6px;
+  overflow-x: auto;
+  font-family: "Fira Code", monospace;
+  font-size: 0.9rem;
+}
+.article-viewer code {
+  font-family: "JetBrains Mono", monospace;
+}
+/* .article-viewer .ql-code-block {
+  font-family: "JetBrains Mono", monospace;
+  background-color: red;
+} */
+
+/* Links */
+.article-viewer a {
+  color: #0070f3;
+  text-decoration: none;
+}
+.article-viewer ul {
+ list-style-type: none;          /* bullet type (disc, circle, square, etc.) */
+  margin: 1em 0;
+  padding-left: 2em;
+}
+.article-viewer ol {
+   list-style-type: decimal;       /* 1, 2, 3... */
+  margin: 1em 0;
+  padding-left: 2em;
+}
+.article-viewer li {
+ line-height: 1.6;
+  margin-bottom: 0.4em;
+  color: #333;
+}
+.article-viewer a:hover {
+  text-decoration: underline;
+}
+/* Remove Quill Snow theme left border on lists */
+.ql-editor li[data-list]::before {
+  border-left: none !important;
+}

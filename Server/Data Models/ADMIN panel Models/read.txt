@@ -1,0 +1,31 @@
+1. ClassService
+
+    A. createClass(input)
+    B. updateClass(classId, patch)
+    C. archiveClass(classId)
+
+2. StudentClassEnrollmentService
+
+    enrollStudentToClass(input)
+
+    withdrawStudentFromClass(enrollmentId)
+
+3. SemesterEnrollmentService
+
+    openSemester(input)
+
+    enrollStudentToSemester(input)
+
+    closeSemester(input)
+
+4. SubjectEnrollmentService
+
+    attachSubjectsToClass(input)
+
+    enrollStudentToSubjects(input)
+
+    enrollReappearSubject(input)
+
+
+    ------------------------------------------------------------------------------->
+   

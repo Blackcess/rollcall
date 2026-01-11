@@ -1,0 +1,150 @@
+.profile-section-template{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 5px;
+}
+.profile-pic-setting-section{
+    position: relative;
+    background-color: rgba(12, 220, 220, 0.885);
+    /* background: url("https://i.pinimg.com/474x/45/60/86/456086f3b1ed34fc7b4dd711b6ec4e2b.jpg"); */
+    background-size: cover;
+    background-position: center;
+    height: 150px;
+    border-radius: 20px;
+    /* filter: blur(10px); */
+}
+.actual-profile-pic{
+    position: absolute;
+   
+    /* padding: 10px; */
+    /* filter: blur(0px); */
+}
+.profile-lower-part{
+   display: flex;
+   flex: column;
+}
+.user-data-helper{
+    /* padding-left: 20px; */
+    margin-top: 30px;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 20px;
+    /* letter-spacing: 1px; */
+}
+.student-followers-section{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    /* justify-content: center; */
+    align-items: center;
+    /* background-color: green; */
+}
+.profile-details-helper{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    /* padding-right:10px ; */
+
+}
+.student-followers{
+    font-size:22px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+.student-followers-title{
+    font-size: 10px;
+    font-weight: 200;
+}
+.mob-logout-btn{
+    padding: 8px 12px;
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+}
+.prof-opt-header-log-out{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.user-profile-email{
+    color: rgb(9, 105, 209);
+    text-decoration: underline;
+}
+.profile-lower-part-2{
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+}
+.profile-option-template{
+    display: flex;
+    flex-direction: row;
+    border-radius: 10px;
+    /* border:1px solid black; */
+    /* background-color: #d4d1d1; */
+     align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    /* width: 100%; */
+}
+.profile-option-template-1{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.profile-option-title{
+    font-size: 14px;
+    font-weight: 500;
+}
+.profile-option-value{
+    font-size: 12px;
+    font-weight: 300;
+}
+.prof-opt-1{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.next-icon{
+    color: teal;
+    font-size: 18px;
+}
+.profile-links{
+    color: black;
+    text-decoration: none;
+    border-bottom: 0.4px solid rgb(197, 196, 196);
+}
+.outlet-decider{
+    display: flex;
+    justify-content: space-between;
+    gap: 25px;
+    /* padding: 30px; */
+
+}
+.put-something{
+    /* width: 400px; */
+    /* height: 800px; */
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: scroll;
+    border-left: 0.5px solid rgb(191, 189, 189);
+    /* border-radius: 10px; */
+    padding: 20px;
+}
+.edit-icon-image{
+    position: absolute;
+    top: 80%;
+    right: -10px;
+    cursor: pointer;
+}

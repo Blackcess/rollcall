@@ -1,0 +1,27 @@
+.active-class{
+    color: red;
+}
+.not-active-class{
+    color:black;
+}
+.home-template{
+    
+}
+/*  */
+.skeleton {
+  background-color: #e2e8f0; /* Tailwind gray-300 */
+  border-radius: 0.5rem;
+  width: 100%;
+  height: 1.5rem; /* Adjust height per line */
+  animation: pulse 1.5s ease-in-out infinite;
+  /* background-color: #2563EB; */
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}

@@ -1,0 +1,192 @@
+@import "../../../Admin/styles/adminVariables.css";
+
+.lecture-detail {
+  /* padding: 5px; */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+/* =========================
+   Back Button
+========================= */
+.back-btn {
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  background-color: var(--color-white);
+  cursor: pointer;
+  font-size: var(--text-sm);
+  width: min-content;
+  color: black;
+  text-decoration: none;
+}
+
+.back-btn:hover {
+  background-color: #f1f5f9;
+}
+
+/* =========================
+   Titles + Status
+========================= */
+
+.session-status {
+  padding: var(--space-xs) var(--space-sm);
+  font-size: var(--text-sm);
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  display: inline-block;
+  margin-left:auto;
+}
+
+/* Grey */
+.status-not_started {
+  background-color: #d1d5db;
+  color: var(--color-text-primary);
+}
+
+/* Green */
+.status-ACTIVE {
+  background-color: var(--color-success);
+  color: var(--color-white);
+}
+
+/* Red */
+.status-CLOSED {
+  background-color: var(--color-error);
+  color: var(--color-white);
+}
+
+.lecture-nav-links{
+  display: flex;
+  justify-content: space-evenly;
+  
+}
+.lecture-details-nav-tag{
+  color: black;
+  text-decoration: none;
+}
+
+/* =========================
+   Blocks
+========================= */
+.detail-block {
+  padding: var(--space-md);
+  border-radius: var(--radius-md);
+  /* border: 1px solid var(--color-border); */
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.detail-block h3 {
+  font-size: var(--text-md);
+  font-weight: 600;
+  margin-bottom: var(--space-xs);
+}
+
+/* =========================
+   Files
+========================= */
+.file-list {
+  list-style: none;
+  padding-left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.file-list li a {
+  font-size: var(--text-sm);
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.file-list li a:hover {
+  text-decoration: underline;
+}
+
+/* =========================
+   Comments
+========================= */
+.comments-box {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-white);
+  padding: var(--space-sm);
+  max-height: 300px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.comment-item {
+  padding-bottom: var(--space-xs);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.comment-item:last-child {
+  border-bottom: none;
+}
+
+.comment-item strong {
+  font-size: var(--text-xs);
+  color: var(--color-text-primary);
+}
+
+.comment-item p {
+  font-size: var(--text-xs);
+  margin-top: var(--space-xxs);
+}
+
+.comment-item small {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
+
+/* =========================
+   Comment Form
+========================= */
+.comment-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.comment-form textarea {
+  width: 100%;
+  min-height: 90px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  padding: var(--space-sm);
+  font-size: var(--text-md);
+}
+
+.comment-btn {
+  align-self: flex-start;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  border: none;
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-size: var(--text-sm);
+}
+
+.comment-btn:hover:not(:disabled) {
+  background-color: var(--color-primary-dark);
+}
+
+.comment-btn:disabled {
+  background-color: var(--color-disabled);
+  cursor: not-allowed;
+}
+
+/* Comment disabled state */
+.comment-disabled-text {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  margin-top: -var(--space-sm);
+}

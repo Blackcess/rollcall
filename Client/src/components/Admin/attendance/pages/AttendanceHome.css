@@ -1,0 +1,147 @@
+@import "../../styles/adminVariables.css";
+@import "../../styles/adminButtons.css";
+
+.admin-attendance-home {
+   font-family: var(--font-family-base);
+  padding: var(--space-sm);
+  min-height: 100vh;
+  /* max-width: var(--max-width); */
+  margin: 0 auto; 
+}
+
+/* Page Title */
+.admin-attendance-home h2 {
+  font-size: var(--text-sm);
+  font-weight: 300;
+  margin-bottom: var(--space-md);
+  color: var(--color-text-primary);
+}
+
+/* Selector toolbar */
+.selector-row {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-lg);
+  padding: var(--space-md);
+  background: var(--color-white);
+  border: 0.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.selector-row label {
+  display: flex;
+  flex-direction: column;
+  font-size: var(--text-xs);
+  color: var(--color-text-primary);
+}
+
+.selector-row input {
+  margin-top: var(--space-xs);
+  padding: var(--space-sm);
+  font-size: var(--text-xs);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-white);
+  width: 160px;
+}
+.selector-row select {
+  margin-top: var(--space-xs);
+  padding: var(--space-sm);
+  font-size: var(--text-xs);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-white);
+  width: 160px;
+}
+
+/* Banner UI states */
+.error-banner {
+  background: var(--color-error);
+  color: var(--color-white);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--space-md);
+  font-size: var(--text-xs);
+}
+
+.admin-attendance-home p {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  padding-left: var(--space-xs);
+}
+
+/* Slot list */
+.slot-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+/* Individual Slot Card */
+.slot-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  cursor: pointer;
+  transition: background-color 0.12s ease, border-color 0.12s ease;
+}
+
+.slot-card:hover {
+  background: #f1f5f9;
+  border-color: var(--color-primary);
+}
+
+.slot-card h4 {
+  font-size: var(--text-xs);
+  font-weight: 300;
+  margin-bottom: var(--space-xs);
+  color: var(--color-text-primary);
+}
+
+.slot-card p {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
+
+.slot-card small {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
+
+/* Right side of slot card */
+.slot-card-right {
+  text-align: right;
+}
+
+/* Responsive tweaks */
+@media (max-width: 640px) {
+  .selector-row {
+    flex-direction: column;
+    align-items: stretch;
+    border: none;
+    padding: 0px;
+  }
+
+  .selector-row input {
+    width: 100%;
+  }
+  .selector-row select {
+    width: 100%;
+  }
+
+  .slot-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-xs);
+  }
+
+  .slot-card-right {
+    text-align: left;
+  }
+}

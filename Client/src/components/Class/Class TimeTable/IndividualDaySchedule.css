@@ -1,0 +1,86 @@
+.my-class-activity{
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    /* border: 0.5px solid gray; */
+    /* border-radius: 20px; */
+    background-color: #d4d0d0;
+    /* height: 200px; */
+    /* border-bottom: 1px solid gray; */
+    /* border-top-left-radius:10px ;
+    border-top-right-radius:10px ; */
+    border-radius: 10px;
+
+}
+.day-schedule-template{
+    /* font-size: 12px; */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.activity-name{
+    /* background-color: red; */
+    width: 70%;
+    display: flex;
+    justify-content: start;
+    padding: 0px 25%;
+    padding-right: 0px;
+}
+.tt-table-template{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    /* background-color: green; */
+}
+.tt-table-container{
+    width: 90%;
+    border-collapse: collapse;
+    /* border-radius: 8px; */
+    overflow: hidden;            /* rounds header + body together */
+    /* font-size: 15px; */
+}
+.tt-table-head{
+    background-color: #f5f6fa;
+}
+.tt-table-head th {
+  padding: 12px 16px;
+  font-weight: 600;
+  color: #333;
+  /* text-align: left; */
+  border-bottom: 2px solid #e0e0e0;
+}
+.tt-head-column{
+    /* background-color: green; */
+}
+.tt-body-template{
+    
+}
+.tt-body-row td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #f0f0f0;
+  color: #444;
+   /* text-align: left; */
+}
+.tt-body-row:hover {
+  background-color: #fafafa;
+}
+.tt-body-row:last-child td {
+  border-bottom: none;
+}
+.my-current-lecture{
+    background-color: rgba(10, 221, 10, 0.478);
+}
+
+@media (max-width:700px) {
+    .tt-table-container{
+    /* background-color: green; */
+    width: 90%;
+   margin-left: auto;
+   margin-right: auto;
+
+}
+.tt-table-container{
+    width: 100%;
+}
+}

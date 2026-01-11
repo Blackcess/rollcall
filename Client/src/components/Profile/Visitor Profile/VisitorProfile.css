@@ -1,0 +1,82 @@
+.my-visitor-section-template{
+    font-size: 12px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+.visitor-profile-details{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+}.visitor-prof-pic{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.visitor-dets{
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+}
+.visitor-name{
+    color: green;
+}
+.visitor-college{
+    color: rgb(7, 118, 197);
+}
+.personal-infomation{
+
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+.visitor-followers{
+    display: flex;
+    gap: 25px;
+    align-items: center;
+}
+.followers-section-vis{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+.act-foll{
+    color: rgb(7, 118, 197);
+    font-size: 18px;
+    font-weight: 600;
+}
+.vis-foll-tit{
+    font-weight: 100;
+}
+.follow-btn{
+    padding: 10px;
+    border: none;
+    background-color:rgb(7, 118, 197) ;
+    outline: none;
+    border-radius: 10px;
+    cursor: pointer;
+    color: white;
+}
+.user-details-vistor-section{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    background-color: rgb(234, 218, 218);
+    border-radius: 3px;
+    /* gap: 20px; */
+}
+.vis-data{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.data-key{
+    font-weight:400 ;
+}

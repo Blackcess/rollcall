@@ -1,0 +1,45 @@
+@import "../styles/adminVariables.css";
+
+/* ---------------- Grid Container ---------------- */
+
+/* .timetable-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: var(--space-md);
+
+  margin-top: var(--space-md);
+} */
+ .timetable-grid {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--space-md);
+
+  margin-top: var(--space-md);
+  align-items: stretch;
+  justify-items: stretch;
+}
+
+
+/* ---------------- Responsive Behavior ---------------- */
+
+/* Large tablets / small laptops */
+@media (max-width: 1024px) {
+  .timetable-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Tablets */
+@media (max-width: 768px) {
+  .timetable-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .timetable-grid {
+    grid-template-columns: 1fr;
+  }
+}

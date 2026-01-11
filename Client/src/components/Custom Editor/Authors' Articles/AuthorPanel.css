@@ -1,0 +1,49 @@
+.articles-table {
+  width: 100%;
+  border-collapse: collapse;
+  overflow-x: hidden;
+}
+.aut-pan-temp{
+width: 95%;
+}
+
+.articles-table th,
+.articles-table td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.articles-table th {
+  background: #1e1e1e;
+  color: white;
+  text-align: left;
+}
+
+.pagination {
+  margin-top: 12px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.pagination button {
+  padding: 6px 15px;
+  cursor: pointer;
+}
+
+.pagination span {
+  font-weight: bold;
+}
+td button{
+    padding: 5px;
+    border: none;
+    background-color: rgb(87, 217, 217);
+    border-radius: 5px;
+}
+@media (max-width:700px) {
+    /* tbody{
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    } */
+}

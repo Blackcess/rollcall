@@ -1,0 +1,109 @@
+.chat-system-container{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    height: 100%;
+}
+.conversation-list-container{
+    position: relative;
+    height: 100%;
+}
+.no-chats-cobntainer{
+    /* position: absolute; */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: 100%;
+    width: 100;
+    /* background-color: red; */
+    align-items: center;
+    justify-content: center;
+}
+.no-chat-flag{
+
+}
+.add-chat-icon{
+    display: flex;
+    font-size: var( --fs-2xl);
+}
+.my-chats-template{
+    display: flex;
+    flex-direction: column;
+}
+.message-pop-up{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    /* border-bottom: 1px solid green; */
+    align-items: start;
+    justify-content: center;
+    /* width: 90%; */
+    /* padding: 10px 0px; */
+    /* background-color: teal; */
+
+}
+.competitor-name-field-1{
+    /* font-size: 12px; */
+    font-weight: 400;
+
+}
+.my-last-message{
+    font-size: 10px;
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    width: 100%;
+    /* background-color: red; */
+    
+}
+.chatting-template{
+   
+    /* background-color: yellow; */
+}
+.my-competitor-list-ext{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 100%;
+    overflow-y: auto;
+    /* background-color: teal; */
+    /* padding-right: 10px; */
+}
+
+.chat-template{
+    display: flex;
+    text-decoration: none;
+    color: rgb(61, 60, 60);
+    height: 50px;
+    /* width: 100%; */
+    /* align-items: center; */
+    justify-content: start;
+    border-bottom: 0.2px solid rgb(211, 208, 208);
+    gap: 10px;
+    /* margin-bottom:15px ; */
+    /* justify-content: center; */
+    padding: 10px;
+    /* background-color: green; */
+}
+.msg{
+    width: 150px;
+    overflow: hidden;
+     white-space: nowrap;
+     overflow-y: hidden;
+     color: rgb(65, 64, 64);
+     display: flex;
+
+}
+.add-more-chats{
+    border: 1px solid green;
+    border-radius: 50%;
+    background-color: #fff;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    font-size: var(  --fs-xl);
+}
+

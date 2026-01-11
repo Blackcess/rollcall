@@ -1,0 +1,66 @@
+.actual-semester-data-template{
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.dougnut-template{
+    font-size: 10px;
+    height: 100%;
+}
+.sgpa-area{
+    display: flex;
+    justify-content: space-between;
+}
+.sgpa-helper-template{
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(236, 222, 222);
+    padding: 10px 15px;
+    border-radius: 10px;
+    gap: 5px;
+    min-width: 100px;
+}
+.subjects-doughnut-graph{
+    /* background-color: green; */
+    /* min-height: 500px; */
+}
+.subject-path-template{
+    display: flex;
+    align-items: center;
+    border: .5px solid gray;
+    padding: 13px;
+    min-width: 80%;
+    border-radius: 10px;
+    justify-content: space-between;
+    font-size: 11px;
+}
+.subject-path-1,.s-p-sub-path-a,.s-p-sub-path-b,.subject-path-2{
+    display: flex;
+    align-items: center;
+}
+.subject-path-1{
+    gap: 10px;
+}
+.s-p-sub-path-a{
+    font-size: 20px;
+    color: rgb(15, 185, 128);
+}
+.subject-path-2{
+    font-size: 20px;
+     color: rgb(15, 185, 128);
+}
+.dashboard-select-subject{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.actual-subs{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.mobile-sub-link{
+    color: black;
+    text-decoration: none;
+}

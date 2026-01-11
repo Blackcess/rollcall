@@ -1,0 +1,31 @@
+.lecture-comments-container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 15px;
+    /* background-color: red; */
+    /* align-items: start; */
+}
+.lc-sub{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.comments-area{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 500px;
+    overflow-y: auto;
+}
+.comment-item-ssingle{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    border-left: 3px solid black;
+    padding: 5px 15px;
+}
+.comment-for textarea{
+    width: 100%;
+    height: 10px;
+}

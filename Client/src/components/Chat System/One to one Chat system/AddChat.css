@@ -1,0 +1,10 @@
+.add-chat-template{
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+}
+
+
+.my-chat-list-invite{
+
+}

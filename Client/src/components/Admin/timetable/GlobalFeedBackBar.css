@@ -1,0 +1,73 @@
+@import "../styles/adminVariables.css";
+
+/* Root container */
+.global-feedback-bar {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-md);
+
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-md);
+
+  font-size: var(--text-sm);
+  line-height: 1.4;
+
+  border: 1px solid transparent;
+}
+
+/* Content area */
+.gfb-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+/* Title */
+.gfb-title {
+  font-weight: 600;
+}
+
+/* Message */
+.gfb-message {
+  color: var(--color-text-primary);
+}
+
+/* Close button */
+.gfb-close {
+  background: none;
+  border: none;
+
+  font-size: var(--text-lg);
+  line-height: 1;
+
+  cursor: pointer;
+  color: var(--color-text-muted);
+}
+
+.gfb-close:hover {
+  color: var(--color-text-primary);
+}
+
+/* ---------------- Severity Variants ---------------- */
+
+/* Warning (e.g. semester locked) */
+.gfb-warning {
+  background-color: #fff7ed; /* warm neutral */
+  border-color: var(--color-warning);
+  color: var(--color-warning);
+}
+
+/* Error (conflicts, invalid input) */
+.gfb-error {
+  background-color: #fef2f2;
+  border-color: var(--color-error);
+  color: var(--color-error);
+}
+
+/* Info / system */
+.gfb-info {
+  background-color: #eff6ff;
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}

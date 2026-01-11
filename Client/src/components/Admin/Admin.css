@@ -1,0 +1,10 @@
+.admin-temp-sct{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 5px;
+}
+.admin-head-txt{
+    display: flex;
+    gap: 15px;
+}

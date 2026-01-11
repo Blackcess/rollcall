@@ -1,0 +1,42 @@
+.my-actual-content-display{
+      width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.actual-cont-display-container{
+    display: flex;
+
+}
+.prop-add-scheme{
+    flex: 2;
+    /* background-color: teal; */
+}
+.content-meta-data{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+.like-metrics{
+    display: flex;
+    justify-content: start;
+    gap: 20px;
+    align-items: center;
+    /* background-color: teal; */
+    /* font-size: var(--fs-xl); */
+}
+.metri-icon{
+     font-size: var(--fs-xl);
+}
+.likes-centr,.comments-centr{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+@media (max-width : 900px) {
+    .actual-cont-display-container{
+        /* flex-direction: column; */
+    }
+    .content-meta-data{
+        display: none;
+    }
+}

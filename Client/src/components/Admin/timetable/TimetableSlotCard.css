@@ -1,0 +1,195 @@
+@import "../styles/adminVariables.css";
+
+/* ---------------- Slot Card (Base) ---------------- */
+
+.slot-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+
+  padding: var(--space-sm);
+
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+
+  font-size: var(--text-xs);
+}
+
+/* ---------------- VIEW Mode ---------------- */
+
+.slot-card.view {
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.slot-card.view:hover {
+  background-color: #f9fafb;
+  border-color: #d1d5db;
+}
+
+/* ---------------- Slot Time ---------------- */
+
+.slot-time {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+/* ---------------- Slot Subject ---------------- */
+
+.slot-subject {
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+/* ---------------- Slot Meta ---------------- */
+
+.slot-meta {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
+
+/* ---------------- Slot Actions ---------------- */
+
+.slot-actions {
+  display: flex;
+  gap: var(--space-sm);
+  margin-top: var(--space-xs);
+}
+
+.slot-actions button {
+  background: none;
+  border: none;
+
+  padding: 0;
+  font-size: var(--text-xs);
+  font-weight: 500;
+
+  color: var(--color-primary);
+  cursor: pointer;
+}
+
+.slot-actions button:hover {
+  text-decoration: underline;
+}
+
+/* Delete action should look dangerous */
+.slot-actions button:last-child {
+  color: var(--color-error);
+}
+
+
+/* ---------------- EDIT / CREATE Base ---------------- */
+
+.slot-card.edit {
+  background-color: #f8fafc;
+  border-color: var(--color-primary);
+}
+
+/* CREATE state marker (draft slots) */
+.slot-card.edit.create {
+  border-style: dashed;
+  background-color: #f9fafb;
+}
+
+/* ---------------- Error Message ---------------- */
+
+.slot-error {
+  background-color: #fef2f2;
+  border: 1px solid var(--color-error);
+  border-radius: var(--radius-sm);
+
+  padding: var(--space-xs);
+  font-size: var(--text-xs);
+  color: var(--color-error);
+
+  margin-bottom: var(--space-xs);
+}
+
+/* ---------------- Field Groups ---------------- */
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.field label {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
+
+/* Inputs & selects */
+.field input,
+.field select {
+  font-size: var(--text-sm);
+  padding: 4px 6px;
+
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+
+  background-color: var(--color-white);
+}
+
+.field input:focus,
+.field select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+/* Disabled (SAVING) */
+.field input:disabled,
+.field select:disabled {
+  background-color: #f1f5f9;
+  cursor: not-allowed;
+}
+
+/* ---------------- Actions (EDIT / CREATE) ---------------- */
+
+.slot-card.edit .slot-actions {
+  display: flex;
+  gap: var(--space-sm);
+  margin-top: var(--space-sm);
+}
+
+/* Base button reset */
+.slot-card.edit .slot-actions button {
+  font-size: var(--text-xs);
+  font-weight: 500;
+
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+/* Save */
+.slot-card.edit .slot-actions button:first-child {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+.slot-card.edit .slot-actions button:first-child:hover:not(:disabled) {
+  background-color: var(--color-primary-dark);
+}
+
+/* Cancel */
+.slot-card.edit .slot-actions button:nth-child(2) {
+  background-color: var(--color-white);
+  color: var(--color-text-primary);
+  border-color: var(--color-border);
+}
+
+/* Delete (if present) */
+.slot-card.edit .slot-actions button:last-child {
+  background-color: var(--color-error);
+  color: var(--color-white);
+}
+
+/* Disabled buttons */
+.slot-card.edit .slot-actions button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

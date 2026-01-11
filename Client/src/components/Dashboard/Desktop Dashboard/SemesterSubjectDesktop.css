@@ -1,0 +1,70 @@
+.desktop-subject-section-temptate{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+.desktop-subject-analysis-status{
+    display:flex;
+    flex-direction: row;
+    gap: 20px;
+    /* flex-wrap: wrap; */
+}
+.desktop-subject-analysis-status-1{
+    display: flex;
+    flex-direction: column;
+    /* border: 1px solid gray; */
+    border-radius: 10px;
+    padding: 10px;
+    gap: 20px;
+    width: 100%;
+    color: white;
+    /* https://grabient.com/HQRgTCA0wKwMwHZpwGw2gBgBxWHAnACzSFxYmHrAaH4kZiQzD4hKwpyRyxYJA?style=linearSwatches&steps=7&angle=135 */
+    background: linear-gradient(135deg, rgba(49, 44, 0, 1.000) 0.000%, rgba(49, 44, 0, 1.000) 14.286%, rgba(51, 46, 30, 1.000) 14.286%, rgba(51, 46, 30, 1.000) 28.571%, rgba(50, 49, 73, 1.000) 28.571%, rgba(50, 49, 73, 1.000) 42.857%, rgba(44, 51, 119, 1.000) 42.857%, rgba(44, 51, 119, 1.000) 57.143%, rgba(36, 54, 162, 1.000) 57.143%, rgba(36, 54, 162, 1.000) 71.429%, rgba(26, 57, 192, 1.000) 71.429%, rgba(26, 57, 192, 1.000) 85.714%, rgba(17, 60, 204, 1.000) 85.714% 100.000%);
+    /* background: linear-gradient(90deg, rgba(235, 251, 229, 1.000) 0.000%, rgba(164, 184, 163, 1.000) 25.000%, rgba(126, 166, 141, 1.000) 50.000%, rgba(147, 211, 182, 1.000) 75.000%, rgba(212, 255, 250, 1.000) 100.000%) */
+}
+.analysis_1_value{
+    font-size: 32px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+.analysis_1_observation{
+    font-size: 8px;
+    color: red;
+    font-weight: 500;
+}
+.desktop-subject-analysis-details-1{
+
+
+}
+.desktop-subject-details-1-1{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* flex-direction: column; */
+}
+.helper-row-template{
+    display: flex;
+    width: 90%;
+    justify-content: space-between;
+    border-bottom: 1px dotted gray;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+}
+.result_status_11{
+    display: flex;
+    gap: 20px;
+}
+.sub-stats-desk_2{
+    /* background-color: red; */
+}
+.sub-stats-desk_1{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+}

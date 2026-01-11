@@ -1,0 +1,21 @@
+.academic-stats-selection{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    font-size: 12px;
+
+}
+.academic-stats-list{
+
+}
+.list-of-stats-template{
+    display: flex;
+    border-bottom: .3px solid gray;
+    text-decoration: none;
+    color: black;
+    padding: 15px;
+}
+.my-sgpa-section{
+    display: flex;
+    flex-direction: column;
+}

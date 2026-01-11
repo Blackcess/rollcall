@@ -1,0 +1,51 @@
+.mobile-semesters-template{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 6px;
+}
+
+.m-sem-helper-template-selected{
+    display: flex;
+    /* width: 100; */
+    justify-content: space-between;
+    border-bottom: .3px solid red;
+    padding: 13px;
+    border-radius: 10px;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+}
+.m-sem-helper-template{
+    display: flex;
+    /* width: 100; */
+    justify-content: space-between;
+    border-bottom: .3px solid gray;
+    padding: 13px;
+    border-radius: 10px;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+}
+.sem-helper-icon{
+    color: rgb(9, 118, 155);
+    font-size: 18px;
+}
+.semester-navigation{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    /* font-size: 12px; */
+}
+.sem-name{
+    display: flex;
+    align-items: center;
+}
+.sem-link-container-011{
+    display: flex;
+    align-items: center;
+}
+.sem-icon{
+    display: flex;
+    align-items: center;
+}

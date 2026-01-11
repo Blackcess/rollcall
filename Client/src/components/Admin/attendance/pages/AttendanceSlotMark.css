@@ -1,0 +1,168 @@
+@import "../../styles/adminVariables.css";
+@import "../../styles/adminButtons.css";
+
+.admin-slot-mark {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  padding: var(--space-lg) var(--space-md);
+  min-height: 100%;
+  margin: 0 auto;
+  font-family: var(--font-family-base);
+}
+
+/* Page headers */
+.slot-meta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.slot-meta h2 {
+  font-size: var(--text-sm);
+  font-weight: 400;
+  color: var(--color-text-primary);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.slot-meta h3 {
+  font-size: var(--text-sm);
+  font-weight: 400;
+  color: var(--color-text-muted);
+}
+
+/* Unsaved indicator dot */
+.dirty-dot {
+  width: 10px;
+  height: 10px;
+  background: var(--color-warning);
+  border-radius: 50%;
+  display: inline-block;
+}
+
+/* Description copy */
+.slot-desc {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
+
+/* Toolbar above table */
+.slot-toolbar {
+  display: flex;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* Table wrapper to allow sticky header & scrolling */
+.table-wrapper {
+  max-height: 60vh;
+  overflow: auto;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  background: var(--color-white);
+}
+
+/* Table proper */
+.attendance-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-xs);
+}
+
+/* Sticky header on scroll */
+.attendance-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: #f1f5f9;
+  color: var(--color-text-primary);
+  font-weight: 600;
+  text-align: left;
+  padding: var(--space-sm);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.attendance-table td {
+  padding: var(--space-sm);
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text-primary);
+}
+
+.attendance-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* Status badge styles */
+.status-badge {
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  color: var(--color-white);
+  display: inline-block;
+  text-align: center;
+  font-size: var(--text-xs);
+  min-width: 80px;
+}
+
+.status-none {
+  background: var(--color-disabled);
+}
+
+.status-present {
+  background: var(--color-success);
+}
+
+.status-absent {
+  background: var(--color-error);
+}
+
+/* Save button full width mobile */
+.save-btn {
+  margin-top: var(--space-md);
+}
+.btn-all-present{
+    border: none;
+    outline:none;
+    background-color: rgb(11, 201, 11);
+    border-radius: 6px;
+    cursor: pointer;
+    color: white;
+    padding: 6px;
+}
+.btn-reset{
+     border: none;
+    outline:none;
+    background-color: rgb(243, 26, 18);
+    border-radius: 6px;
+    cursor: pointer;
+    color: white;
+    padding: 6px;
+}
+
+@media (max-width: 640px) {
+  .save-btn {
+    width: 100%;
+  }
+  .admin-slot-mark{
+    padding: 5px;
+  }
+  .class-dets-heading{
+    font-size: var(--text-xs);
+  }
+  .table-wrapper{
+    min-height: 100%;
+  }
+
+}
+
+/* Back button */
+.back-btn {
+  margin-bottom: var(--space-md);
+  font-size: var(--text-xs);
+  cursor: pointer;
+  text-decoration: underline;
+  color: var(--color-primary);
+}

@@ -1,0 +1,186 @@
+.chat-wrapper {
+  /* border-top: 1px solid black; */
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  position: relative;
+  overflow: auto;
+  /* gap: 20px; */
+  height: 100%; 
+  overflow: hidden;
+   background-image: url("data:image/jpeg;base64,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");
+  /* background-color: teal; */
+}
+.who-am-i-talking-to{
+  /* display: flex; */
+  /* align-items: end; */
+ 
+  /* background-color: hsl(0, 100%, 99%); */
+  /* background-color: red; */
+  /* color: white; */
+}
+.chat-template-x{
+   /* position: static; */
+  top: 0px;
+  z-index: 1000000;
+  text-decoration: none;
+  color: black;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 3px 10px;
+  border-bottom: 1px solid #ebe6e6;
+  background-color: white;
+  /* background-color: green; */
+  height: 100%;
+}
+
+.messages {
+  position: relative;
+  overflow-y: scroll;
+  /* padding: 5px 10px; */
+  /* background-color: #f0f0f0; */
+  display: flex;
+  flex-direction: column;
+  /* gap: 15px; */
+  height: 100%;
+  /* border-radius: 20px; */
+}
+.chat-input-area {
+  display: flex;
+  /* border-top: 1px solid #ccc; */
+  /* padding: 8px; */
+  /* background: white; */
+  justify-content: space-between;
+  /* position: absolute; */
+  width: 100%;
+  bottom: 0px;
+  /* margin-top: auto; */
+}
+.chat-input-area input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 18px;
+  outline: none;
+}
+.chat-input-area button {
+  /* margin-left: 8px; */
+  padding: 0 10px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 18px;
+  cursor: pointer;
+}
+.message {
+  max-width: 60%;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 12px;
+}
+
+.sent {
+  background: #007bff;
+  color: white;
+  margin-left: auto;
+}
+
+.received {
+  background: #e5e5ea;
+  color: black;
+  margin-right: auto;
+}
+.message-box-design{
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  background-color: #fff;
+  /* font-size: 14px; */
+  width: fit-content;
+  border-radius: 10px;
+
+}
+.received-messages{
+  background-color: rgb(223, 224, 223);
+  /* font-size: 12px; */
+  width: fit-content;
+  padding: 10px;
+  border-radius: 6px;
+  border-top-left-radius: 0px;
+  margin-right: auto;
+  margin-left: 10px;
+  position: relative;
+}
+.sent-messages{
+  background-color: rgb(98, 198, 98);
+  /* font-size: 12px; */
+  width: fit-content;
+  padding: 10px;
+  border-radius: 6px;
+  border-top-right-radius: 0px;
+  margin-left: auto;
+  margin-right: 10px;
+  position: relative;
+}
+.received-messages::after{
+  content: "";
+  position: absolute;
+  top: 0%;
+  left: -10px;
+  width: 0;
+  height: 0;
+  border-top: 10px solid rgb(223, 224, 223);
+  border-left: 10px solid transparent;
+}
+.sent-messages::after{
+  content: "";
+  position: absolute;
+  top: 0%;
+  right: -10px;
+  width: 0;
+  height: 0;
+  border-top: 10px solid rgb(98, 198, 98);
+  border-right: 10px solid transparent;
+}
+.sent-messages, .received-messages{
+  word-wrap: break-word;
+  max-width: 50%;
+}
+.my-mmsd{
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  height: 100%;
+  /* overflow-y: scroll; */
+  /* background-color: red; */
+}
+
+.wake-up-chats{
+  height: 100%;
+  /* background-color: red;*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* font-size: 12px; */
+}
+.scroll-el{
+  font-size: 2px;
+}
+.message-pop-up-x{
+  color: gray;
+  /* background-color: red; */
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  word-wrap: none;
+  white-space: nowrap;
+}
+@media (max-width:700px) {
+  .chat-input-area {
+    /* position: fixed; */
+    /* width: 90%; */
+    
+  }
+}

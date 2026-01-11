@@ -1,0 +1,116 @@
+.article-editor-page{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    position: relative;
+    /* background-color: teal; */
+
+}
+.editor-toolbar-buttons{
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    margin-bottom: 10px;
+    gap: 20px;
+    /* background-color: teal; */
+}
+.editor-preview-container{
+    flex: 2;
+    width: 100%;
+    max-width: 900px;
+    position: relative;
+    /* border: 1px solid rgba(6, 162, 50, 0.783); */
+    padding: 20px;
+    overflow-x: scroll;
+    border-radius: 20px;
+
+}
+.editor-compo-template{
+    width: 100%;
+}
+.editing-work-station{
+    display: flex;
+    /* flex-direction: column; */
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+    /* background-color: yellow; */
+    width: 100%;
+    position: relative;
+
+}
+.manage-existing-articles{
+    /* position: absolute; */
+    /* left: 0px; */
+    /* bottom: 0px; */
+    padding: 10px 20px;
+    /* font-size: 16px; */
+    background-color: #064a16;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.meta-data-insert{
+    /* background-color: red; */
+    flex: 1;
+    width: 100%;
+    height: fit-content;
+    min-height: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    /* max-width: 500px; */
+}
+.metadata-menu{
+    display: none;
+}
+.meta-data-insert-mobile{
+    display:none;
+}
+
+@media (max-width: 600px) {
+    .editor-preview-container{
+        padding: 0px;
+        border: none;
+        /* display: none; */
+    }
+    
+    .editing-work-station{
+        flex-direction: column;
+        align-items: center;
+    }
+    .meta-data-insert{
+        display: none;
+    }
+    .metadata-menu{
+        display: block;
+        /* position: absolute; */
+        /* top: 10px;
+        left: 10px; */
+        font-size: 24px;
+        cursor: pointer;
+    }
+    .editor-toolbar-buttons{
+        justify-content: space-between;
+        padding: 0 10px;
+    }
+    .meta-data-insert-mobile{
+        flex: 1;
+    width: 80%;
+    height: fit-content;
+    min-height: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    position: absolute;
+    z-index: 1000;
+    background-color: white;
+    top: 0px;
+    left: 0px;
+    }
+
+}

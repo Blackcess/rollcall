@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Outline&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+/* .roboto-<uniquifier> {
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+} */
+
+html{
+    font-size: 14px;  /* standard, readable base */
+}
+:root {
+  --fs-xs: 0.75rem;   /* 12px  - tiny text */
+  --fs-sm: 0.875rem;  /* 14px  - small text */
+  --fs-base: 1rem;    /* 16px  - normal body text */
+  --fs-lg: 1.125rem;  /* 18px  - slightly bigger text */
+  --fs-xl: 1.25rem;   /* 20px  - medium headings */
+  --fs-2xl: 1.5rem;   /* 24px  - section titles */
+  --fs-3xl: 2rem;     /* 32px  - main headings */
+  --fs-4xl: 3rem;     /* 48px  - hero headings */
+}
+*{
+    padding: 0;
+    margin: 0;
+    font-family: "Roboto", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+body{
+    /* background-color: black; */
+     font-size: var(--fs-sm);
+
+}
+li[data-list]::before {
+  border-left: none !important;
+}
+.rollcall-template{
+  /* font-size: var(--fs-4xl); */
+
+}
+/* .small {
+  font-size: var(--fs-sm);
+}
+h1 {
+  font-size: var(--fs-3xl);
+}
+h1 {
+  font-size: var(--fs-3xl);
+}
+
+h2 {
+  font-size: var(--fs-2xl);
+}
+
+h3 {
+  font-size: var(--fs-xl);
+} */
