@@ -84,10 +84,11 @@ function Profile() {
         </div>
         
        
-        {(screenWidth>800) &&<div className="put-something">
-          {/* <h5>My Classmates</h5> */}
-           <SelectCompetitor/>
-        </div>}
+        {
+        // (screenWidth>800) &&<div className="put-something">
+        //    <SelectCompetitor/>
+        // </div>
+        }
       </div>
 
 

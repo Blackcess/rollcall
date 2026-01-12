@@ -5,7 +5,14 @@
     color:black;
 }
 .home-template{
-    
+  width: 100%;
+    max-width: 1200px;
+    /* background-color: red; */
+    position: relative;
+}
+.hopme-page-template{
+  position: inherit;
+    width: 100%;
 }
 /*  */
 .skeleton {

@@ -11,9 +11,9 @@ function MyProfile(){
     let [userCredentials,setCredentials]= useState({
         email_address:"unknown",
         phone_number:"unknown",
-        semester:"5",
-        admission_year:"2023",
-        department:"B.TECH CSE",
+        semester:"unknown",
+        admission_year:"unkown",
+        department:"unknown",
         gender:"unknown",
         date_of_birth:"unknown"
     })
@@ -78,7 +78,7 @@ function MyProfile(){
 function YourDetails(props){
 useEffect(()=>{
     if(props.value.title==="date_of_birth"){
-        console.log("DOB value is ",props.value.value);
+        // console.log("DOB value is ",props.value.value);
     }
 })
     return <>

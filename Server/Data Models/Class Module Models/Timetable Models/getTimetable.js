@@ -94,9 +94,9 @@ export async function getClassTimetable({
   // 5. Execute
   const [rows] = await connection.query(sql, params);
 
-  if (!rows.length) {
-    throw DomainError.notFound("TIMETABLE NOT FOUND");
-  }
+  // if (!rows.length) {
+  //   throw DomainError.notFound("TIMETABLE NOT FOUND");
+  // }
 
   return rows;
 }

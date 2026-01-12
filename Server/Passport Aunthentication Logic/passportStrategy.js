@@ -26,7 +26,7 @@ passport.deserializeUser(async (user,done)=>{
 
         //  if(!row.length) 
         //     throw new Error("No Matching User...")
-        // console.log("The user from database is :",result)
+        console.log("The user from database is :",result)
         done(null,result.user_data)
     } catch (error) {
         done(error,null)

@@ -3,6 +3,7 @@ import "./Timetable.css"
 import { createContext, useEffect,useState,useContext} from "react";
 import { NavLink, Outlet,useLocation, useNavigate } from "react-router-dom";
 import ShimmerLoader from "../../Util Components/ShimmerLoader/ShimmerLoader";
+import { useAuth } from "../../../Aunthentication/AuthProvider";
 const API_BASE_URL = process.env.REACT_APP_API_URL;
 const GlobalTimetable= createContext();
 function TimeTable(){
@@ -11,6 +12,8 @@ function TimeTable(){
     const location = useLocation();
     const myDate = new Date();
     const navigation = useNavigate();
+    const sessionData = useAuth()
+    
 
     useEffect(()=>{
         getTimetable();
@@ -24,7 +27,7 @@ function TimeTable(){
     },[])
     async function getTimetable(){
         try {
-                const response= await axios.get(`${API_BASE_URL}/class/timetable?classId=1&semester=5`,{
+                const response= await axios.get(`${API_BASE_URL}/Student/class/timetable?classId=${sessionData.userData.class_id}&semester=${sessionData.userData.semester}`,{
                 withCredentials:true,
                     }) 
                 if(response.data.status){

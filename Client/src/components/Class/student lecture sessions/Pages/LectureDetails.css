@@ -1,7 +1,6 @@
 @import "../../../Admin/styles/adminVariables.css";
 
 .lecture-detail {
-  /* padding: 5px; */
   min-height: 100vh;
   display: flex;
   flex-direction: column;

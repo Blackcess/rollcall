@@ -115,7 +115,7 @@ const API_BASE_URL = process.env.REACT_APP_API_URL;
 
 
         return <>
-        <section>
+        <section className="compare-grade-template">
             {
                 (sessionData.userData.all_semester_results && subjectDataFound && player2Ready)?<MyBarChart value={{user:sessionData.userData.all_semester_results[`semester_${whichSemester}`],subjects:userSubjects,user2:player2Data.all_semester_results,semester:whichSemester}}/>:<ShimmerLoader/>
             }

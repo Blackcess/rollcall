@@ -19,17 +19,29 @@ class TimetableService {
     }
   }
 
-  static #hasOverlap(slots, startTime, endTime, excludeSlotId = null) {
-    return slots.some(slot => {
-      if (!slot.is_active) return false;
-      if (excludeSlotId && slot.id === excludeSlotId) return false;
+  // static #hasOverlap(slots, startTime, endTime, excludeSlotId = null) {
+  //   return slots.some(slot => {
+  //     if (!slot.is_active) return false;
+  //     if (excludeSlotId && slot.id === excludeSlotId) return false;
 
-      return (
-        startTime < slot.end_time &&
-        slot.start_time < endTime
-      );
-    });
-  }
+  //     return (
+  //       startTime < slot.end_time &&
+  //       slot.start_time < endTime
+  //     );
+  //   });
+  // }
+  static #hasOverlap(slots, startTime, endTime, excludeSlotId = null) {
+  return slots.some(slot => {
+    if (!slot.is_active) return false;
+    if (excludeSlotId && slot.id === excludeSlotId) return false;
+
+    // overlap if ranges intersect
+    return !(
+      endTime <= slot.start_time || 
+      startTime >= slot.end_time
+    );
+  });
+}
 
   /* ---------- Commands ---------- */
 

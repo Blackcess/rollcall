@@ -1,8 +1,11 @@
 .profile-section-template{
+    width: 100%;
+    max-width: 1200px;
     display: flex;
     flex-direction: column;
     gap: 30px;
     padding: 5px;
+    position: relative;
 }
 .profile-pic-setting-section{
     position: relative;
@@ -130,8 +133,7 @@
 
 }
 .put-something{
-    /* width: 400px; */
-    /* height: 800px; */
+    height: 50%;
     background-color: white;
     display: flex;
     flex-direction: column;

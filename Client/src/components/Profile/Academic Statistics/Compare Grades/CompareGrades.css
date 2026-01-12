@@ -1,9 +1,11 @@
-.compare-index-route-section{
+/* .compare-index-route-section{
    font-size: 12px;
-}
+} */
 .copare-data{
-     display: flex;
-    flex-direction: column;
-    gap: 30px;
-    font-size: 12px;
+   width: 100%;
+   max-width: 1200px;
+   display: flex;
+   flex-direction: column;
+   gap: 30px;
+   font-size: 12px;
 }

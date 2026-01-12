@@ -19,7 +19,7 @@ export async function ensureSession({
   startTime,
   endTime
 }) {
-  //  console.log("Session Data Debug Logs",slotId,classId,semester,subjectId,startTime,endTime)
+   
   const res = await api.post("/Admin/lecture/session/ensure", {
     slotId,
     classId,
@@ -28,7 +28,6 @@ export async function ensureSession({
     startTime,
     endTime
   });
- 
   return res.data.data;
 }
 
@@ -37,7 +36,7 @@ export async function ensureSession({
  */
 export async function getSession(sessionId) {
   const res = await api.get(`/Admin/lecture/session/${sessionId}`);
-  return res.data.data;
+  return res.data.data;     //return empty array if no session found.
 }
 
 /**

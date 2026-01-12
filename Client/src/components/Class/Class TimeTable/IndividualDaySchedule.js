@@ -22,6 +22,9 @@ function DaySchedule(){
             setTodaySchedule(()=>{return sortedTemp});
         }
     },[search])
+    if(!timetable.length){
+        return <p>No Timetable Recoreded For This Class</p>
+    }
     return <>
     <section className="day-schedule-template">
         {/* {

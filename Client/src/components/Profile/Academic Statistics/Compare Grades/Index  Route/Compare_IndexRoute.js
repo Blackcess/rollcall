@@ -20,7 +20,7 @@ function CompareIndexRoute(){
     return<>
     <section  className="compare-index-route-section">
         <div className="new-feature-intro">
-          <p>   <span className="my-bransd-nam">RollCall </span> has released this new feature. CEO <span style={{color:"blue",textDecoration:"underline"}}>Thomas Kazonda</span> has authorized this comparison model<br/>
+          <p>   <span className="my-bransd-nam">RollCall </span> has released this new feature. CEO <span style={{color:"blue",textDecoration:"underline"}}>Thomas Kazonda</span> has authorized this comparison model<br/><br/>
             Unfortunately this feature is for Premium Students. Please verify if you are Premium.
         </p>
         </div>

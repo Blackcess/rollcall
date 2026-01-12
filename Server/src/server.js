@@ -15,10 +15,8 @@ import path from 'path';
 import { Server } from 'socket.io';
 import { mySocketLogic } from "../Chat Sockets/ChatSockets.js";
 import { createServer } from 'http';
-// import  bcrypt from "bycrpt"
 import "../database connections/databaseConnect.js"
 import { uploadImage } from "../Data Controllers/Study Articles Controllers/imageUploadsController.js";
-import { connect } from "http2";
 import classRouter from "../Routes/classRoutes.js";
 import { syllabusRouter } from "../Routes/Subject Module Routes/subjectSyllabusRoute.js";
 import { assignmentRouter } from "../Routes/Subject Module Routes/subjectAssignmentRoute.js";

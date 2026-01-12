@@ -57,7 +57,7 @@ function ActualSemesterData(){
             // const studentTable = indexToSemesterStudentTable(parseInt(index));
             // if(studentTable && id){
                 try {
-                    const response=  await axios.get(`${API_BASE_URL}/Student/results/semester?roll_number=${id}&semester=${index}`,{
+                    const response=  await axios.get(`${API_BASE_URL}/Student/results/semester?student_id=${sessionData.userData.student_id}&semester=${index}`,{
                     withCredentials:true
                     })
                     // console.log("My response from new logic is ",response)

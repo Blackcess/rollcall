@@ -6,26 +6,10 @@ import { useScreenData } from "../components/Layout/Layout";
 import { useEffect, useState } from "react";
 
 function DesktopLayout(){
-    // let bigScreenClass= "desktop-lower-part-big-screen"
-    // let smallScreenClass= "desktop-lower-part-small-screen"
-    // let [bigScreen,setBigScreen]= useState(false);
-    // let [classDecider,setClassDecider]= useState(smallScreenClass);
+  
     const [sidebarCollapsed,setDesktopCollapsed] = useState(false)
     let windowWidth = window.innerWidth;
     let [profPicType,setProfPicType] =useState("");
-    // useEffect(()=>{
-    //     function handleResize(){
-    //         if(window.innerWidth>1440){
-    //             // setClassDecider(bigScreenClass)
-    //             setBigScreen(true)
-    //         }
-    //         else{
-    //             // setClassDecider(smallScreenClass)
-    //             setBigScreen(false)
-    //         }
-    //     }
-    //     window.addEventListener("resize",handleResize)
-    // },[windowWidth])
 
     
     

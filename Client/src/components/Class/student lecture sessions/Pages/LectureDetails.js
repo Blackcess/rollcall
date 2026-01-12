@@ -52,15 +52,15 @@ function LectureDetail() {
         }
 
         const data = await getLectureDetails(sessionId);
+        setSession(data);
         // const commentData = await getLectureComments(sessionId);
         const commentData = await getSessionComments(sessionId);
-        setSession(data);
         setComments(commentData);
         const {subject} = await getSemesterSubjects(data.subject_id)
         setSubjectMeta(()=>{return subject})
         const lectureFiles = await getSessionFiles(sessionId)
         setFiles(()=>{return lectureFiles})
-        console.log("file metadata is ",lectureFiles)
+        // console.log("file metadata is ",lectureFiles)
       } catch (err) {
         console.error(err);
         toast.error("Failed to load lecture details.");

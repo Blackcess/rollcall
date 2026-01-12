@@ -33,31 +33,25 @@ function DesktopDashboard(){
             // const studentTable = indexToSemesterStudentTable(parseInt(index));
             // if(studentTable){
                 try {
-                    const response=  await axios.get(`${API_BASE_URL}/Student/results/semester?roll_number=${id}&semester=${index}`,{
+                    const response=  await axios.get(`${API_BASE_URL}/Student/results/semester?student_id=${sessionData.userData.student_id}&semester=${index}`,{
                     withCredentials:true
                     })
                     if(response.data.length){
                         setUserData(response.data[0])
                         setUserDataFound(true)
-                        console.log("My Results from server ",response.data[0])
                     }
             }    catch (error) {
                 console.error("Error Occured:  ",error)
                 setUserDataFound(false)
             }
-            // }
-            // else{
-            //     console.log("Errrror",studentTable,index)
-            // }
             
         }
-        // const subjectTable= indexToSemesterSubjectsTable(parseInt(index));
+        
         async function getSubjects() {
             try {
                 const response= await axios.get(`${API_BASE_URL}/Student/subjects?semester=${index}`,{
                     withCredentials:true
                 })
-                // setRollNumber(response.data.user.roll_number)
                
                 
                 
@@ -133,7 +127,6 @@ function DesktopDashboard(){
                 <div className="dashboard-part-2">
                    
                    { (userDataFound && subjectDataFound && index) && <RightSection value={{userData,userSubjects,userDataFound,subjectDataFound,index,rollNumber}}/> }
-                   {/* <RightSection value={{userData,userSubjects,userDataFound,subjectDataFound,index}}/> */}
                     
                 </div>
             </div>
@@ -148,8 +141,6 @@ function RightSection(props){
         <section className="right-section-template">
             <div className="sgpa-data">
                   <SGPATracker value={{title:`Semester ${props.value.index} SGPA`,value:props.value.userData.SGPA}} type={{isSGPA:true}}/>
-                  {/* <SGPATracker value={{title:`Semester ${props.value.index} Status`,value:props.value.userData.result_status}} type={{isSGPA:false}}/> */}
-                  {/* <SGPATracker/> */}
 
             </div>
             <div className="subject-data">

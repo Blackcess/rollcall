@@ -2,8 +2,8 @@ import { connection } from "../../database connections/databaseConnect.js";
 import { DomainError } from "../../Domain Errors/Grades Module Errors/domainErrors.js";
 
 
-async function getSemesterResultByRollNumber(rollNumber, semester) {
-  if (!rollNumber || !semester) {
+async function getSemesterResultByRollNumber(student_id, semester) {
+  if (!student_id || !semester) {
     throw DomainError.invalid("ROLL NUMBER AND SEMESTER ARE REQUIRED");
   }
 
@@ -22,10 +22,10 @@ async function getSemesterResultByRollNumber(rollNumber, semester) {
     FROM all_students st
     JOIN student_semester_results ssr
       ON ssr.student_id = st.id
-    WHERE st.roll_number = ?
+    WHERE st.id = ?
       AND ssr.semester = ?;
     `,
-    [rollNumber, semester]
+    [student_id, semester]
   );
 
   if (!headerRows.length) {
@@ -76,9 +76,9 @@ async function getSemesterResultByRollNumber(rollNumber, semester) {
 /**
  * Fetch all semester results for a student (legacy-compatible shape)
  */
-async function getAllSemesterResultsByRollNumber(rollNumber) {
-  if (!rollNumber) {
-    throw DomainError.invalid("ROLL NUMBER IS REQUIRED");
+async function getAllSemesterResultsByRollNumber(student_id) {
+  if (!student_id) {
+    throw DomainError.invalid("STUDENT_ID_IS_REQUIRED");
   }
 
   const [rows] = await connection.query(
@@ -103,10 +103,10 @@ async function getAllSemesterResultsByRollNumber(rollNumber) {
     JOIN student_semester_results r
       ON r.student_id = g.student_id
      AND r.semester = g.semester
-    WHERE st.roll_number = ?
+    WHERE st.id = ?
     ORDER BY r.semester, sub.id;
     `,
-    [rollNumber]
+    [student_id]
   );
 
   if (!rows.length) {

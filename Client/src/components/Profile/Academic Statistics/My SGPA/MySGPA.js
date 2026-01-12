@@ -17,6 +17,7 @@ import {
   Legend,
 } from 'chart.js';
 import { MdBorderColor } from "react-icons/md";
+import { getSemesterResults } from "../../../Dashboard/API/allStudentGrades.api";
 //registration
 ChartJS.register(
   LineElement,
@@ -31,17 +32,20 @@ ChartJS.register(
 
 function MySGPA(){
     let sessionData=useAuth();
+    // const [results,setResults] = useState(null)
 
     useEffect(()=>{
         sessionData.myResults();
     },[])
-  
+  useEffect(()=>{
+    console.log("User data", sessionData)
+  })
   
     return <>
     <section className="my-sgpa-section">
         <h3>MY SGPA</h3>
         <div className="mysgpa-line-something">
-           { (sessionData.userData.all_semester_results )&& <SGPA_Chart value={{data:sessionData.userData.all_semester_results}}/>} 
+           { (sessionData.userData.all_semester_results )&& <SGPA_Chart value={{data:sessionData.userData.all_semester_results.all_semester_results}}/>} 
         </div>
     </section>
     </>
@@ -77,10 +81,13 @@ function SGPA_Chart(props){
 
     return <>
     <section  className="my-sgpa-charts-section">
-        <div><Line data={data} options={options} height={(window.innerWidth<600)?350:600}/></div>
+        <div className="sgpa-chart-sub-new">
+            <Line data={data} options={options} height={(window.innerWidth<700)?500:600} width={window.innerWidth}/>
+        </div>
        
     </section>
     </>
 }
 
 export default MySGPA;
+// height={(window.innerWidth<600)?350:600}

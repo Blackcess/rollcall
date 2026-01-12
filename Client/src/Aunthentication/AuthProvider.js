@@ -5,6 +5,7 @@ import { indexToSemesterStudentTable, indexToSemesterSubjectsTable } from "../ut
 import { translateName,reverseTranslateName } from "../utils_functions/subject_name_translation";
 import { grade_value,reverseGrade_value } from "../utils_functions/grade_to_value_transformation";
 import { elements } from "chart.js";
+import { getAllSemesterData } from "../components/Dashboard/API/allStudentGrades.api";
 
 const Auth= createContext();
 const API_BASE_URL = process.env.REACT_APP_API_URL;
@@ -104,7 +105,7 @@ function AuthProvider({children}){
    async  function allSemesterData(){
 
         try {
-            const res = await axios.get(`${API_BASE_URL}/Student/results/all-semesters?roll_number=${userData.roll_number}`,{
+            const res = await axios.get(`${API_BASE_URL}/Student/results/all-semesters?student_id=${userData.student_id}`,{
                 withCredentials:true
             })
             if(res.data.status){

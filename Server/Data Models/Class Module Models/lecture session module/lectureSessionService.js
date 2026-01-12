@@ -57,18 +57,15 @@ export const LectureSessionService = {
   async getSessionById(sessionId) {
     const [rows] = await connection.query(
       `
-      SELECT ls.*,
-      lf.*
-      FROM lecture_sessions ls
-      JOIN lecture_files lf
-      ON ls.id = lf.session_id
-      WHERE ls.id = ?`,
+      SELECT *
+      FROM lecture_sessions
+      WHERE id = ?`,
       [sessionId]
     );
 
-    if (!rows.length) {
-      throw new DomainError("LECTURE_SESSION_NOT_FOUND", 404);
-    }
+    // if (!rows.length) {
+    //   throw new DomainError("LECTURE_SESSION_NOT_FOUND", 404);
+    // }
 
     return rows[0];
   },

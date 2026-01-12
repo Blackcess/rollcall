@@ -57,10 +57,10 @@ function SessionWorkspace() {
 
         setSessionId(session.id);
 
-        const fetched = await getSession(session.id);
-        setSummary(fetched.summary || "");
-        setTopics(fetched.topics || "");
-        setExtraNotes(fetched.extra_notes || "");
+        // const fetched = await getSession(session.id);
+        setSummary(session.summary || "");
+        setTopics(session.topics || "");
+        setExtraNotes(session.extra_notes || "");
 
         const fileList = await getSessionFiles(session.id);
         setFiles(fileList);
@@ -134,6 +134,7 @@ function SessionWorkspace() {
   };
 
   if (loading) return <p>Loading session...</p>;
+  if (!classMeta) return <p>Loading Class Details...</p>;
 
   return (
     <section className="session-workspace">

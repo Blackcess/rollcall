@@ -101,7 +101,7 @@ function AttendanceDashboard1() {
           <button onClick={(e)=>{
               Navigation(`/protected/layout/class/class-attendance-record`)
             }} className="mark-btn">
-              Today's Attendance
+              Today's Lectures
           </button>
           <NavLink to={`/protected/layout/class/class-attendance-retrieve`} className="view-btn-cu">View Attendance</NavLink>
         </div>

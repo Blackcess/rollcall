@@ -4,7 +4,7 @@ import axios from "axios"
 import { MdSubject } from "react-icons/md";
 import { useAuth } from "../../../Aunthentication/AuthProvider";
 import { MdOutlineNavigateNext } from "react-icons/md";
-import { use, useContext, useEffect, useState } from "react"
+import {useContext, useEffect, useState } from "react"
 import { useParams,useLocation } from "react-router-dom"
 import ShimmerLoader from "../../Util Components/ShimmerLoader/ShimmerLoader";
 import { indexToSemesterSubjectsTable, indexToSemesterStudentTable } from "../../../utils_functions/index_to_semester_table";
@@ -57,50 +57,22 @@ function ActualSemesterData_Desktop(){
         // console.log("Index Data",index)
         async function getFromServer(id){
               try {
-                    const response=  await axios.get(`${API_BASE_URL}/Student/results/semester?roll_number=${id}&semester=${index}`,{
+                    const response=  await axios.get(`${API_BASE_URL}/Student/results/semester?student_id=${sessionData.userData.student_id}&semester=${index}`,{
                         withCredentials:true
                     })
                     if(response.data.length){
                         setUserData(response.data[0])
                         setUserDataFound(true)
-                        console.log("My Results from server ",response.data[0])
                     }
                 }catch (error) {
                     console.error("Error Occured:  ",error)
                     setUserDataFound(false)
                 }
         }
-        // const subjectTable= indexToSemesterSubjectsTable(parseInt(index));
-        // async function getSubjects() {
-        //     if(subjectTable){
-        //     try {
-        //         const response= await axios.get(`${API_BASE_URL}/assets/results/semester/subjects?table=${subjectTable}`,{
-        //             withCredentials:true
-        //         })
-        //         //  console.log("Desktop data",response.data)
-        //         setRollNumber(response.data.user.roll_number)
-        //         setUserSubjects((prev)=>{
-        //             prev.data= response.data.results;
-        //             return prev;
-        //         })
-        //         await getFromServer(response.data.user.roll_number);
-                
-        //         if(response.data.results.length){
-        //             setSubjectDataFound(true)
-        //         }
-        //     } catch (error) {
-        //         console.log("Error in retrieving subjects",error)
-        //         setSubjectDataFound(false)
-        //     }
-        //     }
-            
-        // }
-            //  getSubjects();
             getFromServer(sessionData.userData.roll_number);
             if(resultsGlobal && resultsGlobal.userSubjects && resultsGlobal.userSubjects.data){
                 setUserSubjects(resultsGlobal.userSubjects)
                 setSubjectDataFound(true)
-
             }
         
     },[index])
@@ -145,16 +117,6 @@ function ActualSemesterData_Desktop(){
        <ShimmerLoader/>}
     </>
 }
-
-
-
-
-
-
-
-
-
-
 
 
 function SemestersGradesDoughnut_Desktop(props){

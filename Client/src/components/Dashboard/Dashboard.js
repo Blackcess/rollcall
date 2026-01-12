@@ -5,6 +5,7 @@ import MobileDashBoard from "./Mobile DashBoard/MobileDashBoard"
 import { useScreenData } from "../Layout/Layout"
 import { Outlet, useLocation, useNavigate } from "react-router-dom"
 import { useAuth } from "../../Aunthentication/AuthProvider"
+import "./Dashboard.css"
 
 const API_BASE_URL = process.env.REACT_APP_API_URL;
 function Dashboard(){

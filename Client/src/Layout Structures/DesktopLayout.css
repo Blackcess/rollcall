@@ -32,14 +32,11 @@
     display: flex;
 }
 .desktop-outlet{
-    /* width: 100%; */
-    /* background-color: rgba(225, 223, 223, 0.319); */
     flex: 3;
-    overflow-y: auto;
-    margin-bottom: 20px;
-    padding:0px 25px;
-    border-radius: 20px;
-    /* overflow: hidden; */
+    /* overflow-y: auto; */
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 .desktop-sidebar{
     /* background-color: red; */

@@ -5,6 +5,7 @@
  import { translateName,reverseTranslateName } from "../../../../utils_functions/subject_name_translation"
 import { useEffect,useState } from "react"
 import axios from "axios"
+import { useAuth } from "../../../../Aunthentication/AuthProvider"
 
 const API_BASE_URL = process.env.REACT_APP_API_URL;
  
@@ -25,6 +26,7 @@ const API_BASE_URL = process.env.REACT_APP_API_URL;
       const index = queryParams.get(`index`)
       const rollNumber = queryParams.get(`roll_number`)
       const subjectId= queryParams.get(`subjectId`)
+      const sessionData = useAuth(); 
 
     // -------------------------->
    
@@ -33,10 +35,9 @@ const API_BASE_URL = process.env.REACT_APP_API_URL;
         async function getFromServer(id){
 
             try {
-                const response=  await axios.get(`${API_BASE_URL}/Student/results/semester?roll_number=${id}&semester=${index}`,{
+                const response=  await axios.get(`${API_BASE_URL}/Student/results/semester?student_id=${sessionData.userData.student_id}&semester=${index}`,{
                         withCredentials:true
                     })
-                    // console.log("My response from new logic is ",response)
                                 
                     if(response.data.length){
                         setUserData((prev)=>{
@@ -97,7 +98,6 @@ const API_BASE_URL = process.env.REACT_APP_API_URL;
 
     useEffect(()=>{
        if(userDataFound){
-        console.log("My User Data is ",userData)
          let temp = userData[mySub].split(",");
          setInterstingData((prev)=>{
             const data = {...prev,
@@ -110,11 +110,7 @@ const API_BASE_URL = process.env.REACT_APP_API_URL;
          })
        }
     },[userDataFound])
-   
 
- 
-    
-     
   
     return <>
     <section className="mobile-subject-section">
@@ -200,7 +196,6 @@ const API_BASE_URL = process.env.REACT_APP_API_URL;
  function DetailedSubStats_full_class(props){
     let titles=["Passed Students","Failed Students"];
     let values = [props.value.data.passed,props.value.data.failed]
-    // console.log(values)
     return <>
     <section className="detailed-status-template">
         <div className="personal-stats-sub-res">

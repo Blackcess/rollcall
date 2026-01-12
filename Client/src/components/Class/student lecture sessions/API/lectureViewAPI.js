@@ -38,8 +38,6 @@ export async function getLectureComments(sessionId) {
   const res = await api.get(
     `/Student/lecture/session/${sessionId}/comments`
   );
-  
- 
   return res.data.data;
 }
 

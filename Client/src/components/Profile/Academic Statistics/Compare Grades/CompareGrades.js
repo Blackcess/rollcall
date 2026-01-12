@@ -5,7 +5,7 @@ function CompareGrades(){
 
     return <>
         <section className="copare-data">
-            <h2>Grade Comparisons</h2>
+            <h2>Grade Analytics</h2>
             <div>
                 <Outlet/>
             </div>

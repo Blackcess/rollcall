@@ -83,7 +83,7 @@ function CompareSGPA(){
     return <>
    <section className="mysgpa-vs-yours">
     <div>
-        { (sessionData.userData.all_semester_results && player2Data.all_semester_results)?<SGPA_Chart value={{data1:sessionData.userData.all_semester_results,data2:player2Data.all_semester_results}}/>:<ShimmerLoader/>}
+        { (sessionData.userData.all_semester_results && player2Data.all_semester_results)?<SGPA_Chart value={{data1:sessionData.userData.all_semester_results.all_semester_results,data2:player2Data.all_semester_results}}/>:<ShimmerLoader/>}
     </div>
 
    </section>

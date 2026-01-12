@@ -3,6 +3,14 @@
     flex-direction: column;
     gap: 30px;
     font-size: 12px;
+    width: 100%;
+    max-width: 1200px;
+    /* background-color: red; */
+    position: relative;
+}
+.sgpa-chart-sub-new{
+    width: 100%;
+    /* background-color: teal; */
 }
 .my-sgpa-charts-section{
 

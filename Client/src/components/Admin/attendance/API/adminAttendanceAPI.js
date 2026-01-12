@@ -75,11 +75,11 @@ export async function saveAttendanceForSlot({
 
 }
 export const getClassDetails = async (classId)=>{
+  console.log("Response from the API layer is ", classId)
   const res  = await api.get(`/admin/classes/details?id=${classId}`)
   return res.data.data
 }
 export const getAllRegisteredClasses = async ()=>{
   const res  = await api.get(`/admin/classes/all`)
-  console.log("Response from the API layer is ", res.data.data)
   return res.data.data
 }

@@ -42,13 +42,12 @@ function SemesterSubjectsDesktop(props) {
         // console.log("Index Data",index)
         async function getFromServer(id){
               try {
-                const response=  await axios.get(`${API_BASE_URL}/Student/results/semester?roll_number=${id}&semester=${index}`,{
+                const response=  await axios.get(`${API_BASE_URL}/Student/results/semester?student_id=${sessionData.userData.student_id}&semester=${index}`,{
                     withCredentials:true
                 })
                 if(response.data.length){
                     setUserData(response.data[0])
                     setUserDataFound(true)
-                    console.log("My Results from server ",response.data)
                 }
             }catch (error) {
                 console.error("Error Occured:  ",error)

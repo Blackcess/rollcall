@@ -1,23 +1,30 @@
 import { getSemesterResultByRollNumber, getAllSemesterResultsByRollNumber, getLatestRecordedSemesterByRollNumber,getListOfAllRecoredeSemestersByRollNumber } from "../../Data Models/Student Grades/getStudentResultsService.js";
+import { DomainError } from "../../Domain Errors/Grades Module Errors/domainErrors.js";
 
 // get results semester wise for a student
 async function getSemesterResultController(req, res, next) {
   try {
-    const { roll_number, semester } = req.query;
+    const { student_id, semester } = req.query;
 
-    if (!roll_number || !semester) {
+    if (!student_id || !semester) {
       return res
         .status(400)
-        .json({ message: "roll_number and semester are required" });
+        .json({ message: "student_id and semester are required" });
     }
 
     const results = await getSemesterResultByRollNumber(
-      Number(roll_number),
+      Number(student_id),
       Number(semester)
     );
 
     return res.status(200).json(results);
   } catch (err) {
+    if(err instanceof DomainError){
+      if(err.status==404){
+        res.status(200).json({results:{}})
+        return
+      }
+    }
     next(err); // let centralized error handler decide
   }
 }
@@ -25,9 +32,9 @@ async function getSemesterResultController(req, res, next) {
 // get all semester results for a student
 async function getStudentAllSemesterResults(req, res, next) {
   try {
-    const { roll_number } = req.query;
+    const { student_id } = req.query;
 
-    const result = await getAllSemesterResultsByRollNumber(parseInt(roll_number));
+    const result = await getAllSemesterResultsByRollNumber(parseInt(student_id));
 
     res.status(200).json({data: result, status: true});
   } catch (err) {

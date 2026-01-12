@@ -43,6 +43,10 @@ function MyAttendance (){
         }
         loadData()
     },[])
+
+    if(attendanceListLoaded && !attendanceList.length){
+        return <p>No Recorded Sessions Today</p>
+    }
    
     return <>
         <section className="my-attendance-template">
@@ -69,29 +73,10 @@ function AttendanceCriteria({value}){
     const [session,setSession] = useState(null)
     const sessionData = useAuth()
     const navigate = useNavigate()
-    useEffect(()=>{
-        
-        async function loadData(){
-            await checkCriteriaStatus();
 
-        }
-    },[value.refresh])
-  
-    const checkCriteriaStatus = async ()=>{
-        try {
-            if(value.status=="ACTIVE"){
-                setMarked(true)
-            }
-            else{
-                setMarked(false)
-            }
-        } catch (error) {
-            console.error("Error checking criteria status: ", error);
-        }
-    }
 
     return <>
-    <section className={`attendance-criteria-template ${marked ? "marked" : ""}`} onClick={
+    <section className={`attendance-criteria-template ${value.row.status=="ACTIVE" ? "marked" : "unmarked"}`} onClick={
         ()=>{
             navigate(`/protected/layout/class/class-lecture-details/${value.row.id}`,
                 {

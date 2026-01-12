@@ -8,9 +8,12 @@
 .new-feature-intro{
     display: flex;
     font-size: 12px;
-    padding: 20px;
-    border: 1px solid red;
+    padding: 10px;
+    /* border: 1px solid red; */
     border-radius: 10px;
+    background-color: crimson;
+    color: rgb(230, 227, 227);
+    letter-spacing:1px;
 }
 .verification-compare{
     width: 100%;

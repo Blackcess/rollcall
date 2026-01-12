@@ -135,8 +135,9 @@ classRouter.get("/attendance-overall",attachUserRoles,authenticationMiddleware,a
                                                 MAX(CASE WHEN a.status = 1 THEN 1 ELSE 0 END) AS present_flag
                                                 FROM attendance a
                                                 WHERE a.student_id = ?
+                                                AND semester= ?
                                                 GROUP BY a.date
-                                                ORDER BY a.date`,[req.user.student_id]);
+                                                ORDER BY a.date`,[req.user.student_id,req.user.semester]);
             const daily = rows.map(r => ({
                                 date: r.date,
                                 status: r.present_flag === 1 ? "present" : "absent"

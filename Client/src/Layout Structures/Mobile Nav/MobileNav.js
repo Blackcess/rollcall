@@ -66,11 +66,7 @@ function MobileNav(){
                 console.log("profPicType is not defined")
              }
          }
-
          
-         useEffect(()=>{
-            console.log("My Session Data is ", sessionData)
-         })
     return <>
     <section className="mobile-nav-section">
         <div className="mob-nav-1">

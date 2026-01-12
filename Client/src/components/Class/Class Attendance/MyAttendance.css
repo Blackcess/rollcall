@@ -44,14 +44,34 @@
 .attendance-criteria-template.marked {
   border: 1px solid #00b300;
 }
+.attendance-criteria-template.unmarked {
+  border: 1px solid crimson;
+}
+
 .attendance-criteria-template.marked::before {
-  content: "DONE";
+  content: "ACTIVE";
   position: absolute;
   top: 10px;
   left: -40px;
   width: 100px;
   text-align: center;
   background: #00b300;
+  color: white;
+  font-weight: bold;
+  transform: rotate(-45deg);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  /* font-size: 12px; */
+  padding: 3px 0;
+  /* border-radius: 10px; */
+}
+.attendance-criteria-template.unmarked::before {
+  content: "DONE";
+  position: absolute;
+  top: 10px;
+  left: -40px;
+  width: 100px;
+  text-align: center;
+  background: crimson;
   color: white;
   font-weight: bold;
   transform: rotate(-45deg);

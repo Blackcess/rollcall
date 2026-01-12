@@ -1,7 +1,7 @@
 
 .class-module-root {
-  /* max-width: 1200px; */
   width: 100%;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 5px;
   font-family: Arial, sans-serif;
@@ -11,9 +11,6 @@
   gap: 20px;
   padding-top: 0px;
   /* background-color: teal; */
-  height: 97%;
-  /* max-height: 99%; */
-  /* overflow: hidden; */
 }
 .outlet-overview{
   flex: 1;
